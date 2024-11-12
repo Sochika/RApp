@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "375963092357",
+    "project_id": "radius-1a3ee",
+    "storage_bucket": "radius-1a3ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375963092357:android:1657a4b0474baef97e30ec",
+        "android_client_info": {
+          "package_name": "com.suchtree.radius"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfkKfYvO6v3UQNE3jiJ2KHkoSXAlF3jf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
