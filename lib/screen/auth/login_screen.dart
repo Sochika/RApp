@@ -116,26 +116,24 @@ class loginScreenState extends State<LoginScreen> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: Colors.transparent,
-        bottomNavigationBar: Container(
-          child: Row(
-            children: [
-              Spacer(),
-              GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                      context: context,
-                      useRootNavigator: true,
-                      builder: (context) {
-                        return ShowLanguage();
-                      });
-                },
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.language,color: Colors.white,size: 30,),
-                ),
+        bottomNavigationBar: Row(
+          children: [
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    useRootNavigator: true,
+                    builder: (context) {
+                      return ShowLanguage();
+                    });
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.language,color: Colors.white,size: 30,),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         body: Form(
           key: _form,
@@ -163,7 +161,7 @@ class loginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                                 gaps(50),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width,
                                   child: TextButton(
                                       style: TextButton.styleFrom(
@@ -413,7 +411,7 @@ class loginScreenState extends State<LoginScreen> {
   }
 
   Widget button() {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: TextButton(
           style: TextButton.styleFrom(

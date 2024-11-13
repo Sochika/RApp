@@ -262,18 +262,18 @@ class MoreScreenState extends State<MoreScreen> {
                                 : Services(translate('more_screen.loans'),
                                     Icons.handshake_outlined, LoanListScreen()),*/
                             Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 20, bottom: 10),
                                 child: Text(
                                   translate('more_screen.additional'),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 )),
                             //Services('Issue Ticket', Icons.note, ProfileScreen()),
                             features["support"] != "1"
-                                ? SizedBox.shrink()
+                                ? const SizedBox.shrink()
                                 : Services(translate('more_screen.support'),
                                     Icons.support_agent, SupportScreen()),
                             Services(translate('more_screen.company_rules'),

@@ -6,6 +6,9 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
+import '../../screen/profile/profilescreen.dart';
+import '../morescreen/services.dart';
+
 class Heading extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HeadingState();
@@ -24,12 +27,12 @@ class HeadingState extends State<Heading> {
         return !isLoading;
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
             ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10)),
                 child: Container(
@@ -40,54 +43,51 @@ class HeadingState extends State<Heading> {
                             fit: BoxFit.cover,
                             image: NetworkImage(profile.avatar))),
                     alignment: Alignment.bottomCenter)),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  child: Text(
-                    profile.username,
-                    style: TextStyle(color: Colors.white70, fontSize: 15),
-                  ),
+                Text(
+                  profile.username,
+                  style: const TextStyle(color: Colors.white70, fontSize: 15),
                 ),
                 Text(
                   profile.name,
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 0),
                   child: Text(
                     profile.email,
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
-                IgnorePointer(
-                  ignoring: isProfileLoading.phone == ""?true:false,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context)
-                          .pushNamed(EditProfileScreen.routeName);
-                    },
-                    child: Card(
-                      margin: EdgeInsets.only(top: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10)),
-                      ),
-                      color: HexColor("#036eb7"),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          translate('edit_profile_screen.edit_profile'),
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // IgnorePointer(
+                //   ignoring: isProfileLoading.phone == ""?true:false,
+                //   child: GestureDetector(
+                //     onTap: () {
+                //       ProfileScreen();
+                //     },
+                //     child: Card(
+                //       margin: const EdgeInsets.only(top: 10),
+                //       shape: const RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.only(
+                //             topLeft: Radius.circular(10),
+                //             bottomRight: Radius.circular(10)),
+                //       ),
+                //       color: HexColor("#036eb7"),
+                //       child: const Padding(
+                //         padding: EdgeInsets.all(8.0),
+                //         child: Text(
+                //           "Logout",
+                //           style: TextStyle(color: Colors.white, fontSize: 15),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],

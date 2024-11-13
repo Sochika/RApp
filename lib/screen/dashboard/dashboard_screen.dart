@@ -43,7 +43,7 @@ class DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  PersistentTabController _controller =
+  final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
   @override
@@ -65,25 +65,25 @@ class DashboardScreenState extends State<DashboardScreen> {
           PersistentTabConfig(
               screen: HomeScreen(_controller),
               item: getItemConfig(
-                Icon(Icons.home_filled),
+                const Icon(Icons.home_filled),
                 translate('dashboard_screen.home'),
               )),
           PersistentTabConfig(
               screen: LeaveScreen(),
               item: getItemConfig(
-                Icon(Icons.sick),
+                const Icon(Icons.sick),
                 translate('dashboard_screen.leave'),
               )),
           PersistentTabConfig(
               screen: AttendanceScreen(),
               item: getItemConfig(
-                Icon(Icons.co_present_outlined),
+                const Icon(Icons.co_present_outlined),
                 translate('dashboard_screen.attendance'),
               )),
           PersistentTabConfig(
               screen: MoreScreen(),
               item: getItemConfig(
-                Icon(Icons.more),
+                const Icon(Icons.more),
                 translate('dashboard_screen.more'),
               )),
         ],

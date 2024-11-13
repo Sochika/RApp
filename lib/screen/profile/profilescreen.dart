@@ -75,11 +75,11 @@ class ProfileScreenState extends State<ProfileScreen> {
                         width: double.infinity,
                         child: Text(
                           translate('profile_screen.basic_details'),
-                          style: TextStyle(color: Colors.white38, fontSize: 15),
+                          style: const TextStyle(color: Colors.white38, fontSize: 15),
                         ),
                       )
-                    : SizedBox(),
-                userProfile.post != '' ? BasicDetail() : SizedBox(),
+                    : const SizedBox(),
+                userProfile.post != '' ? BasicDetail() : const SizedBox(),
                 userProfile.post != ''
                     ? Container(
                   padding: const EdgeInsets.only(
@@ -87,11 +87,11 @@ class ProfileScreenState extends State<ProfileScreen> {
                   width: double.infinity,
                   child: Text(
                     translate('profile_screen.company_details'),
-                    style: TextStyle(color: Colors.white38, fontSize: 15),
+                    style: const TextStyle(color: Colors.white38, fontSize: 15),
                   ),
                 )
-                    : SizedBox(),
-                userProfile.post != '' ? CompanyDetail() : SizedBox(),
+                    : const SizedBox(),
+                userProfile.post != '' ? CompanyDetail() : const SizedBox(),
                 userProfile.bankName != ''
                     ? Container(
                         padding: const EdgeInsets.only(
@@ -99,11 +99,11 @@ class ProfileScreenState extends State<ProfileScreen> {
                         width: double.infinity,
                         child: Text(
                           translate('profile_screen.bank_details'),
-                          style: TextStyle(color: Colors.white38, fontSize: 15),
+                          style: const TextStyle(color: Colors.white38, fontSize: 15),
                         ),
                       )
-                    : SizedBox(),
-                userProfile.bankName != '' ? BankDetail() : SizedBox(),
+                    : const SizedBox(),
+                userProfile.bankName != '' ? BankDetail() : const SizedBox(),
               ],
             ),
           ),

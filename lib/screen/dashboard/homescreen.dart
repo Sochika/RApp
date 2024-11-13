@@ -282,19 +282,17 @@ class HomeScreenState extends State<HomeScreen> {
             },
             child: SafeArea(
                 child: SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    HeaderProfile(),
-                    CheckAttendance(),
-                    OverviewDashboard(controller),
-                    UpcomingHoliday(),
-                    RecentAward(),
-                    WeeklyReportChart(),
-                    MyTeam()
-                  ],
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HeaderProfile(),
+                  CheckAttendance(),
+                  OverviewDashboard(controller),
+                  UpcomingHoliday(),
+                  RecentAward(),
+                  WeeklyReportChart(),
+                  MyTeam()
+                ],
               ),
             )),
           ),
