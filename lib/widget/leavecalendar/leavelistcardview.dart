@@ -9,7 +9,7 @@ class LeaveListCardView extends StatelessWidget {
   final String post;
   final String leaveDays;
 
-  LeaveListCardView(this.id,this.name, this.avatar, this.post, this.leaveDays);
+  const LeaveListCardView(this.id,this.name, this.avatar, this.post, this.leaveDays, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class LeaveListCardView extends StatelessWidget {
       shape: ButtonBorder(),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -32,7 +32,7 @@ class LeaveListCardView extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Column(
@@ -40,22 +40,22 @@ class LeaveListCardView extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
                   post,
-                  style: TextStyle(fontSize: 15, color: Colors.white70),
+                  style: const TextStyle(fontSize: 15, color: Colors.white70),
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(5),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: Container(
@@ -67,12 +67,12 @@ class LeaveListCardView extends StatelessWidget {
                           children: [
                             Text(
                               leaveDays,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text(
+                            const Text(
                               'Days',
                               style: TextStyle(
                                   color: Colors.white,
@@ -85,7 +85,7 @@ class LeaveListCardView extends StatelessWidget {
                 ),
                 Visibility(
                   visible: id == "0",
-                  child: Positioned(
+                  child: const Positioned(
                     right: 0,
                     child: Card(
                       shape: CircleBorder(),
@@ -93,7 +93,7 @@ class LeaveListCardView extends StatelessWidget {
                       color: Colors.white,
                       margin: EdgeInsets.zero,
                       child: Padding(
-                        padding: const EdgeInsets.all(3.0),
+                        padding: EdgeInsets.all(3.0),
                         child: Text("⏱️"),
                       ),
                     ),

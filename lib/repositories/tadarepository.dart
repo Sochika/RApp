@@ -53,7 +53,7 @@ class TadaRepository {
 
     try {
       final response = await Connect()
-          .getResponse(Constant.TADA_DETAIL_URL + "/${tadaId}", headers);
+          .getResponse("${Constant.TADA_DETAIL_URL}/$tadaId", headers);
       debugPrint(response.body.toString());
 
       final responseData = json.decode(response.body);

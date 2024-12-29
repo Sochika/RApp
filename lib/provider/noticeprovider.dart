@@ -51,7 +51,7 @@ class NoticeProvider with ChangeNotifier {
         throw errorMessage;
       }
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

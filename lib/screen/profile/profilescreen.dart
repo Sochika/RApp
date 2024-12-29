@@ -11,6 +11,8 @@ import 'package:radius/widget/profile/heading.dart';
 class ProfileScreen extends StatefulWidget {
   static const routeName = '/profile';
 
+  const ProfileScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => ProfileScreenState();
 }
@@ -67,7 +69,7 @@ class ProfileScreenState extends State<ProfileScreen> {
             physics: const AlwaysScrollableScrollPhysics(),
             child: Column(
               children: [
-                Heading(),
+                const Heading(),
                 userProfile.post != ''
                     ? Container(
                         padding: const EdgeInsets.only(
@@ -79,7 +81,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         ),
                       )
                     : const SizedBox(),
-                userProfile.post != '' ? BasicDetail() : const SizedBox(),
+                userProfile.post != '' ? const BasicDetail() : const SizedBox(),
                 userProfile.post != ''
                     ? Container(
                   padding: const EdgeInsets.only(
@@ -91,7 +93,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                   ),
                 )
                     : const SizedBox(),
-                userProfile.post != '' ? CompanyDetail() : const SizedBox(),
+                userProfile.post != '' ? const CompanyDetail() : const SizedBox(),
                 userProfile.bankName != ''
                     ? Container(
                         padding: const EdgeInsets.only(
@@ -103,7 +105,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         ),
                       )
                     : const SizedBox(),
-                userProfile.bankName != '' ? BankDetail() : const SizedBox(),
+                userProfile.bankName != '' ? const BankDetail() : const SizedBox(),
               ],
             ),
           ),

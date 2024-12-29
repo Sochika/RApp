@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:html/parser.dart';
 
 class TadaDetailScreen extends StatelessWidget {
+  const TadaDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(TadaDetailController());
@@ -14,7 +16,7 @@ class TadaDetailScreen extends StatelessWidget {
       decoration: RadialDecoration(),
       child: Obx(
         () => SafeArea(
-          child: model.isLoading.value?SizedBox.shrink():Scaffold(
+          child: model.isLoading.value?const SizedBox.shrink():Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               elevation: 0,
@@ -23,7 +25,7 @@ class TadaDetailScreen extends StatelessWidget {
             ),
             bottomNavigationBar: Obx(
               () => Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 height: 50,
                 child: Row(
                   children: [
@@ -37,20 +39,20 @@ class TadaDetailScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(model.tada.value.status,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             )),
                       ),
                     ),
-                    Spacer(),
-                    Text(
+                    const Spacer(),
+                    const Text(
                       "Total ",
                       style: TextStyle(color: Colors.grey, fontSize: 18),
                     ),
-                    Text("Rs " + model.tada.value.expenses,
-                        style: TextStyle(
+                    Text("Rs ${model.tada.value.expenses}",
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -70,32 +72,32 @@ class TadaDetailScreen extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: Text(
                         model.tada.value.submittedDate,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        style: const TextStyle(color: Colors.white, fontSize: 15),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "Title",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     ),
                     Text(
                       model.tada.value.title,
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                      style: const TextStyle(color: Colors.white, fontSize: 24),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "Description",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     ),
                     Text(
                       parse(model.tada.value.description ?? "").body!.text,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     GestureDetector(
@@ -112,12 +114,12 @@ class TadaDetailScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Attachments ( ${model.tada.value.attachments!.length.toString()} )",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(
+                          const Text(
                             "Show Media",
                             style: TextStyle(
                                 color: Colors.white70,
@@ -128,14 +130,14 @@ class TadaDetailScreen extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       "Verified By",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     ),
                     Text(
                       parse(model.tada.value.verifiedBy ?? "N/A").body!.text,
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                      style: const TextStyle(color: Colors.white, fontSize: 15),
                     ),
                   ],
                 ),

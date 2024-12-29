@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../../../../model/attachment.dart';
 
 class FilesListBottom extends StatelessWidget {
+  const FilesListBottom({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TaskDetailController model = Get.find();
@@ -17,12 +19,12 @@ class FilesListBottom extends StatelessWidget {
     }
 
     return Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         child: ListView.builder(
           itemCount: attachments.length,
           primary: false,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final attachment = attachments[index];
             return Card(
@@ -35,13 +37,13 @@ class FilesListBottom extends StatelessWidget {
                     children: [
                       Text(
                         attachment.url,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                       GestureDetector(
                         onTap: () async {
                           model.launchUrls(attachment.url);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.download,
                           color: Colors.white,
                         ),

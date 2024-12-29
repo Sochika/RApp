@@ -14,10 +14,10 @@ class Data {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['checklist_id'] = this.checklist_id;
-        data['is_completed'] = this.is_completed;
-        data['name'] = this.name;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data['checklist_id'] = checklist_id;
+        data['is_completed'] = is_completed;
+        data['name'] = name;
         return data;
     }
 }

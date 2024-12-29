@@ -12,7 +12,7 @@ class NoteBottomSheet extends StatefulWidget {
   final String identifier;
   final String type;
 
-  NoteBottomSheet(this.identifier, this.type);
+  const NoteBottomSheet(this.identifier, this.type, {super.key});
 
   @override
   State<StatefulWidget> createState() => NoteBottomSheetState();
@@ -81,7 +81,7 @@ class NoteBottomSheetState extends State<NoteBottomSheet> {
                 children: [
                   Text(
                     "${translate('home_screen.check_in')} / ${translate('home_screen.check_out')}",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: const TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   IconButton(
                       onPressed: () {
@@ -107,35 +107,35 @@ class NoteBottomSheetState extends State<NoteBottomSheet> {
                       FocusManager.instance.primaryFocus?.unfocus();
                     }
                   },
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   //editing controller of this TextField
                   cursorColor: Colors.white,
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                     hintText: translate('home_screen.note'),
-                    hintStyle: TextStyle(color: Colors.white),
-                    labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.white),
+                    labelStyle: const TextStyle(color: Colors.white),
                     fillColor: Colors.white24,
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(0),
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(0),
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(10))),
-                    focusedErrorBorder: OutlineInputBorder(
+                    focusedErrorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(0),
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(10))),
-                    errorBorder: OutlineInputBorder(
+                    errorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(0),
@@ -209,7 +209,7 @@ class NoteBottomSheetState extends State<NoteBottomSheet> {
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 translate('create_salary_screen.submit'),
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             )),
                       ),
@@ -228,7 +228,7 @@ class NoteBottomSheetState extends State<NoteBottomSheet> {
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 translate('common.go_back'),
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             )),
                       ),

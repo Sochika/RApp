@@ -14,6 +14,8 @@ import 'package:nepali_date_picker/nepali_date_picker.dart';
 import 'package:provider/provider.dart';
 
 class IssueLeaveSheet extends StatefulWidget {
+  const IssueLeaveSheet({super.key});
+
   @override
   State<StatefulWidget> createState() => IssueLeaveSheetState();
 }
@@ -132,13 +134,13 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
                       )),
                 ],
               ),
-              Container(
+              SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton2(
                       isExpanded: true,
-                      hint: Row(
-                        children: const [
+                      hint: const Row(
+                        children: [
                           Expanded(
                             child: Text(
                               'Select Leave Type',
@@ -169,13 +171,13 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
                           .toList(),
                       value: selectedValue,
                       onChanged: (value) {
-                        selectedValue = value as Leave?;
+                        selectedValue = value;
                         if (selectedValue != null) {
                           setState(() {});
                         }
                       },
-                      iconStyleData: IconStyleData(
-                        icon: const Icon(
+                      iconStyleData: const IconStyleData(
+                        icon: Icon(
                           Icons.arrow_forward_ios_outlined,
                         ),
                         iconSize: 14,
@@ -187,7 +189,7 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
                         width: 160,
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
@@ -200,7 +202,7 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
                         maxHeight: 200,
                         padding: null,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(0),
                               topRight: Radius.circular(10),
                               bottomLeft: Radius.circular(10),
@@ -209,19 +211,19 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
                         ),
                         elevation: 8,
                       ),
-                      menuItemStyleData: MenuItemStyleData(
+                      menuItemStyleData: const MenuItemStyleData(
                         height: 40,
-                        padding: const EdgeInsets.only(left: 14, right: 14),
+                        padding: EdgeInsets.only(left: 14, right: 14),
                       ),
                     ),
                   )),
               gaps(10),
               TextField(
                 controller: startDate,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 //editing controller of this TextField
                 cursorColor: Colors.white,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Select Start Date',
                   hintStyle: TextStyle(color: Colors.white),
                   prefixIcon: Icon(Icons.calendar_month, color: Colors.white),
@@ -292,10 +294,10 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
               gaps(10),
               TextField(
                 controller: endDate,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 //editing controller of this TextField
                 cursorColor: Colors.white,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Select End Date',
                   hintStyle: TextStyle(color: Colors.white),
                   prefixIcon: Icon(Icons.calendar_month, color: Colors.white),
@@ -378,11 +380,11 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
                     FocusManager.instance.primaryFocus?.unfocus();
                   }
                 },
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 //editing controller of this TextField
                 cursorColor: Colors.white,
                 keyboardType: TextInputType.multiline,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Reason',
                   hintStyle: TextStyle(color: Colors.white),
                   prefixIcon: Icon(Icons.edit_note, color: Colors.white),
@@ -418,7 +420,7 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
               gaps(20),
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 5),
                 child: TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: HexColor("#036eb7"),
@@ -428,8 +430,8 @@ class IssueLeaveSheetState extends State<IssueLeaveSheet> {
                     onPressed: () {
                       issueLeave();
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(20.0),
                       child: Text(
                         'Request Leave',
                         style: TextStyle(color: Colors.white),

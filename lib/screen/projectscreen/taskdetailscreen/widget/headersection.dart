@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class HeaderSection extends StatelessWidget{
+  const HeaderSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TaskDetailController controller = Get.find();
@@ -17,7 +19,7 @@ class HeaderSection extends StatelessWidget{
           color: Colors.white38,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3),
-            child: Obx(() => Text(controller.taskDetail.value.priority!,style: TextStyle(color: Colors.white),)),
+            child: Obx(() => Text(controller.taskDetail.value.priority!,style: const TextStyle(color: Colors.white),)),
           ),
         ),
         Obx(
@@ -25,7 +27,7 @@ class HeaderSection extends StatelessWidget{
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
               controller.taskDetail.value.name!,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white, fontSize: 21, fontWeight: FontWeight.bold),
             ),
           ),
@@ -44,7 +46,7 @@ class HeaderSection extends StatelessWidget{
                   children: [
                     Text(
                       "${translate('task_detail_screen.due_date')}:  ",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 12,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
@@ -52,7 +54,7 @@ class HeaderSection extends StatelessWidget{
                     Obx(
                       () => Text(
                         controller.taskDetail.value.date!,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 12,
                             color: Colors.redAccent,
                             fontWeight: FontWeight.bold),
@@ -78,7 +80,7 @@ class HeaderSection extends StatelessWidget{
                 child: Obx(
                   () => Text(
                     controller.taskDetail.value.status,
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                    style: const TextStyle(fontSize: 12, color: Colors.white),
                   ),
                 ),
               ),

@@ -19,7 +19,7 @@ class AttendanceReportRepository {
     };
     try {
       final response = await Connect().getResponse(
-          Constant.ATTENDANCE_REPORT_URL + "?month=${selectedMonth + 1}",
+          "${Constant.ATTENDANCE_REPORT_URL}?month=${selectedMonth + 1}",
           headers);
 
       final responseData = json.decode(response.body);

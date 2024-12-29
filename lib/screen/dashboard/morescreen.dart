@@ -6,9 +6,7 @@ import 'package:radius/screen/dashboard/projectscreen.dart';
 import 'package:radius/screen/profile/aboutscreen.dart';
 import 'package:radius/screen/profile/changepasswordscreen.dart';
 import 'package:radius/screen/profile/companyrulesscreen.dart';
-import 'package:radius/screen/profile/holidayscreen.dart';
 import 'package:radius/screen/profile/leavecalendarscreen.dart';
-import 'package:radius/screen/profile/meetingscreen.dart';
 import 'package:radius/screen/profile/noticescreen.dart';
 import 'package:radius/screen/profile/payslipscreen.dart';
 import 'package:radius/screen/profile/profilescreen.dart';
@@ -28,6 +26,8 @@ import 'package:provider/provider.dart';
 import '../tadascreen/tadascreen.dart';
 
 class MoreScreen extends StatefulWidget {
+  const MoreScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => MoreScreenState();
 }
@@ -63,124 +63,12 @@ class MoreScreenState extends State<MoreScreen> {
                       ),
                     )
                   : SingleChildScrollView(
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            HeaderProfile(),
-                            Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Text(
-                                  translate(
-                                      'more_screen.attendance_default_method'),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      changeAttendanceType("Default");
-                                    },
-                                    child: Chip(
-                                        backgroundColor:
-                                            attendanceType != "Default"
-                                                ? HexColor("#000")
-                                                : HexColor("#036eb7"),
-                                        avatar: const Icon(
-                                          Icons.fingerprint,
-                                          color: Colors.white,
-                                        ),
-                                        label: Text(
-                                          translate('more_screen.default'),
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                            side: BorderSide(
-                                                color: HexColor("#036eb7")),
-                                            borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(10),
-                                                bottomRight:
-                                                    Radius.circular(10)))),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  // Visibility(
-                                  //   visible: features["nfc-qr"] == "1",
-                                  //   child: GestureDetector(
-                                  //     onTap: () {
-                                  //       changeAttendanceType("NFC");
-                                  //     },
-                                  //     child: Chip(
-                                  //         backgroundColor:
-                                  //             attendanceType != "NFC"
-                                  //                 ? HexColor("#000")
-                                  //                 : HexColor("#036eb7"),
-                                  //         avatar: const Icon(
-                                  //           Icons.nfc,
-                                  //           color: Colors.white,
-                                  //         ),
-                                  //         label: Text(
-                                  //           translate('more_screen.nfc'),
-                                  //           style:
-                                  //               const TextStyle(color: Colors.white),
-                                  //         ),
-                                  //         elevation: 0,
-                                  //         shape: RoundedRectangleBorder(
-                                  //             side: BorderSide(
-                                  //                 color: HexColor("#036eb7")),
-                                  //             borderRadius: const BorderRadius.only(
-                                  //                 topLeft: Radius.circular(10),
-                                  //                 bottomRight:
-                                  //                     Radius.circular(10)))),
-                                  //   ),
-                                  // ),
-                                  // const SizedBox(
-                                  //   width: 10,
-                                  // ),
-                                  // Visibility(
-                                  //   visible: features["nfc-qr"] == "1",
-                                  //   child: GestureDetector(
-                                  //     onTap: () {
-                                  //       changeAttendanceType("QR");
-                                  //     },
-                                  //     child: Chip(
-                                  //         backgroundColor:
-                                  //             attendanceType != "QR"
-                                  //                 ? HexColor("#000")
-                                  //                 : HexColor("#036eb7"),
-                                  //         label: Text(
-                                  //           translate('more_screen.qr_code'),
-                                  //           style:
-                                  //               TextStyle(color: Colors.white),
-                                  //         ),
-                                  //         avatar: Icon(
-                                  //           Icons.qr_code,
-                                  //           color: Colors.white,
-                                  //         ),
-                                  //         elevation: 0,
-                                  //         shape: RoundedRectangleBorder(
-                                  //             side: BorderSide(
-                                  //                 color: HexColor("#036eb7")),
-                                  //             borderRadius: BorderRadius.only(
-                                  //                 topLeft: Radius.circular(10),
-                                  //                 bottomRight:
-                                  //                     Radius.circular(10)))),
-                                  //   ),
-                                  // ),
-                                ],
-                              ),
-                            ),
+                            const HeaderProfile(),
                             Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
@@ -194,7 +82,7 @@ class MoreScreenState extends State<MoreScreen> {
                             // Services(translate('more_screen.profile'),
                             //     Icons.person, ProfileScreen()),
                             Services(translate('more_screen.change_password'),
-                                Icons.password, ChangePasswordScreen()),
+                                Icons.password, const ChangePasswordScreen()),
                             Padding(
                                 padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 20, bottom: 10),
@@ -206,7 +94,7 @@ class MoreScreenState extends State<MoreScreen> {
                                       fontWeight: FontWeight.bold),
                                 )),
                             Services(translate('more_screen.team_sheet'),
-                                Icons.group, TeamSheetScreen()),
+                                Icons.group, const TeamSheetScreen()),
                             features["project-management"] != "1"
                                 ? const SizedBox.shrink()
                                 : Services(
@@ -224,7 +112,7 @@ class MoreScreenState extends State<MoreScreen> {
                             // Services(translate('more_screen.holiday'),
                             //     Icons.calendar_month, HolidayScreen()),
                             Services(translate('more_screen.notices'),
-                                Icons.message, NoticeScreen()),
+                                Icons.message, const NoticeScreen()),
                             // features["meeting"] != "1"
                             //     ? const SizedBox.shrink()
                             //     : Services(translate('more_screen.meeting'),
@@ -232,7 +120,7 @@ class MoreScreenState extends State<MoreScreen> {
                             Services(
                                 translate('more_screen.leave_calendar'),
                                 Icons.calendar_month_outlined,
-                                LeaveCalendarScreen()),
+                                const LeaveCalendarScreen()),
                             Padding(
                                 padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 20, bottom: 10),
@@ -246,7 +134,7 @@ class MoreScreenState extends State<MoreScreen> {
                             features["tada"] != "1"
                                 ? const SizedBox.shrink()
                                 : Services(translate('more_screen.tada'),
-                                    Icons.money, TadaScreen()),
+                                    Icons.money, const TadaScreen()),
                             features["payroll-management"] != "1"
                                 ? const SizedBox.shrink()
                                 : Services(translate('more_screen.payslip'),
@@ -256,7 +144,7 @@ class MoreScreenState extends State<MoreScreen> {
                                 : Services(
                                     translate('more_screen.advance_salary'),
                                     Icons.monetization_on,
-                                    AdvanceSalaryScreen()),
+                                    const AdvanceSalaryScreen()),
                             /*features["loan"] != "1"
                                 ? SizedBox.shrink()
                                 : Services(translate('more_screen.loans'),
@@ -275,15 +163,15 @@ class MoreScreenState extends State<MoreScreen> {
                             features["support"] != "1"
                                 ? const SizedBox.shrink()
                                 : Services(translate('more_screen.support'),
-                                    Icons.support_agent, SupportScreen()),
+                                    Icons.support_agent, const SupportScreen()),
                             Services(translate('more_screen.company_rules'),
-                                Icons.rule_folder, CompanyRulesScreen()),
+                                Icons.rule_folder, const CompanyRulesScreen()),
                             Services(translate('more_screen.about_us'),
-                                Icons.info, AboutScreen('about-us')),
+                                Icons.info, const AboutScreen('about-us')),
                             Services(
                                 translate('more_screen.terms_and_conditions'),
                                 Icons.rule,
-                                AboutScreen('terms-and-conditions')),
+                                const AboutScreen('terms-and-conditions')),
                             // Services(translate('more_screen.privacy_policy'),
                             //     Icons.policy, ProfileScreen(),control: 1,),
                             Padding(
@@ -390,7 +278,7 @@ class MoreScreenState extends State<MoreScreen> {
                             // Services(translate('common.language'),
                             //     Icons.language, ProfileScreen(),control: 4,),
                             Services(translate('more_screen.log_out'),
-                                Icons.logout, ProfileScreen(),control: 2,),
+                                Icons.logout, const ProfileScreen(),control: 2,),
                           ],
                         ),
                       ),

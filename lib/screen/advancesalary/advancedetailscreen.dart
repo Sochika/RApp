@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:html/parser.dart';
 
 class AdvanceDetailScreen extends StatelessWidget {
+  const AdvanceDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(AdvanceDetailController());
@@ -14,7 +16,7 @@ class AdvanceDetailScreen extends StatelessWidget {
       child: Obx(
         () => SafeArea(
           child: model.isLoading.value
-              ? SizedBox.shrink()
+              ? const SizedBox.shrink()
               : Scaffold(
                   backgroundColor: Colors.transparent,
                   appBar: AppBar(
@@ -25,7 +27,7 @@ class AdvanceDetailScreen extends StatelessWidget {
                   ),
                   bottomNavigationBar: Obx(
                     () => Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       height: 50,
                       child: Row(
                         children: [
@@ -43,22 +45,21 @@ class AdvanceDetailScreen extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(model.advanceSalary.value.status,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   )),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Text(
                             "${translate('advance_detail_screen.total')} ",
-                            style: TextStyle(color: Colors.grey, fontSize: 18),
+                            style: const TextStyle(color: Colors.grey, fontSize: 18),
                           ),
                           Text(
-                              "${translate('advance_detail_screen.rs')} " +
-                                  model.advanceSalary.value.released_amount,
-                              style: TextStyle(
+                              "${translate('advance_detail_screen.rs')} ${model.advanceSalary.value.released_amount}",
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -79,78 +80,78 @@ class AdvanceDetailScreen extends StatelessWidget {
                             child: Text(
                               model.advanceSalary.value.submittedDate,
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                                  const TextStyle(color: Colors.white, fontSize: 15),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             translate('advance_detail_screen.requested_amount'),
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                           Text(
                             model.advanceSalary.value.requested_amount,
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: const TextStyle(color: Colors.white, fontSize: 20),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             translate('advance_detail_screen.released_amount'),
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                           Text(
                             model.advanceSalary.value.released_amount,
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: const TextStyle(color: Colors.white, fontSize: 20),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             translate('advance_detail_screen.is_settled'),
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                           Text(
                             !model.advanceSalary.value.is_settled
                                 ? translate('advance_detail_screen.no')
                                 : translate('advance_detail_screen.yes'),
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: const TextStyle(color: Colors.white, fontSize: 20),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             translate('advance_detail_screen.reason'),
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                           Text(
                             parse(model.advanceSalary.value.description ?? "")
                                 .body!
                                 .text,
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: const TextStyle(color: Colors.white, fontSize: 18),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Text(
                             translate('advance_detail_screen.verified_by'),
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                           Text(
                             parse(model.advanceSalary.value.verifiedBy ?? "N/A")
                                 .body!
                                 .text,
-                            style: TextStyle(color: Colors.white, fontSize: 15),
+                            style: const TextStyle(color: Colors.white, fontSize: 15),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Text(
                             translate('advance_detail_screen.remarks'),
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                           Text(
                             parse(model.advanceSalary.value.remark ?? "N/A")
                                 .body!
                                 .text,
-                            style: TextStyle(color: Colors.white, fontSize: 15),
+                            style: const TextStyle(color: Colors.white, fontSize: 15),
                           ),
                         ],
                       ),

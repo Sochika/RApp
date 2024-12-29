@@ -9,6 +9,8 @@ import 'package:nepali_date_picker/nepali_date_picker.dart';
 class GeneralScreen extends StatelessWidget {
   var outputDate = "".obs;
 
+  GeneralScreen({super.key});
+
   Future<void> checkAd(DateTime tempDate) async {
     Preferences preferences = Preferences();
     final isAd = await preferences.getEnglishDate();
@@ -37,12 +39,12 @@ class GeneralScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Text(translate('general_screen.notification_detail'),
-                style: TextStyle(color: Colors.white)),
+                style: const TextStyle(color: Colors.white)),
             elevation: 0,
           ),
           body: SafeArea(
             child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -57,7 +59,7 @@ class GeneralScreen extends StatelessWidget {
                             Text(
                               param["title"],
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 21),
+                                  const TextStyle(color: Colors.white, fontSize: 21),
                             ),
                           ],
                         ),
@@ -65,22 +67,21 @@ class GeneralScreen extends StatelessWidget {
                     ),
                     Visibility(
                         visible: outputDate != "" ? true : false,
-                        child: SizedBox(
+                        child: const SizedBox(
                           height: 10,
                         )),
                     Visibility(
                       visible: outputDate != "" ? true : false,
                       child: Row(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Obx(
                               () => Text(
-                                "${translate('general_screen.published_date')} : " +
-                                    outputDate.value,
-                                style: TextStyle(
+                                "${translate('general_screen.published_date')} : ${outputDate.value}",
+                                style: const TextStyle(
                                     color: Colors.white, fontSize: 12),
                               ),
                             ),
@@ -88,7 +89,7 @@ class GeneralScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     Expanded(
@@ -106,7 +107,7 @@ class GeneralScreen extends StatelessWidget {
                               child: Text(
                                 param["message"],
                                 textAlign: TextAlign.justify,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white, fontSize: 15),
                               ),
                             ),

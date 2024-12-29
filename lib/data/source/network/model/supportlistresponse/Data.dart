@@ -12,10 +12,8 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    return data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['data'] = this.data.map((v) => v.toJson()).toList();
+      return data;
   }
 }

@@ -7,6 +7,8 @@ import 'package:toggle_switch/toggle_switch.dart';
 import '../radialDecorationbox.dart';
 
 class ToggleLeaveTime extends StatelessWidget {
+  const ToggleLeaveTime({super.key});
+
   @override
   Widget build(BuildContext context,[bool mounted = true]) {
     final provider = Provider.of<LeaveProvider>(context);

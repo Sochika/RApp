@@ -5,12 +5,14 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class AttachmentSection extends StatelessWidget{
+  const AttachmentSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TaskDetailController model = Get.find();
     return GestureDetector(
       onTap: () {
-        Get.bottomSheet(AttachmentBottomSheet(),
+        Get.bottomSheet(const AttachmentBottomSheet(),
             isDismissible: true,
             enableDrag: true,
             isScrollControlled: true,
@@ -19,21 +21,21 @@ class AttachmentSection extends StatelessWidget{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 translate('task_detail_screen.attachments'),
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 translate('task_detail_screen.show_media'),
-                style: TextStyle(
+                style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.white,
                     fontSize: 12,
@@ -41,7 +43,7 @@ class AttachmentSection extends StatelessWidget{
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Obx(() => Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,7 +55,7 @@ class AttachmentSection extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "${translate('task_detail_screen.file_images')} ( ${model.taskDetail.value.attachments.length} )",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 15,
                           fontWeight: FontWeight.bold),

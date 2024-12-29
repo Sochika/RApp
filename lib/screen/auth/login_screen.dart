@@ -4,7 +4,6 @@ import 'package:radius/model/auth.dart';
 import 'package:radius/screen/dashboard/dashboard_screen.dart';
 import 'package:radius/utils/constant.dart';
 import 'package:radius/widget/buttonborder.dart';
-import 'package:radius/widget/showlanguage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_translate/flutter_translate.dart';
@@ -17,6 +16,8 @@ import 'package:hexcolor/hexcolor.dart';
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
   bool initial = true;
+
+  LoginScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => loginScreenState();
@@ -50,7 +51,7 @@ class loginScreenState extends State<LoginScreen> {
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
-    _form.currentState!.dispose();
+    _form.currentState?.dispose();
     super.dispose();
   }
 
@@ -116,25 +117,7 @@ class loginScreenState extends State<LoginScreen> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: Colors.transparent,
-        bottomNavigationBar: Row(
-          children: [
-            const Spacer(),
-            GestureDetector(
-              onTap: () {
-                showModalBottomSheet(
-                    context: context,
-                    useRootNavigator: true,
-                    builder: (context) {
-                      return ShowLanguage();
-                    });
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.language,color: Colors.white,size: 30,),
-              ),
-            ),
-          ],
-        ),
+
         body: Form(
           key: _form,
           child: SingleChildScrollView(
@@ -390,7 +373,7 @@ class loginScreenState extends State<LoginScreen> {
       colorFilter: ColorFilter.mode(
           getAppTheme() ? Colors.blueGrey : Colors.black54,
           BlendMode.softLight),
-      image: AssetImage(
+      image: const AssetImage(
         "assets/images/login.jpg",
       ),
       fit: BoxFit.cover,

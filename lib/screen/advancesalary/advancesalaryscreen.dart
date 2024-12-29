@@ -7,6 +7,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class AdvanceSalaryScreen extends StatelessWidget {
+  const AdvanceSalaryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(AdvanceSalaryController());
@@ -23,8 +25,8 @@ class AdvanceSalaryScreen extends StatelessWidget {
             onPressed: () {
               model.onAdvanceSalaryCreateClicked();
             },
-            child: Icon(Icons.add),
-            backgroundColor: Colors.blue),
+            backgroundColor: Colors.blue,
+            child: const Icon(Icons.add)),
         body: Obx(
           () => SafeArea(
             child: Padding(
@@ -38,9 +40,9 @@ class AdvanceSalaryScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     AdvanceSalary item = model.salaryList[index];
                     return Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
+                      margin: const EdgeInsets.symmetric(vertical: 8),
                       child: ListTile(
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
@@ -54,11 +56,11 @@ class AdvanceSalaryScreen extends StatelessWidget {
                         iconColor: Colors.white,
                         title: Text(
                           item.requested_amount,
-                          style: TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                         ),
                         subtitle: Text(
                           item.submittedDate,
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                         ),
                         trailing: GestureDetector(
                           onTap: () {
@@ -68,8 +70,8 @@ class AdvanceSalaryScreen extends StatelessWidget {
                               showToast("Accepted/Rejected Advance can't be edited");
                             }
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
                             child: Icon(Icons.edit),
                           ),
                         ),
@@ -79,7 +81,7 @@ class AdvanceSalaryScreen extends StatelessWidget {
                                 : item.status.toLowerCase() == "rejected"
                                     ? Colors.red
                                     : Colors.green,
-                            shape: CircleBorder(),
+                            shape: const CircleBorder(),
                             child: Padding(
                               padding: const EdgeInsets.all(15),
                               child: Text(
@@ -88,7 +90,7 @@ class AdvanceSalaryScreen extends StatelessWidget {
                                     : item.status.toLowerCase() == "rejected"
                                         ? "R"
                                         : "A",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),

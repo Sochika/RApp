@@ -38,17 +38,17 @@ class AllAward {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['award_description'] = this.award_description;
-    data['award_name'] = this.award_name;
-    data['awarded_by'] = this.awarded_by;
-    data['awarded_date'] = this.awarded_date;
-    data['employee_name'] = this.employee_name;
-    data['gift_description'] = this.gift_description;
-    data['gift_item'] = this.gift_item;
-    data['id'] = this.id;
-    data['image'] = this.image;
-    data['reward_code'] = this.reward_code;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['award_description'] = award_description;
+    data['award_name'] = award_name;
+    data['awarded_by'] = awarded_by;
+    data['awarded_date'] = awarded_date;
+    data['employee_name'] = employee_name;
+    data['gift_description'] = gift_description;
+    data['gift_item'] = gift_item;
+    data['id'] = id;
+    data['image'] = image;
+    data['reward_code'] = reward_code;
     return data;
   }
 }

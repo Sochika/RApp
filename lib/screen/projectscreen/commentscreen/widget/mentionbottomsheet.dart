@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 class MentionBottomSheet extends StatelessWidget {
   List<Member> members;
 
-  MentionBottomSheet(this.members);
+  MentionBottomSheet(this.members, {super.key});
 
   final model = Get.put(CommentScreenController());
   @override
@@ -23,7 +23,7 @@ class MentionBottomSheet extends StatelessWidget {
     }
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         decoration: RadialDecoration(),
         child: SingleChildScrollView(
           child: Column(
@@ -34,7 +34,7 @@ class MentionBottomSheet extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   translate('comment_list_screen.team'),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
@@ -43,10 +43,10 @@ class MentionBottomSheet extends StatelessWidget {
               ListView.builder(
                   shrinkWrap: true,
                   primary: false,
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                   itemCount: filteredList.length,
                   itemBuilder: (ctx, i) =>
-                      Padding(padding: EdgeInsets.all(5), child: InkWell(onTap: () {
+                      Padding(padding: const EdgeInsets.all(5), child: InkWell(onTap: () {
                         model.mentionList.add(filteredList[i]);
                         Get.back();
                       },child: teamCard(filteredList[i])))),
@@ -63,7 +63,7 @@ class MentionBottomSheet extends StatelessWidget {
       elevation: 0,
       color: Colors.white10,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             ClipRRect(
@@ -77,18 +77,18 @@ class MentionBottomSheet extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       member.name,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(member.post,
-                        style: TextStyle(color: Colors.white70)),
+                        style: const TextStyle(color: Colors.white70)),
                   ],
                 ),
               ),

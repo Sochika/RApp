@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NoticeList extends StatefulWidget {
+  const NoticeList({super.key});
+
   @override
   State<StatefulWidget> createState() => NoticeListState();
 }
@@ -42,7 +44,7 @@ class NoticeListState extends State<NoticeList> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: ListView.builder(
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
           primary: false,
           controller: _controller,
           itemCount: items.length,

@@ -36,18 +36,16 @@ class AssignedTask {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['end_date'] = this.end_date;
-    data['priority'] = this.priority;
-    data['project_name'] = this.project_name;
-    data['start_date'] = this.start_date;
-    data['status'] = this.status;
-    data['task_id'] = this.task_id;
-    data['task_name'] = this.task_name;
-    if (this.assigned_member != null) {
-      data['assigned_member'] =
-          this.assigned_member.map((v) => v.toJson()).toList();
-    }
-    return data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['end_date'] = end_date;
+    data['priority'] = priority;
+    data['project_name'] = project_name;
+    data['start_date'] = start_date;
+    data['status'] = status;
+    data['task_id'] = task_id;
+    data['task_name'] = task_name;
+    data['assigned_member'] =
+        assigned_member.map((v) => v.toJson()).toList();
+      return data;
   }
 }

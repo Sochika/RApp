@@ -21,7 +21,7 @@ class SupportListController extends GetxController {
 
   Future<void> getSupportList() async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl()+Constant.SUPPORT_LIST_URL + "?per_page=50&page=1");
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.SUPPORT_LIST_URL}?per_page=50&page=1");
 
     String token = await preferences.getToken();
     bool isAd = await preferences.getEnglishDate();
@@ -45,7 +45,7 @@ class SupportListController extends GetxController {
         final supportResponse = supportlistresponse.fromJson(responseData);
         final list = <Support>[];
         for (var support in supportResponse.data.data) {
-          final date = new DateFormat('MMM dd yyyy').parse(support.query_date);
+          final date = DateFormat('MMM dd yyyy').parse(support.query_date);
 
           final nepali = DateFormat("MMM dd yyyy")
               .parse(support.query_date)

@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LeaveListdetailDashboard extends StatelessWidget{
+  const LeaveListdetailDashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
     final leaveData = Provider.of<LeaveProvider>(context);
     final leaves = leaveData.leaveDetailList;
-    if(leaves.length>0){
+    if(leaves.isNotEmpty){
       return ListView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           primary: false,

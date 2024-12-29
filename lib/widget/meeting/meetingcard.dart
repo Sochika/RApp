@@ -12,7 +12,7 @@ class MeetingCard extends StatelessWidget {
   final String date;
   final List<Participator> participator;
 
-  MeetingCard(this.id, this.title, this.venue, this.date, this.participator);
+  const MeetingCard(this.id, this.title, this.venue, this.date, this.participator, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class MeetingCard extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      '${translate('meeting_list_screen.venue')} : ${venue}',
+                      '${translate('meeting_list_screen.venue')} : $venue',
                       style:
                           const TextStyle(color: Colors.white54, fontSize: 15),
                     ),
@@ -64,7 +64,7 @@ class MeetingCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Container(
+                        SizedBox(
                           height: 40,
                           child: ListView.builder(
                             shrinkWrap: true,

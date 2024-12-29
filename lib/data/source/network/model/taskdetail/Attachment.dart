@@ -14,10 +14,10 @@ class Attachment {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['attachment_url'] = this.attachment_url;
-        data['extension'] = this.extension;
-        data['type'] = this.type;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data['attachment_url'] = attachment_url;
+        data['extension'] = extension;
+        data['type'] = type;
         return data;
     }
 }

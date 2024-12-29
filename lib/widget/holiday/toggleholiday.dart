@@ -5,12 +5,14 @@ import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class ToggleHoliday extends StatelessWidget {
+  const ToggleHoliday({super.key});
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HolidayProvider>(context);
     return Center(
       child: ToggleSwitch(
-        activeBgColor: [Colors.white12],
+        activeBgColor: const [Colors.white12],
         activeFgColor: Colors.white,
         inactiveFgColor: Colors.white,
         inactiveBgColor: Colors.transparent,

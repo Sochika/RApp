@@ -40,19 +40,17 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['description'] = this.description;
-    data['employee'] = this.employee;
-    data['id'] = this.id;
-    data['remark'] = this.remark;
-    data['status'] = this.status;
-    data['submitted_date'] = this.submitted_date;
-    data['title'] = this.title;
-    data['total_expense'] = this.total_expense;
-    data['verified_by'] = this.verified_by;
-    if (this.attachments != null) {
-      data['attachments'] = this.attachments.toJson();
-    }
-    return data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['description'] = description;
+    data['employee'] = employee;
+    data['id'] = id;
+    data['remark'] = remark;
+    data['status'] = status;
+    data['submitted_date'] = submitted_date;
+    data['title'] = title;
+    data['total_expense'] = total_expense;
+    data['verified_by'] = verified_by;
+    data['attachments'] = attachments.toJson();
+      return data;
   }
 }

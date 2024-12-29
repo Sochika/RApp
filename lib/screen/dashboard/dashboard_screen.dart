@@ -13,6 +13,8 @@ import 'package:hexcolor/hexcolor.dart';
 class DashboardScreen extends StatefulWidget {
   static const String routeName = '/dashboard';
 
+  const DashboardScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => DashboardScreenState();
 }
@@ -21,9 +23,9 @@ class DashboardScreenState extends State<DashboardScreen> {
   List<Widget> _buildScreens(PersistentTabController controller) {
     return [
       HomeScreen(controller),
-      LeaveScreen(),
-      AttendanceScreen(),
-      MoreScreen(),
+      const LeaveScreen(),
+      const AttendanceScreen(),
+      const MoreScreen(),
     ];
   }
 
@@ -68,20 +70,20 @@ class DashboardScreenState extends State<DashboardScreen> {
                 const Icon(Icons.home_filled),
                 translate('dashboard_screen.home'),
               )),
+          // PersistentTabConfig(
+          //     screen: const LeaveScreen(),
+          //     item: getItemConfig(
+          //       const Icon(Icons.sick),
+          //       translate('dashboard_screen.leave'),
+          //     )),
           PersistentTabConfig(
-              screen: LeaveScreen(),
-              item: getItemConfig(
-                const Icon(Icons.sick),
-                translate('dashboard_screen.leave'),
-              )),
-          PersistentTabConfig(
-              screen: AttendanceScreen(),
+              screen: const AttendanceScreen(),
               item: getItemConfig(
                 const Icon(Icons.co_present_outlined),
                 translate('dashboard_screen.attendance'),
               )),
           PersistentTabConfig(
-              screen: MoreScreen(),
+              screen: const MoreScreen(),
               item: getItemConfig(
                 const Icon(Icons.more),
                 translate('dashboard_screen.more'),

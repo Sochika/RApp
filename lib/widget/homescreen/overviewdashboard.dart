@@ -1,7 +1,6 @@
 import 'package:radius/provider/dashboardprovider.dart';
 import 'package:radius/screen/awards/awardsscreen.dart';
 import 'package:radius/screen/dashboard/projectscreen.dart';
-import 'package:radius/screen/profile/holidayscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:radius/widget/homescreen/cardoverview.dart';
 import 'package:flutter_translate/flutter_translate.dart';
@@ -15,7 +14,7 @@ class OverviewDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _overview = Provider.of<DashboardProvider>(context).overviewList;
+    final overview = Provider.of<DashboardProvider>(context).overviewList;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
@@ -34,7 +33,7 @@ class OverviewDashboard extends StatelessWidget {
             children: [
               CardOverView(
                 type: "On Duty",
-                value: _overview['present']!,
+                value: overview['present']!,
                 icon: "assets/icons/present_icon.png",
                 callback: () {
                   controller.jumpToTab(2);
@@ -53,7 +52,7 @@ class OverviewDashboard extends StatelessWidget {
               // )
               CardOverView(
                 type: "Absent",
-                value: _overview['leave']!,
+                value: overview['leave']!,
                 icon: Icons.sick,
                 callback: () {
                   controller.jumpToTab(1);
@@ -66,7 +65,7 @@ class OverviewDashboard extends StatelessWidget {
             children: [
               CardOverView(
                 type: "Beats",
-                value: _overview['total_project']!,
+                value: overview['total_project']!,
                 icon: Icons.work_history_outlined,
                 callback: () {
                   pushScreen(context,
@@ -77,7 +76,7 @@ class OverviewDashboard extends StatelessWidget {
               ),
               CardOverView(
                 type: translate('home_screen.request'),
-                value: _overview['request']!,
+                value: overview['request']!,
                 icon: Icons.pending,
                 callback: () {
                   controller.jumpToTab(1);
@@ -91,7 +90,7 @@ class OverviewDashboard extends StatelessWidget {
 
               CardOverView(
                 type: "Training",
-                value: _overview['total_task']!,
+                value: overview['total_task']!,
                 icon: Icons.model_training_rounded,
                 callback: () {
                   pushScreen(context,
@@ -102,7 +101,7 @@ class OverviewDashboard extends StatelessWidget {
               ),
               CardOverView(
                 type: translate('home_screen.awards'),
-                value: _overview['total_awards']!,
+                value: overview['total_awards']!,
                 icon: Icons.workspace_premium_outlined,
                 callback: () {
                   pushScreen(context,

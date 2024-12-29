@@ -34,13 +34,13 @@ class GroupChatController extends GetxController {
     members = Get.arguments["member"]??[];
     projectId = Get.arguments["projectId"]??0;
 
-    sender = await pref.getUsername();
+    sender = await pref.getStaffNo();
     listenChat();
     super.onReady();
   }
 
   Future<void> sendMessage(String message) async {
-    FirebaseFirestore.instance.collection('messages').doc(Uuid().v4()).set({
+    FirebaseFirestore.instance.collection('messages').doc(const Uuid().v4()).set({
       "id": convoId,
       "date": DateTime.now(),
       "message": base64.encode(utf8.encode(message)),
@@ -60,7 +60,7 @@ class GroupChatController extends GetxController {
   }
 
   Future<void> listenChat() async {
-    final docRef = await FirebaseFirestore.instance
+    final docRef = FirebaseFirestore.instance
         .collection("messages")
         .orderBy("date", descending: true)
         .where("id", isEqualTo: convoId)
@@ -82,10 +82,10 @@ class GroupChatController extends GetxController {
 
         chatList.value = chatDb.reversed.toList();
 
-        Future.delayed(Duration(milliseconds: 500)).then((_) {
+        Future.delayed(const Duration(milliseconds: 500)).then((_) {
           scrollController.animateTo(
             scrollController.position.maxScrollExtent,
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             curve: Curves.fastOutSlowIn,
           );
         });
@@ -94,8 +94,8 @@ class GroupChatController extends GetxController {
     );
   }
 
-  Future<void> sendPushNotifiation(String title, String message, String converstion_id,
-      String type, String project_id, List<int> usernames) async {
+  Future<void> sendPushNotifiation(String title, String message, String converstionId,
+      String type, String projectId, List<int> usernames) async {
     Preferences preferences = Preferences();
     var uri = Uri.parse(await preferences.getAppUrl() +Constant.SEND_PUSH_NOTIFICATION);
 
@@ -111,9 +111,9 @@ class GroupChatController extends GetxController {
     final response = await client.post(uri, headers: headers, body: {
       "title": title,
       "message": message,
-      "conversation_id": converstion_id,
+      "conversation_id": converstionId,
       "type": type,
-      "project_id": project_id,
+      "project_id": projectId,
       "usernames": jsonEncode(usernames),
     });
 

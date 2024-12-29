@@ -29,12 +29,12 @@ class DataX {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['description'] = this.description;
-    data['query_date'] = this.query_date;
-    data['requested_department'] = this.requested_department;
-    data['status'] = this.status;
-    data['title'] = this.title;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['description'] = description;
+    data['query_date'] = query_date;
+    data['requested_department'] = requested_department;
+    data['status'] = status;
+    data['title'] = title;
     return data;
   }
 }

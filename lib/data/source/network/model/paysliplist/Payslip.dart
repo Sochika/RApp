@@ -47,20 +47,20 @@ class Payslip {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['absent_days'] = this.absent_days;
-    data['duration'] = this.duration;
-    data['holidays'] = this.holidays;
-    data['id'] = this.id;
-    data['leave_days'] = this.leave_days;
-    data['net_salary'] = this.net_salary;
-    data['payslip_id'] = this.payslip_id;
-    data['present_days'] = this.present_days;
-    data['salary_cycle'] = this.salary_cycle;
-    data['salary_from'] = this.salary_from;
-    data['salary_to'] = this.salary_to;
-    data['total_days'] = this.total_days;
-    data['weekends'] = this.weekends;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['absent_days'] = absent_days;
+    data['duration'] = duration;
+    data['holidays'] = holidays;
+    data['id'] = id;
+    data['leave_days'] = leave_days;
+    data['net_salary'] = net_salary;
+    data['payslip_id'] = payslip_id;
+    data['present_days'] = present_days;
+    data['salary_cycle'] = salary_cycle;
+    data['salary_from'] = salary_from;
+    data['salary_to'] = salary_to;
+    data['total_days'] = total_days;
+    data['weekends'] = weekends;
     return data;
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class FilesListBottom extends StatelessWidget {
   List<Attachment> attachments;
 
-  FilesListBottom(this.attachments);
+  FilesListBottom(this.attachments, {super.key});
   @override
   Widget build(BuildContext context) {
     final attachList = <Attachment>[];
@@ -14,12 +14,12 @@ class FilesListBottom extends StatelessWidget {
       }
     }
     return Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         child: ListView.builder(
           itemCount: attachList.length,
           primary: false,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             Attachment item = attachList[index];
             return Card(
@@ -33,10 +33,10 @@ class FilesListBottom extends StatelessWidget {
                       Expanded(
                         child: Text(
                           item.url,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.download,
                         color: Colors.white,
                       )

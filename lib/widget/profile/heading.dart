@@ -1,15 +1,12 @@
 
 import 'package:radius/provider/profileprovider.dart';
-import 'package:radius/screen/profile/editprofilescreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
-import '../../screen/profile/profilescreen.dart';
-import '../morescreen/services.dart';
 
 class Heading extends StatefulWidget {
+  const Heading({super.key});
+
   @override
   State<StatefulWidget> createState() => HeadingState();
 }

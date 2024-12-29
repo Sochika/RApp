@@ -13,6 +13,8 @@ import 'package:provider/provider.dart';
 class PaySlipScreen extends StatefulWidget {
   bool initital = true;
 
+  PaySlipScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => PaySlipScreenState();
 }
@@ -46,7 +48,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -58,7 +60,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Row(
@@ -66,7 +68,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                             Consumer(
                               builder: (context, value, child) {
                                 return year.isEmpty
-                                    ? SizedBox.shrink()
+                                    ? const SizedBox.shrink()
                                     : Expanded(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
@@ -98,8 +100,8 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                                     value as int;
                                               });
                                             },
-                                            iconStyleData: IconStyleData(
-                                              icon: const Icon(
+                                            iconStyleData: const IconStyleData(
+                                              icon: Icon(
                                                 Icons.arrow_forward_ios_outlined,
                                               ),
                                               iconSize: 14,
@@ -111,7 +113,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                               width: 160,
                                               padding: const EdgeInsets.only(left: 14, right: 14),
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius: const BorderRadius.only(
                                                     topLeft: Radius.circular(10),
                                                     topRight: Radius.circular(0),
                                                     bottomLeft: Radius.circular(0),
@@ -124,7 +126,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                               maxHeight: 200,
                                               padding: null,
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius: const BorderRadius.only(
                                                     topLeft: Radius.circular(0),
                                                     topRight: Radius.circular(10),
                                                     bottomLeft: Radius.circular(10),
@@ -133,22 +135,22 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                               ),
                                               elevation: 8,
                                             ),
-                                            menuItemStyleData: MenuItemStyleData(
+                                            menuItemStyleData: const MenuItemStyleData(
                                               height: 40,
-                                              padding: const EdgeInsets.only(left: 14, right: 14),
+                                              padding: EdgeInsets.only(left: 14, right: 14),
                                             ),
                                           ),
                                         ),
                                       );
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Consumer(
                               builder: (context, value, child) {
                                 return month.isEmpty
-                                    ? SizedBox.shrink()
+                                    ? const SizedBox.shrink()
                                     : Expanded(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton2(
@@ -180,8 +182,8 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                                     (value).index;
                                               });
                                             },
-                                            iconStyleData: IconStyleData(
-                                              icon: const Icon(
+                                            iconStyleData: const IconStyleData(
+                                              icon: Icon(
                                                 Icons.arrow_forward_ios_outlined,
                                               ),
                                               iconSize: 14,
@@ -193,7 +195,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                               width: 160,
                                               padding: const EdgeInsets.only(left: 14, right: 14),
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius: const BorderRadius.only(
                                                     topLeft: Radius.circular(10),
                                                     topRight: Radius.circular(0),
                                                     bottomLeft: Radius.circular(0),
@@ -206,7 +208,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                               maxHeight: 200,
                                               padding: null,
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius: const BorderRadius.only(
                                                     topLeft: Radius.circular(0),
                                                     topRight: Radius.circular(10),
                                                     bottomLeft: Radius.circular(10),
@@ -215,9 +217,9 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                               ),
                                               elevation: 8,
                                             ),
-                                            menuItemStyleData: MenuItemStyleData(
+                                            menuItemStyleData: const MenuItemStyleData(
                                               height: 40,
-                                              padding: const EdgeInsets.only(left: 14, right: 14),
+                                              padding: EdgeInsets.only(left: 14, right: 14),
                                             ),
                                           ),
                                         ),
@@ -226,7 +228,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextButton(
@@ -249,11 +251,11 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                             },
                             child: Container(
                               width: double.infinity,
-                              padding: EdgeInsets.all(2.0),
+                              padding: const EdgeInsets.all(2.0),
                               child: Center(
                                 child: Text(
                                   translate('payslip_screen.request_payslip'),
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               ),
                             ))
@@ -261,14 +263,14 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Text(
                     translate('payslip_screen.result'),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
                 ListView.builder(
@@ -286,7 +288,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                       },
                       child: Card(
                         shape: ButtonBorder(),
-                        margin: EdgeInsets.symmetric(vertical: 10),
+                        margin: const EdgeInsets.symmetric(vertical: 10),
                         color: Colors.white12,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -301,7 +303,7 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                   children: [
                                     Text(
                                       payslip.payslip_id,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.white, fontSize: 18),
                                     ),
                                     Card(
@@ -313,13 +315,13 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                           child: Text(
                                             payslip.salary_cycle,
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                const TextStyle(color: Colors.white),
                                           ),
                                         )),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Padding(
@@ -329,27 +331,27 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                   children: [
                                     Text(
                                       payslip.duration,
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(color: Colors.white),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Text(
                                       payslip.salary_from,
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(color: Colors.white),
                                     ),
-                                    Text(
+                                    const Text(
                                       " - ",
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     Text(
                                       payslip.salary_to,
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(color: Colors.white),
                                     ),
                                   ],
                                 ),
                               ),
-                              Padding(
+                              const Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 5.0),
+                                    EdgeInsets.symmetric(vertical: 5.0),
                                 child: Divider(
                                   indent: 10,
                                   endIndent: 10,
@@ -365,16 +367,14 @@ class PaySlipScreenState extends State<PaySlipScreen> {
                                   children: [
                                     Text(
                                       translate('common.total'),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.grey, fontSize: 18),
                                     ),
                                     Text(
-                                      context
+                                      "${context
                                               .watch<PaySlipProvider>()
-                                              .currency +
-                                          " " +
-                                          payslip.net_salary,
-                                      style: TextStyle(
+                                              .currency} ${payslip.net_salary}",
+                                      style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontFamily: "",

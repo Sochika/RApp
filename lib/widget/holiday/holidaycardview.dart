@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HolidayCardView extends StatelessWidget {
+  const HolidayCardView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final holidayList = Provider.of<HolidayProvider>(context).holidayList;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: ListView.builder(
           shrinkWrap: true,
           primary: false,

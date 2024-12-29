@@ -14,7 +14,7 @@ class ChangePasswordProvider with ChangeNotifier {
 
       return response;
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

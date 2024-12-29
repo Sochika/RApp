@@ -6,14 +6,14 @@ import 'package:hexcolor/hexcolor.dart';
 class CustomAlertDialog extends StatelessWidget {
   final String title;
 
-  CustomAlertDialog(this.title);
+  const CustomAlertDialog(this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {
     var message = title.toString().toLowerCase().contains("null") ? "Restart the router and try again." : title;
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -23,18 +23,18 @@ class CustomAlertDialog extends StatelessWidget {
             width: 80,
             height: 80,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Text(
             textAlign: TextAlign.center,
             message,
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: ElevatedButton(
                 style: TextButton.styleFrom(
@@ -45,7 +45,7 @@ class CustomAlertDialog extends StatelessWidget {
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: Text(translate('common.close'),style: TextStyle(color: Colors.white)),
+                  child: Text(translate('common.close'),style: const TextStyle(color: Colors.white)),
                 )),
           )
         ],

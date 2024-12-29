@@ -6,6 +6,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class SupportListScreen extends StatelessWidget {
+  const SupportListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(SupportListController());
@@ -25,11 +27,11 @@ class SupportListScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(
+                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(
                         10),bottomRight: Radius.circular(10))),
                     color: Colors.white12,
                     elevation: 0,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Obx(
@@ -54,7 +56,7 @@ class SupportListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('support_list_screen.all'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -77,7 +79,7 @@ class SupportListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('support_list_screen.pending'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -100,7 +102,7 @@ class SupportListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('support_list_screen.in_progress'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -123,7 +125,7 @@ class SupportListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('support_list_screen.solved'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -138,7 +140,7 @@ class SupportListScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Expanded(
@@ -165,7 +167,7 @@ class SupportListScreen extends StatelessWidget {
                                       shape: ButtonBorder(),
                                       elevation: 0,
                                       color: Colors.blueAccent,
-                                      child: Container(
+                                      child: SizedBox(
                                         width: 60,
                                         height: 60,
                                         child: Column(
@@ -173,11 +175,11 @@ class SupportListScreen extends StatelessWidget {
                                           children: [
                                             Text(
                                               support.day,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white, fontSize: 25),
                                             ),
                                             Text(support.month,
-                                                style: TextStyle(color: Colors.white)),
+                                                style: const TextStyle(color: Colors.white)),
                                           ],
                                         ),
                                       ),
@@ -193,20 +195,20 @@ class SupportListScreen extends StatelessWidget {
                                           Text(
                                             softWrap: true,
                                             support.title,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.white, fontSize: 18),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Text(
                                             overflow: TextOverflow.fade,
                                             softWrap: true,
                                             "${translate('support_list_screen.issue_to')}: ${support.requested_department}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.white, fontSize: 12),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Text(

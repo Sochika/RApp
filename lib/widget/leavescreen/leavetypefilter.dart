@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 
 //ignore: must_be_immutable
 class LeavetypeFilter extends StatefulWidget {
+  const LeavetypeFilter({super.key});
+
   @override
   State<StatefulWidget> createState() => LeavetypeFilterState();
 }
@@ -43,20 +45,20 @@ class LeavetypeFilterState extends State<LeavetypeFilter> {
       children: [
         Text(
           translate('leave_screen.filter'),
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: const TextStyle(color: Colors.white, fontSize: 20),
         ),
         DropdownButtonHideUnderline(
           child: DropdownButton2(
             isExpanded: true,
             hint: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 4,
                 ),
                 Expanded(
                   child: Text(
                     translate('leave_screen.select_leave_type'),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -88,8 +90,8 @@ class LeavetypeFilterState extends State<LeavetypeFilter> {
                 onToggleChanged();
               }
             },
-            iconStyleData: IconStyleData(
-              icon: const Icon(
+            iconStyleData: const IconStyleData(
+              icon: Icon(
                 Icons.arrow_forward_ios_outlined,
               ),
               iconSize: 14,
@@ -101,7 +103,7 @@ class LeavetypeFilterState extends State<LeavetypeFilter> {
               width: 160,
               padding: const EdgeInsets.only(left: 14, right: 14),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(0),
                     bottomLeft: Radius.circular(0),
@@ -114,7 +116,7 @@ class LeavetypeFilterState extends State<LeavetypeFilter> {
               maxHeight: 200,
               padding: null,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(0),
                     topRight: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
@@ -123,9 +125,9 @@ class LeavetypeFilterState extends State<LeavetypeFilter> {
               ),
               elevation: 8,
             ),
-            menuItemStyleData: MenuItemStyleData(
+            menuItemStyleData: const MenuItemStyleData(
               height: 40,
-              padding: const EdgeInsets.only(left: 14, right: 14),
+              padding: EdgeInsets.only(left: 14, right: 14),
             ),
           ),
         ),

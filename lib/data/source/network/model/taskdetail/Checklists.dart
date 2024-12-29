@@ -16,11 +16,11 @@ class Checklists {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['id'] = this.id;
-        data['is_completed'] = this.is_completed;
-        data['name'] = this.name;
-        data['task_id'] = this.task_id;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data['id'] = id;
+        data['is_completed'] = is_completed;
+        data['name'] = name;
+        data['task_id'] = task_id;
         return data;
     }
 }

@@ -6,16 +6,16 @@ class LeaveRow extends StatelessWidget {
   final String allocated;
   final String used;
 
-  LeaveRow(this.id, this.name, this.used, this.allocated);
+  const LeaveRow(this.id, this.name, this.used, this.allocated, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
       child: Container(
         color: Colors.white12,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -23,7 +23,7 @@ class LeaveRow extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               name,
-              style: TextStyle(fontSize: 15, color: Colors.white),
+              style: const TextStyle(fontSize: 15, color: Colors.white),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -49,7 +49,7 @@ class LeaveRow extends StatelessWidget {
                   visible: (allocated == "0") ? false : true,
                   child: Text(
                     allocated.toString(),
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
               ],

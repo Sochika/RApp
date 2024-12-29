@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:html/parser.dart';
 
 class AwardDetailScreen extends StatelessWidget {
+  const AwardDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final award = Get.arguments["award"] as Award;
@@ -21,9 +23,9 @@ class AwardDetailScreen extends StatelessWidget {
         ),
         body: SafeArea(
             child: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,13 +38,13 @@ class AwardDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Center(
                   child: Text(
                     award.employee_name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 15,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
@@ -51,7 +53,7 @@ class AwardDetailScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     award.award_name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 24,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
@@ -60,13 +62,13 @@ class AwardDetailScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     award.awarded_date,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 15,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Visibility(
@@ -76,12 +78,12 @@ class AwardDetailScreen extends StatelessWidget {
                     children: [
                       Text(
                         translate('award_detail_screen.award_detail'),
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
                             fontWeight: FontWeight.normal),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Card(
@@ -93,14 +95,14 @@ class AwardDetailScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                                  const TextStyle(color: Colors.white, fontSize: 15),
                               parse(award.award_description).body!.text),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Visibility(
@@ -110,12 +112,12 @@ class AwardDetailScreen extends StatelessWidget {
                     children: [
                       Text(
                         translate('award_detail_screen.gift_detail'),
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
                             fontWeight: FontWeight.normal),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Card(
@@ -127,16 +129,16 @@ class AwardDetailScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             parse(award.gift_description).body!.text,
-                            style: TextStyle(color: Colors.white, fontSize: 15),
+                            style: const TextStyle(color: Colors.white, fontSize: 15),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Text(
                         "${translate('award_detail_screen.awarded_by')}: ${award.awarded_by}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 15,
                             fontWeight: FontWeight.bold),

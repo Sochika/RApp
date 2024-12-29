@@ -8,8 +8,8 @@ class NoticeCard extends StatelessWidget {
   final String day;
   final String desc;
 
-  NoticeCard(
-      {required this.id,
+  const NoticeCard(
+      {super.key, required this.id,
       required this.name,
       required this.month,
       required this.day,
@@ -32,7 +32,7 @@ class NoticeCard extends StatelessWidget {
                 shape: ButtonBorder(),
                 elevation: 0,
                 color: Colors.blueAccent,
-                child: Container(
+                child: SizedBox(
                   width: 50,
                   height: 50,
                   child: Column(
@@ -40,9 +40,9 @@ class NoticeCard extends StatelessWidget {
                     children: [
                       Text(
                         day,
-                        style: TextStyle(color: Colors.white, fontSize: 25),
+                        style: const TextStyle(color: Colors.white, fontSize: 25),
                       ),
-                      Text(month, style: TextStyle(color: Colors.white)),
+                      Text(month, style: const TextStyle(color: Colors.white)),
                     ],
                   ),
                 ),
@@ -58,16 +58,16 @@ class NoticeCard extends StatelessWidget {
                     Text(
                       softWrap: true,
                       name,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
                       overflow: TextOverflow.fade,
                       softWrap: true,
                       desc,
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ],
                 ),

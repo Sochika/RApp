@@ -11,7 +11,7 @@ class MeetingProvider extends ChangeNotifier {
   static int per_page = 10;
   int page = 1;
 
-  List<MeetingDomain> _meetingList = [];
+  final List<MeetingDomain> _meetingList = [];
 
   List<MeetingDomain> get meetingList {
     return [..._meetingList];
@@ -48,7 +48,7 @@ class MeetingProvider extends ChangeNotifier {
         throw errorMessage;
       }
     } catch (error) {
-      throw error;
+      rethrow;
     }
   }
 

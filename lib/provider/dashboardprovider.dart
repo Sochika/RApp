@@ -108,6 +108,7 @@ class DashboardProvider with ChangeNotifier {
 
     String token = await preferences.getToken();
 
+    print('from dash$token');
     var fcm = await FirebaseMessaging.instance.getToken();
 
     Map<String, String> headers = {
@@ -121,15 +122,16 @@ class DashboardProvider with ChangeNotifier {
     log(response.body.toString());
     final responseData = json.decode(response.body);
 
+    print('from dashCode$response' );
     if (response.statusCode == 200) {
       final dashboardResponse = Dashboardresponse.fromJson(responseData);
 
-      department = dashboardResponse.data.user.department;
-      branch = dashboardResponse.data.user.branch;
+      department = dashboardResponse.data.shift.beatBranch.name;
+      branch = dashboardResponse.data.shift.beatBranch.area;
 
-      if (dashboardResponse.data.user.dob != "") {
+      if (dashboardResponse.data.user.staff.hire_date != "") {
         final dob =
-        DateFormat("yyyy-MM-dd").parse(dashboardResponse.data.user.dob);
+        DateFormat("yyyy-MM-dd").parse(dashboardResponse.data.user.staff.hire_date);
         final currentDate = DateTime.now();
         final isBirthday =
             dob.month == currentDate.month && currentDate.day == dob.day;
@@ -198,9 +200,9 @@ class DashboardProvider with ChangeNotifier {
       }
 
       DateTime startTime = DateFormat("hh:mm a")
-          .parse(dashboardResponse.data.officeTime.startTime);
+          .parse(dashboardResponse.data.shift.shiftStart);
       DateTime endTime = DateFormat("hh:mm a")
-          .parse(dashboardResponse.data.officeTime.endTime);
+          .parse(dashboardResponse.data.shift.shiftEnd);
 
       AwesomeNotifications().cancelAllSchedules();
       for (var shift in dashboardResponse.data.shift_dates) {
@@ -376,7 +378,7 @@ class DashboardProvider with ChangeNotifier {
       String endMessage,
       int endHr,
       int endMin) async {
-    final convertedDate = new DateFormat('yyyy-MM-dd').parse(date);
+    final convertedDate = DateFormat('yyyy-MM-dd').parse(date);
 
     await AwesomeNotifications().createNotification(
         content: NotificationContent(

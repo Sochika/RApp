@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class UpcomingHoliday extends StatelessWidget {
+  const UpcomingHoliday({super.key});
+
   @override
   Widget build(BuildContext context) {
     final holiday = context.watch<DashboardProvider>().holiday;
@@ -21,16 +23,16 @@ class UpcomingHoliday extends StatelessWidget {
               children: [
                 Text(
                   translate('home_screen.upcoming_holiday'),
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                   onTap: () {
-                    Get.to(HolidayScreen());
+                    Get.to(const HolidayScreen());
                   },
                   child: Text(
                     translate('home_screen.view_all'),
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
               ],
@@ -46,7 +48,7 @@ class UpcomingHoliday extends StatelessWidget {
                     day: holiday.day,
                     desc: holiday.description,
                     isPublicHoliday: holiday.isPublicHoliday)
-                : SizedBox.shrink()
+                : const SizedBox.shrink()
           ],
         ),
       ),

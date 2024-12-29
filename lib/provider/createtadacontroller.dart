@@ -58,8 +58,4 @@ class CreateTadaController extends GetxController {
     fileList.removeAt(index);
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 }

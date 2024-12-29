@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:radius/widget/buttonborder.dart';
 
 class LogOutBottomSheet extends StatefulWidget {
+  const LogOutBottomSheet({super.key});
+
   @override
   State<StatefulWidget> createState() => LogOutBottomSheetState();
 }
@@ -23,6 +25,7 @@ class LogOutBottomSheetState extends State<LogOutBottomSheet> {
       final response =
           await Provider.of<MoreScreenProvider>(context, listen: false)
               .logout();
+      print('Provider$response');
 
       setState(() {
         dismissLoader();
@@ -42,6 +45,7 @@ class LogOutBottomSheetState extends State<LogOutBottomSheet> {
       }
     } catch (e) {
       NavigationService().showSnackBar("Log out Alert", e.toString());
+      print(e);
       setState(() {
         dismissLoader();
       });
@@ -77,7 +81,7 @@ class LogOutBottomSheetState extends State<LogOutBottomSheet> {
               children: [
                 Text(
                   translate('common.log_out'),
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 IconButton(
                     onPressed: () {
@@ -91,10 +95,10 @@ class LogOutBottomSheetState extends State<LogOutBottomSheet> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(
                 translate('common.log_out_alert'),
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: const TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),
             Padding(
@@ -116,7 +120,7 @@ class LogOutBottomSheetState extends State<LogOutBottomSheet> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               translate('common.confirm'),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           )),
                     ),
@@ -135,7 +139,7 @@ class LogOutBottomSheetState extends State<LogOutBottomSheet> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               translate('common.go_back'),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           )),
                     ),

@@ -88,7 +88,7 @@ class ProjectListScreenController extends GetxController {
       }
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
@@ -107,7 +107,7 @@ class ProjectListScreenController extends GetxController {
   }
 
   void onProjectClicked(Project value) {
-    Get.to(ProjectDetailScreen(), arguments: {"id": value.id});
+    Get.to(const ProjectDetailScreen(), arguments: {"id": value.id});
   }
 
   @override

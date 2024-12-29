@@ -19,16 +19,20 @@ import 'package:url_launcher/url_launcher.dart';
 class TeamSheetScreen extends StatelessWidget {
   static const routeName = '/teamsheet';
 
+  const TeamSheetScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => TeamSheetProvider(),
-      child: TeamSheet(),
+      child: const TeamSheet(),
     );
   }
 }
 
 class TeamSheet extends StatefulWidget {
+  const TeamSheet({super.key});
+
   @override
   State<StatefulWidget> createState() => TeamSheetState();
 }
@@ -94,12 +98,12 @@ class TeamSheetState extends State<TeamSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   teamList.isEmpty
-                      ? SizedBox.shrink()
+                      ? const SizedBox.shrink()
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             DropdownButton2(
-                              underline: SizedBox.shrink(),
+                              underline: const SizedBox.shrink(),
                               isExpanded: true,
                               items: (provider.branches)
                                   .map((item) => DropdownMenuItem<Branch>(
@@ -129,8 +133,8 @@ class TeamSheetState extends State<TeamSheet> {
                                   provider.makeTeamList();
                                 });
                               },
-                              iconStyleData: IconStyleData(
-                                icon: const Icon(
+                              iconStyleData: const IconStyleData(
+                                icon: Icon(
                                   Icons.arrow_forward_ios_outlined,
                                 ),
                                 iconSize: 14,
@@ -142,7 +146,7 @@ class TeamSheetState extends State<TeamSheet> {
                                 width: 160,
                                 padding: const EdgeInsets.only(left: 14, right: 14),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10),
                                       topRight: Radius.circular(0),
                                       bottomLeft: Radius.circular(0),
@@ -155,7 +159,7 @@ class TeamSheetState extends State<TeamSheet> {
                                 maxHeight: 200,
                                 padding: null,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(0),
                                       topRight: Radius.circular(10),
                                       bottomLeft: Radius.circular(10),
@@ -164,16 +168,16 @@ class TeamSheetState extends State<TeamSheet> {
                                 ),
                                 elevation: 8,
                               ),
-                              menuItemStyleData: MenuItemStyleData(
+                              menuItemStyleData: const MenuItemStyleData(
                                 height: 40,
-                                padding: const EdgeInsets.only(left: 14, right: 14),
+                                padding: EdgeInsets.only(left: 14, right: 14),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             DropdownButton2(
-                              underline: SizedBox.shrink(),
+                              underline: const SizedBox.shrink(),
                               isExpanded: true,
                               items: (provider.department)
                                   .map((item) => DropdownMenuItem<Department>(
@@ -200,8 +204,8 @@ class TeamSheetState extends State<TeamSheet> {
                                   provider.makeTeamList();
                                 });
                               },
-                              iconStyleData: IconStyleData(
-                                icon: const Icon(
+                              iconStyleData: const IconStyleData(
+                                icon: Icon(
                                   Icons.arrow_forward_ios_outlined,
                                 ),
                                 iconSize: 14,
@@ -213,7 +217,7 @@ class TeamSheetState extends State<TeamSheet> {
                                 width: 160,
                                 padding: const EdgeInsets.only(left: 14, right: 14),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10),
                                       topRight: Radius.circular(0),
                                       bottomLeft: Radius.circular(0),
@@ -226,7 +230,7 @@ class TeamSheetState extends State<TeamSheet> {
                                 maxHeight: 200,
                                 padding: null,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(0),
                                       topRight: Radius.circular(10),
                                       bottomLeft: Radius.circular(10),
@@ -235,23 +239,23 @@ class TeamSheetState extends State<TeamSheet> {
                                 ),
                                 elevation: 8,
                               ),
-                              menuItemStyleData: MenuItemStyleData(
+                              menuItemStyleData: const MenuItemStyleData(
                                 height: 40,
-                                padding: const EdgeInsets.only(left: 14, right: 14),
+                                padding: EdgeInsets.only(left: 14, right: 14),
                               ),
                             ),
                           ],
                         ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Expanded(
                     child: ListView.builder(
                         padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                            const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                         itemCount: provider.teamList.length,
                         itemBuilder: (ctx, i) => Padding(
-                            padding: EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(5),
                             child: teamCard(provider.teamList[i]))),
                   ),
                 ],
@@ -270,15 +274,15 @@ class TeamSheetState extends State<TeamSheet> {
       color: Colors.white10,
       child: InkWell(
         onTap: () {
-          Get.to(EmployeeDetailScreen(),
+          Get.to(const EmployeeDetailScreen(),
               arguments: {"employeeId": teamList.id.toString()});
         },
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Row(
             children: [
               Container(
-                padding: EdgeInsets.all(2),
+                padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
@@ -297,18 +301,18 @@ class TeamSheetState extends State<TeamSheet> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
                         teamList.name,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(teamList.post,
-                          style: TextStyle(color: Colors.white70)),
+                          style: const TextStyle(color: Colors.white70)),
                     ],
                   ),
                 ),
@@ -328,7 +332,7 @@ class TeamSheetState extends State<TeamSheet> {
                   )),
               IconButton(
                   onPressed: () async {
-                    Get.to(ChatScreen(), arguments: {
+                    Get.to(const ChatScreen(), arguments: {
                       "name": teamList.name,
                       "avatar": teamList.avatar,
                       "username": teamList.username,

@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class GroupChatScreen extends StatelessWidget {
+  const GroupChatScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(GroupChatController());
@@ -30,7 +32,7 @@ class GroupChatScreen extends StatelessWidget {
                 enableDrag: true,
                 isScrollControlled: false,
                 ignoreSafeArea: true);
-          }, icon: Icon(Icons.person,color: Colors.white,))],
+          }, icon: const Icon(Icons.person,color: Colors.white,))],
         ),
         body: SafeArea(
           child: Column(
@@ -68,11 +70,11 @@ class GroupChatScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 isSameDate
-                                    ? SizedBox.shrink()
+                                    ? const SizedBox.shrink()
                                     : Text(
                                         DateFormat("MMM dd yyyy")
                                             .format(message.dateTime),
-                                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                                        style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                                       ),
                                 Card(
                                   elevation: 0,
@@ -90,21 +92,21 @@ class GroupChatScreen extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0),
                                           child: Text(
-                                            "@"+message.sender,
-                                            style: TextStyle(
+                                            "@${message.sender}",
+                                            style: const TextStyle(
                                                 color: Colors.white, fontSize: 12,fontWeight: FontWeight.bold),
                                           ),
-                                        ):SizedBox.shrink(),
+                                        ):const SizedBox.shrink(),
                                         Row(
                                           children: [
                                             message.sender == model.sender
-                                                ? SizedBox(
+                                                ? const SizedBox(
                                               width: 20,
                                             )
-                                                : SizedBox.shrink(),
+                                                : const SizedBox.shrink(),
                                             message.sender == model.sender
-                                                ? Spacer()
-                                                : SizedBox.shrink(),
+                                                ? const Spacer()
+                                                : const SizedBox.shrink(),
                                             Card(
                                               elevation: 0,
                                               color: Colors.white10,
@@ -112,17 +114,17 @@ class GroupChatScreen extends StatelessWidget {
                                                 padding: const EdgeInsets.all(15.0),
                                                 child: Text(
                                                   message.message,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15),
                                                 ),
                                               ),
                                             ),
                                             message.sender != model.sender
-                                                ? SizedBox(
+                                                ? const SizedBox(
                                                     width: 20,
                                                   )
-                                                : SizedBox.shrink(),
+                                                : const SizedBox.shrink(),
                                           ],
                                         ),
                                         Padding(
@@ -131,7 +133,7 @@ class GroupChatScreen extends StatelessWidget {
                                           child: Text(
                                             DateFormat("hh:mm a")
                                                 .format(message.dateTime),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.white, fontSize: 12),
                                           ),
                                         ),
@@ -152,7 +154,7 @@ class GroupChatScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
-                    Divider(color: Colors.white10,),
+                    const Divider(color: Colors.white10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -161,7 +163,7 @@ class GroupChatScreen extends StatelessWidget {
                           autofocus: false,
                           maxLines: 1,
                           keyboardType: TextInputType.multiline,
-                          style: TextStyle(color: Colors.white, fontSize: 15),
+                          style: const TextStyle(color: Colors.white, fontSize: 15),
                           validator: (value) {
                             return null;
                           },
@@ -169,12 +171,12 @@ class GroupChatScreen extends StatelessWidget {
                           cursorColor: Colors.white,
                           decoration: InputDecoration(
                               hintText: translate('group_chat_screen.send_message'),
-                              hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
+                              hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(10.0)),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                              labelStyle: TextStyle(color: Colors.white),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                              labelStyle: const TextStyle(color: Colors.white),
                               filled: true,
                               fillColor: Colors.transparent),
                         )),
@@ -184,7 +186,7 @@ class GroupChatScreen extends StatelessWidget {
                               model.sendMessage(model.chatController.text);
                             }
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.send,
                             color: Colors.white,
                           ),

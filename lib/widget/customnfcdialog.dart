@@ -20,7 +20,7 @@ enum NFCMODE { scan, add }
 class CustomNfcDialog extends StatefulWidget {
   final NFCMODE mode;
 
-  CustomNfcDialog(this.mode);
+  const CustomNfcDialog(this.mode, {super.key});
 
   @override
   State<StatefulWidget> createState() => CustomDialogState();
@@ -116,7 +116,7 @@ class CustomDialogState extends State<CustomNfcDialog> {
         showDialog(
           context: context,
           builder: (context) {
-            return Dialog(
+            return const Dialog(
               child: CustomAlertDialog("Nfc Added Successfully"),
             );
           },
@@ -142,7 +142,7 @@ class CustomDialogState extends State<CustomNfcDialog> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -155,12 +155,12 @@ class CustomDialogState extends State<CustomNfcDialog> {
           Text(
             textAlign: TextAlign.center,
             translate('common.scan_nfc'),
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: ElevatedButton(
                 style: TextButton.styleFrom(
@@ -172,7 +172,7 @@ class CustomDialogState extends State<CustomNfcDialog> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: Text(translate('common.close'), style: TextStyle(color: Colors.white)),
+                  child: Text(translate('common.close'), style: const TextStyle(color: Colors.white)),
                 )),
           )
         ],

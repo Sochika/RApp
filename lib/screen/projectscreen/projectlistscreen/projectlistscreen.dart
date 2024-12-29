@@ -6,6 +6,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class ProjectListScreen extends StatelessWidget {
+  const ProjectListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(ProjectListScreenController());
@@ -27,11 +29,11 @@ class ProjectListScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(
+                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(
                         10),bottomRight: Radius.circular(10))),
                     color: Colors.white12,
                     elevation: 0,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Obx(
@@ -56,7 +58,7 @@ class ProjectListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('project_list_screen.all'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -79,7 +81,7 @@ class ProjectListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('project_list_screen.in_progress'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -102,7 +104,7 @@ class ProjectListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('project_list_screen.cancelled'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -125,7 +127,7 @@ class ProjectListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('project_list_screen.on_hold'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -148,7 +150,7 @@ class ProjectListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('project_list_screen.cancelled'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -171,7 +173,7 @@ class ProjectListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('project_list_screen.not_started'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -186,11 +188,11 @@ class ProjectListScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  Expanded(child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                  const Expanded(child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: ProjectList(),
                   )),
                 ],

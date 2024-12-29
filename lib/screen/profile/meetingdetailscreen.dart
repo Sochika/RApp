@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 class MeetingDetailScreen extends StatefulWidget {
   static const routeName = '/meetingdetailscreen';
 
+  const MeetingDetailScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => MeetingDetailState();
 }
@@ -40,7 +42,7 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 item.image == ""
-                    ? SizedBox.shrink()
+                    ? const SizedBox.shrink()
                     : Column(
                         children: [
                           ClipRRect(
@@ -64,7 +66,7 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                     ),
                     Text(
                       item.venue,
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                      style: const TextStyle(color: Colors.white, fontSize: 15),
                     )
                   ],
                 ),
@@ -73,7 +75,7 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
                     item.title,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 gaps(10),
@@ -81,7 +83,7 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
                     '${translate('meeting_detail_screen.date')} - ${item.meetingDate} ${item.meetingStartTime}',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
                 gaps(10),
@@ -90,17 +92,17 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
+                        const Text(
                           'Host: ',
                           style: TextStyle(color: Colors.grey, fontSize: 12),
                         ),
                         Text(
-                          '${item.createdBy}',
-                          style: TextStyle(
+                          item.createdBy,
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 12,
                               fontWeight: FontWeight.bold),
@@ -121,10 +123,10 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                 ),
                 gaps(10),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
                     translate('meeting_detail_screen.participants'),
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
                 gaps(10),
@@ -134,7 +136,7 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.to(EmployeeDetailScreen(), arguments: {
+                          Get.to(const EmployeeDetailScreen(), arguments: {
                             "employeeId": item.participator[index].id
                           });
                         },
@@ -143,11 +145,11 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                           child: ListTile(
                             title: Text(
                               item.participator[index].name,
-                              style: TextStyle(fontSize: 15),
+                              style: const TextStyle(fontSize: 15),
                             ),
                             trailing: Text(
                               item.participator[index].post,
-                              style: TextStyle(fontSize: 15),
+                              style: const TextStyle(fontSize: 15),
                             ),
                             textColor: Colors.white,
                             leading: ClipRRect(
@@ -164,7 +166,7 @@ class MeetingDetailState extends State<MeetingDetailScreen> {
                       );
                     },
                     separatorBuilder: (context, index) {
-                      return Divider(
+                      return const Divider(
                         height: 1,
                         indent: 20,
                         endIndent: 20,

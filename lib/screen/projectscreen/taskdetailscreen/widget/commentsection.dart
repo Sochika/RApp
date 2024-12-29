@@ -5,18 +5,20 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class CommentSection extends StatelessWidget {
+  const CommentSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TaskDetailController controller = Get.find();
     return GestureDetector(
       onTap: () {
-        Get.to(CommentScreen(),
+        Get.to(const CommentScreen(),
             arguments: {"taskId": controller.taskDetail.value.id.toString(),"members":controller.taskDetail.value.members});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,7 +26,7 @@ class CommentSection extends StatelessWidget {
               Obx(
                 () => Text(
                   "${translate('task_detail_screen.comments')} ( ${controller.taskDetail.value.noOfComments} )",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
@@ -32,7 +34,7 @@ class CommentSection extends StatelessWidget {
               ),
               Text(
                 translate('task_detail_screen.view_all'),
-                style: TextStyle(
+                style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.white,
                     fontSize: 12,

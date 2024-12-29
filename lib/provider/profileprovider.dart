@@ -118,9 +118,9 @@ class ProfileProvider with ChangeNotifier {
 
   void checkValueInPref(Preferences preferences) async {
     final user = await preferences.getUser();
-    _profile.name = user.name;
-    _profile.username = user.username;
-    _profile.email = user.email;
+    _profile.name = '${user.firstName} ${user.lastName}';
+    _profile.username = user.staffNo;
+    _profile.email = user.gender;
     _profile.avatar = user.avatar;
     notifyListeners();
   }

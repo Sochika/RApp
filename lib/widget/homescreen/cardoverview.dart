@@ -8,14 +8,14 @@ class CardOverView extends StatelessWidget {
   VoidCallback callback;
 
   CardOverView(
-      {required this.type,
+      {super.key, required this.type,
       required this.value,
       required this.icon,
       required this.callback});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width / 2 - 20,
       child: GestureDetector(
         onTap: callback,

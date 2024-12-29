@@ -5,35 +5,37 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class CheckListSection extends StatelessWidget {
+  const CheckListSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TaskDetailController controller = Get.find();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(
           translate('task_detail_screen.checklists'),
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Obx(
-          () => controller.taskDetail.value.checkList.length == 0
+          () => controller.taskDetail.value.checkList.isEmpty
               ? Center(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                       translate('task_detail_screen.no_checklist_found'),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 )
               : ListView.builder(
                   primary: false,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: controller.taskDetail.value.checkList.length,
                   itemBuilder: (context, index) {
@@ -42,8 +44,8 @@ class CheckListSection extends StatelessWidget {
                     var state = false.obs;
                     state.value = checklist.isCompleted == "0" ? false : true;
                     return Card(
-                      margin: EdgeInsets.symmetric(vertical: 5),
-                      shape: RoundedRectangleBorder(
+                      margin: const EdgeInsets.symmetric(vertical: 5),
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               bottomRight: Radius.circular(10))),
@@ -77,13 +79,13 @@ class CheckListSection extends StatelessWidget {
                                       : Colors.white,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
                               Expanded(
                                 child: Text(checklist.name,
                                     maxLines: 2,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         height: 1.2,
                                         color: Colors.white,
                                         fontWeight: FontWeight.normal,

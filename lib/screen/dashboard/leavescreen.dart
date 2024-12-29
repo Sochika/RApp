@@ -14,6 +14,8 @@ import 'package:provider/provider.dart';
 import 'package:radius/provider/leaveprovider.dart';
 
 class LeaveScreen extends StatefulWidget {
+  const LeaveScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => LeaveScreenState();
 }
@@ -58,7 +60,7 @@ class LeaveScreenState extends State<LeaveScreen> with WidgetsBindingObserver {
       isVisible = true;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          padding: EdgeInsets.all(20), content: Text(detailResponse.message)));
+          padding: const EdgeInsets.all(20), content: Text(detailResponse.message)));
     }
   }
 
@@ -82,28 +84,28 @@ class LeaveScreenState extends State<LeaveScreen> with WidgetsBindingObserver {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    HeaderProfile(),
+                    const HeaderProfile(),
                     Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         width: double.infinity,
                         child: Text(
                           translate('leave_screen.leave'),
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: const TextStyle(fontSize: 20, color: Colors.white),
                         )),
-                    LeaveListDashboard(),
+                    const LeaveListDashboard(),
                     Visibility(
                       visible: isVisible,
-                      child: Padding(
+                      child: const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: LeaveButton()),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     Visibility(
                       visible: isVisible,
-                      child: Text(translate('leave_screen.recent_leave_activity'),style: TextStyle(color: Colors.white,fontSize: 20),),
+                      child: Text(translate('leave_screen.recent_leave_activity'),style: const TextStyle(color: Colors.white,fontSize: 20),),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Stack(
                       children: [
                         Align(
@@ -118,13 +120,13 @@ class LeaveScreenState extends State<LeaveScreen> with WidgetsBindingObserver {
                                   children: [
                                     Visibility(
                                       visible: isVisible,
-                                      child: Padding(
-                                          padding: const EdgeInsets.symmetric(
+                                      child: const Padding(
+                                          padding: EdgeInsets.symmetric(
                                               horizontal: 20.0, vertical: 10),
                                           child: LeavetypeFilter()),
                                     ),
                                     Visibility(
-                                        visible: isVisible, child: LeaveListdetailDashboard()),
+                                        visible: isVisible, child: const LeaveListdetailDashboard()),
                                   ],
                                 ),
                               ),
@@ -134,8 +136,8 @@ class LeaveScreenState extends State<LeaveScreen> with WidgetsBindingObserver {
                         Align(
                           child: Visibility(
                             visible: isVisible,
-                            child: Padding(
-                                padding: const EdgeInsets.symmetric(
+                            child: const Padding(
+                                padding: EdgeInsets.symmetric(
                                     horizontal: 20.0, vertical: 10),
                                 child: ToggleLeaveTime()),
                           ),

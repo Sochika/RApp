@@ -15,13 +15,12 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart';
 
-import '../data/source/network/model/hollidays/Holidays.dart';
 
 class LeaveCalendarProvider with ChangeNotifier {
   final Map<String, List<dynamic>> _employeeLeaveList = {};
 
   final List<LeaveByDay> _employeeLeaveByDayList = [];
-  Holiday? _employeeHoliday = null;
+  Holiday? _employeeHoliday;
   final List<Birthday> _employeeBirthdayList = [];
 
   int toggleValue = 0;
@@ -103,7 +102,7 @@ class LeaveCalendarProvider with ChangeNotifier {
 
   Future<EmployeeLeavesByDayResponse> getLeavesByDay(String value) async {
     Preferences preferences = Preferences();
-    print("Leave date for " + value.toString());
+    print("Leave date for $value");
     var uri =
         Uri.parse(await preferences.getAppUrl() + Constant.OFFICE_CALENDAR_API)
             .replace(queryParameters: {'leave_date': value});

@@ -25,7 +25,7 @@ class ProjectDashboardController extends GetxController {
   Future<String> getProjectOverview() async {
     Preferences preferences = Preferences();
     var uri =
-        Uri.parse(await preferences.getAppUrl()+Constant.PROJECT_DASHBOARD_URL + "?tasks=10&projects=3");
+        Uri.parse("${await preferences.getAppUrl()}${Constant.PROJECT_DASHBOARD_URL}?tasks=10&projects=3");
 
     String token = await preferences.getToken();
     bool isAd = await preferences.getEnglishDate();

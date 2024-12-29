@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class MeetingListView extends StatefulWidget {
+  const MeetingListView({super.key});
+
   @override
   State<StatefulWidget> createState() => MeetingListViewState();
 }

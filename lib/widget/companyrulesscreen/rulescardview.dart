@@ -7,7 +7,7 @@ class RulesCardView extends StatelessWidget {
   final String title;
   final String description;
 
-  RulesCardView(this.title, this.description);
+  const RulesCardView(this.title, this.description, {super.key});
 
   @override
   Widget build(BuildContext context) {

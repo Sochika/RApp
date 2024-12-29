@@ -6,19 +6,21 @@ import 'package:html/parser.dart';
 import 'package:readmore/readmore.dart';
 
 class DescriptionSection extends StatelessWidget{
+  const DescriptionSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     ProjectDetailController model = Get.find();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(
           translate('project_detail_screen.description'),
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Obx(() =>ReadMoreText(
@@ -28,13 +30,13 @@ class DescriptionSection extends StatelessWidget{
             trimMode: TrimMode.Line,
             trimCollapsedText: ' ${translate('project_detail_screen.show_more')}',
             trimExpandedText: ' ${translate('project_detail_screen.show_less')}',
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white70,
                 fontSize: 15,
                 fontWeight: FontWeight.normal),
-            lessStyle: TextStyle(
+            lessStyle: const TextStyle(
                 color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
-            moreStyle: TextStyle(
+            moreStyle: const TextStyle(
                 color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
           ),
         ),

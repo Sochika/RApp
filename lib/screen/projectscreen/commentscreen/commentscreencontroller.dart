@@ -19,12 +19,12 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class CommentScreenController extends GetxController {
-  TextEditingController commentEdit = new TextEditingController();
+  TextEditingController commentEdit = TextEditingController();
   final scrollController = ScrollController();
   Preferences preferences = Preferences();
   var focusNode = FocusNode();
 
-  var user = User(id: 0, name: "", email: "", username: "", avatar: "",workspace_type: "0").obs;
+  var user = User(id: 0, firstName: "", lastName: "", staffNo: "", avatar: "",hireDate: "0", dob: '', gender: '').obs;
 
   var sendComment = SendComment();
 
@@ -62,8 +62,7 @@ class CommentScreenController extends GetxController {
 
   Future<void> getComments([double position = 0]) async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl() + Constant.GET_COMMENT_URL +
-        "?per_page=$PER_PAGE&page=$PAGE&task_id=" +
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.GET_COMMENT_URL}?per_page=$PER_PAGE&page=$PAGE&task_id=" +
         Get.arguments["taskId"]);
 
     String token = await preferences.getToken();
@@ -266,7 +265,7 @@ class CommentScreenController extends GetxController {
 
   Future<void> deleteComment(String id) async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl() +Constant.DELETE_COMMENT_URL + "/$id");
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.DELETE_COMMENT_URL}/$id");
 
     String token = await preferences.getToken();
 
@@ -295,7 +294,7 @@ class CommentScreenController extends GetxController {
 
   Future<void> deleteReply(String id) async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl() +Constant.DELETE_REPLY_URL + "/$id");
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.DELETE_REPLY_URL}/$id");
 
     String token = await preferences.getToken();
 

@@ -63,30 +63,22 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['deadline'] = this.deadline;
-    data['description'] = this.description;
-    data['priority'] = this.priority;
-    data['project_name'] = this.project_name;
-    data['start_date'] = this.start_date;
-    data['status'] = this.status;
-    data['task_id'] = this.task_id;
-    data['task_name'] = this.task_name;
-    data['task_progress_percent'] = this.task_progress_percent;
-    if (this.assigned_member != null) {
-      data['assigned_member'] =
-          this.assigned_member.map((v) => v.toJson()).toList();
-    }
-    if (this.attachments != null) {
-      data['attachments'] = this.attachments.map((v) => v.toJson()).toList();
-    }
-    if (this.checklists != null) {
-      data['checklists'] = this.checklists.map((v) => v.toJson()).toList();
-    }
-    if (this.task_comments != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['deadline'] = deadline;
+    data['description'] = description;
+    data['priority'] = priority;
+    data['project_name'] = project_name;
+    data['start_date'] = start_date;
+    data['status'] = status;
+    data['task_id'] = task_id;
+    data['task_name'] = task_name;
+    data['task_progress_percent'] = task_progress_percent;
+    data['assigned_member'] =
+        assigned_member.map((v) => v.toJson()).toList();
+      data['attachments'] = attachments.map((v) => v.toJson()).toList();
+      data['checklists'] = checklists.map((v) => v.toJson()).toList();
       data['task_comments'] =
-          this.task_comments.map((v) => v.toJson()).toList();
-    }
-    return data;
+        task_comments.map((v) => v.toJson()).toList();
+      return data;
   }
 }

@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class SupportScreen extends StatelessWidget {
+  const SupportScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(SupportController());
@@ -25,7 +27,7 @@ class SupportScreen extends StatelessWidget {
               onTap: () {
                 model.showList();
               },
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(20),
                 child: Icon(Icons.list_alt),
               ),
@@ -39,7 +41,7 @@ class SupportScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
                   elevation: 0,
                   shape: ButtonBorder(),
                   color: Colors.transparent,
@@ -47,25 +49,25 @@ class SupportScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     child: Column(
                       children: [
-                        Icon(Icons.support_agent_rounded,
+                        const Icon(Icons.support_agent_rounded,
                             color: Colors.white, size: 60),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           translate('support_screen.help_desk'),
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           translate('support_screen.contact_us'),
-                          style: TextStyle(color: Colors.white, fontSize: 15),
+                          style: const TextStyle(color: Colors.white, fontSize: 15),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -77,7 +79,7 @@ class SupportScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
                         width: double.infinity,
                         child: DropdownButtonHideUnderline(
                           child: Obx(
@@ -86,7 +88,7 @@ class SupportScreen extends StatelessWidget {
                               hint: Text(
                                 translate(
                                     'support_screen.select_department_type'),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
@@ -101,7 +103,7 @@ class SupportScreen extends StatelessWidget {
                                         horizontal: 8.0),
                                     child: Text(
                                       e.name,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold),
@@ -122,8 +124,8 @@ class SupportScreen extends StatelessWidget {
                                     ? model.selected.value = result[0]
                                     : model.selected.value;
                               },
-                              iconStyleData: IconStyleData(
-                                icon: const Icon(
+                              iconStyleData: const IconStyleData(
+                                icon: Icon(
                                   Icons.arrow_forward_ios_outlined,
                                 ),
                                 iconSize: 14,
@@ -135,7 +137,7 @@ class SupportScreen extends StatelessWidget {
                                 width: 160,
                                 padding: const EdgeInsets.only(left: 14, right: 14),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10),
                                       topRight: Radius.circular(0),
                                       bottomLeft: Radius.circular(0),
@@ -148,7 +150,7 @@ class SupportScreen extends StatelessWidget {
                                 maxHeight: 200,
                                 padding: null,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(0),
                                       topRight: Radius.circular(10),
                                       bottomLeft: Radius.circular(10),
@@ -157,9 +159,9 @@ class SupportScreen extends StatelessWidget {
                                 ),
                                 elevation: 8,
                               ),
-                              menuItemStyleData: MenuItemStyleData(
+                              menuItemStyleData: const MenuItemStyleData(
                                 height: 40,
-                                padding: const EdgeInsets.only(left: 14, right: 14),
+                                padding: EdgeInsets.only(left: 14, right: 14),
                               ),
                             ),
                           ),
@@ -169,7 +171,7 @@ class SupportScreen extends StatelessWidget {
                         controller: model.titleController,
                         textAlignVertical: TextAlignVertical.top,
                         keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Field can't be empty";
@@ -179,29 +181,29 @@ class SupportScreen extends StatelessWidget {
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
                           hintText: translate('support_screen.title'),
-                          hintStyle: TextStyle(color: Colors.grey),
-                          labelStyle: TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.white),
                           fillColor: Colors.white24,
                           filled: true,
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(10))),
-                          focusedErrorBorder: OutlineInputBorder(
+                          focusedErrorBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(10))),
-                          errorBorder: OutlineInputBorder(
+                          errorBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
@@ -209,7 +211,7 @@ class SupportScreen extends StatelessWidget {
                                   bottomRight: Radius.circular(10))),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
@@ -218,7 +220,7 @@ class SupportScreen extends StatelessWidget {
                         textAlignVertical: TextAlignVertical.top,
                         maxLines: 10,
                         keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Field can't be empty";
@@ -227,31 +229,31 @@ class SupportScreen extends StatelessWidget {
                         },
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
-                          counterStyle: TextStyle(color: Colors.white),
+                          counterStyle: const TextStyle(color: Colors.white),
                           hintText: translate('support_screen.description'),
-                          hintStyle: TextStyle(color: Colors.grey),
-                          labelStyle: TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.white),
                           fillColor: Colors.white24,
                           filled: true,
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(10))),
-                          focusedErrorBorder: OutlineInputBorder(
+                          focusedErrorBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(10))),
-                          errorBorder: OutlineInputBorder(
+                          errorBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   topRight: Radius.circular(0),
@@ -259,10 +261,10 @@ class SupportScreen extends StatelessWidget {
                                   bottomRight: Radius.circular(10))),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: TextButton(
                             style: TextButton.styleFrom(
@@ -275,10 +277,10 @@ class SupportScreen extends StatelessWidget {
                               model.onSubmitClicked();
                             },
                             child: Padding(
-                              padding: EdgeInsets.all(20.0),
+                              padding: const EdgeInsets.all(20.0),
                               child: Text(
                                 translate('support_screen.submit'),
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             )),
                       )

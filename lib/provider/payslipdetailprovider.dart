@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 class PaySlipDetailProvider with ChangeNotifier {
   String currency = "";
 
-  List<Earning> _earningList = [];
+  final List<Earning> _earningList = [];
 
   List<Earning> get earningList {
     return [..._earningList];
@@ -48,7 +48,7 @@ class PaySlipDetailProvider with ChangeNotifier {
     return value;
   }
 
-  List<Deduction> _deductionList = [];
+  final List<Deduction> _deductionList = [];
 
   List<Deduction> get deductionList {
     return [..._deductionList];

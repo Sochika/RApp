@@ -9,8 +9,10 @@ class Preferences with ChangeNotifier {
   final String USER_ID = "user_id";
   final String USER_AVATAR = "user_avatar";
   final String USER_TOKEN = "user_token";
-  final String USER_EMAIL = "user_email";
-  final String USER_NAME = "user_name";
+  final String SESSION_TOKEN = "session_token";
+  final String USER_STAFFNO = "user_staffNo";
+  final String GENDER = "gender";
+  final String DOB = "date_of_birth";
   final String USER_FULLNAME = "user_fullname";
   final String USER_AUTH = "user_auth";
   final String WORKSPACE = "workspace_type";
@@ -41,12 +43,13 @@ class Preferences with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
 
     await prefs.setString(USER_TOKEN, data.tokens);
+    await prefs.setString(SESSION_TOKEN, data.token);
     await prefs.setInt(USER_ID, user.id);
     await prefs.setString(USER_AVATAR, user.avatar);
-    await prefs.setString(USER_EMAIL, user.email);
-    await prefs.setString(USER_NAME, user.username);
-    await prefs.setString(USER_FULLNAME, user.name);
-    await prefs.setString(WORKSPACE, user.workspace_type);
+    await prefs.setString(USER_STAFFNO, user.staffNo);
+    await prefs.setString(GENDER, user.gender);
+    await prefs.setString(USER_FULLNAME, '${user.firstName} ${user.lastName}');
+    await prefs.setString(WORKSPACE, user.hireDate);
 
     notifyListeners();
 
@@ -57,12 +60,13 @@ class Preferences with ChangeNotifier {
     // Obtain shared preferences.
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setInt(USER_ID, user.id);
-    await prefs.setString(USER_AVATAR, user.avatar);
-    await prefs.setString(USER_EMAIL, user.email);
-    await prefs.setString(USER_NAME, user.username);
-    await prefs.setString(USER_FULLNAME, user.name);
-    await prefs.setString(WORKSPACE, user.workspace_type);
+    await prefs.setInt(USER_ID, user.userId);
+    await prefs.setString(USER_AVATAR, user.staff.getAvatarUrl());
+    await prefs.setString(USER_STAFFNO, user.staff.staff_no);
+    await prefs.setString(GENDER, user.staff.gender);
+    await prefs.setString(USER_FULLNAME, '${user.staff.firstName} ${user.staff.lastName}');
+    await prefs.setString(WORKSPACE, user.staff.hire_date);
+    await prefs.setString(DOB, user.staff.dob);
 
     notifyListeners();
 
@@ -92,18 +96,18 @@ class Preferences with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
 
     features["project-management"] =
-        await prefs.getString(PROJECT_MANAGEMENT) ?? "1";
-    features["meeting"] = await prefs.getString(MEETING) ?? "1";
-    features["tada"] = await prefs.getString(TADA) ?? "1";
+        prefs.getString(PROJECT_MANAGEMENT) ?? "1";
+    features["meeting"] = prefs.getString(MEETING) ?? "1";
+    features["tada"] = prefs.getString(TADA) ?? "1";
     features["payroll-management"] =
-        await prefs.getString(PAYROLL_MANGEMENT) ?? "1";
-    features["advance-salary"] = await prefs.getString(ADVANCE_SALARY) ?? "1";
-    features["support"] = await prefs.getString(SUPPORT) ?? "1";
-    features["dark-mode"] = await prefs.getString(DARK_MODE) ?? "1";
-    features["nfc-qr"] = await prefs.getString(NFC_QR) ?? "1";
-    features["award"] = await prefs.getString(AWARD) ?? "1";
-    features["training"] = await prefs.getString(TRAINING) ?? "1";
-    features["loan"] = await prefs.getString(LOAN) ?? "1";
+        prefs.getString(PAYROLL_MANGEMENT) ?? "1";
+    features["advance-salary"] = prefs.getString(ADVANCE_SALARY) ?? "1";
+    features["support"] = prefs.getString(SUPPORT) ?? "1";
+    features["dark-mode"] = prefs.getString(DARK_MODE) ?? "1";
+    features["nfc-qr"] = prefs.getString(NFC_QR) ?? "1";
+    features["award"] = prefs.getString(AWARD) ?? "1";
+    features["training"] = prefs.getString(TRAINING) ?? "1";
+    features["loan"] = prefs.getString(LOAN) ?? "1";
 
     return features;
   }
@@ -113,9 +117,10 @@ class Preferences with ChangeNotifier {
 
     await prefs.setInt(USER_ID, user.id);
     await prefs.setString(USER_AVATAR, user.avatar);
-    await prefs.setString(USER_EMAIL, user.email);
-    await prefs.setString(USER_NAME, user.username);
-    await prefs.setString(USER_FULLNAME, user.name);
+    await prefs.setString(USER_STAFFNO, user.staffNo);
+    await prefs.setString(GENDER, user.gender);
+    await prefs.setString(USER_FULLNAME, '${user.firstName} ${user.lastName}');
+    await prefs.setString(WORKSPACE, user.dob);
 
     notifyListeners();
   }
@@ -125,9 +130,10 @@ class Preferences with ChangeNotifier {
 
     await prefs.setInt(USER_ID, 0);
     await prefs.setString(USER_TOKEN, '');
+    await prefs.setString(SESSION_TOKEN, '');
     await prefs.setString(USER_AVATAR, '');
-    await prefs.setString(USER_EMAIL, '');
-    await prefs.setString(USER_NAME, '');
+    await prefs.setString(USER_STAFFNO, '');
+    await prefs.setString(GENDER, '');
     await prefs.setString(USER_FULLNAME, '');
     await prefs.setBool(USER_AUTH, false);
     await prefs.setBool(APP_IN_ENGLISH, true);
@@ -182,20 +188,36 @@ class Preferences with ChangeNotifier {
   Future<User> getUser() async {
     final prefs = await SharedPreferences.getInstance();
 
+    String fullName = prefs.getString(USER_FULLNAME) ?? "";
+    List<String> nameParts = fullName.split(" ");
     return User(
-        id: prefs.getInt(USER_ID) ?? 0,
-        name: prefs.getString(USER_FULLNAME) ?? "",
-        email: prefs.getString(USER_EMAIL) ?? "",
-        username: prefs.getString(USER_NAME) ?? "",
-        avatar: prefs.getString(USER_AVATAR) ?? "",
-        workspace_type: prefs.getString(WORKSPACE) ?? "1");
+      id: prefs.getInt(USER_ID) ?? 0,  // Default value if the ID is not found
+      firstName: nameParts.isNotEmpty ? nameParts.first : "",  // First part of the name
+      lastName: nameParts.length > 1 ? nameParts.sublist(1).join(" ") : "",  // The rest of the name
+      dob: prefs.getString(DOB) ?? "",  // Default to empty if DOB is not found
+      avatar: prefs.getString(USER_AVATAR) ?? "",  // Default to empty if avatar is not found
+      gender: prefs.getString(GENDER) ?? '',
+      hireDate: prefs.getString(WORKSPACE) ?? "1",  // Default to "1" if workspace (hire date) is missing
+      staffNo: prefs.getString(USER_STAFFNO) ?? "",  // Default to empty if staff number is missing
+      // Default to empty if gender is not found
+    );
+
+  }
+
+  Future<String> getsToken() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // print('from token0' + USER_TOKEN);
+    return prefs.getString(USER_TOKEN) ?? "";
   }
 
   Future<String> getToken() async {
     final prefs = await SharedPreferences.getInstance();
 
-    return prefs.getString(USER_TOKEN) ?? "";
+    // print('from token0' + USER_TOKEN);
+    return prefs.getString(SESSION_TOKEN) ?? "";
   }
+
 
   Future<bool> getNote() async {
     final prefs = await SharedPreferences.getInstance();
@@ -227,14 +249,19 @@ class Preferences with ChangeNotifier {
     return prefs.getBool(BIRTHDAY_WISHED) ?? false;
   }
 
-  Future<String> getUsername() async {
+  Future<String> getStaffNo() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(USER_NAME) ?? "";
+    return prefs.getString(USER_STAFFNO) ?? "";
+  }
+
+  Future<String> getDOB() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(DOB) ?? "";
   }
 
   Future<String> getEmail() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(USER_EMAIL) ?? "";
+    return prefs.getString(GENDER) ?? "";
   }
 
   Future<String> getAvatar() async {

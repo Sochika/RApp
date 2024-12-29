@@ -12,8 +12,8 @@ class NotificationCard extends StatelessWidget {
   final String desc;
   final String date;
 
-  NotificationCard(
-      {required this.id,
+  const NotificationCard(
+      {super.key, required this.id,
       required this.name,
       required this.month,
       required this.day,
@@ -45,7 +45,7 @@ class NotificationCard extends StatelessWidget {
                   shape: ButtonBorder(),
                   elevation: 0,
                   color: Colors.blueAccent,
-                  child: Container(
+                  child: SizedBox(
                     width: 60,
                     height: 60,
                     child: Column(
@@ -53,11 +53,11 @@ class NotificationCard extends StatelessWidget {
                       children: [
                         Text(
                           day,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: TextSizerPlus(month,maxLines: 1, style: TextStyle(color: Colors.white)),
+                          child: TextSizerPlus(month,maxLines: 1, style: const TextStyle(color: Colors.white)),
                         ),
                       ],
                     ),
@@ -75,9 +75,9 @@ class NotificationCard extends StatelessWidget {
                         maxLines: 1,
                         softWrap: true,
                         name,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
@@ -85,7 +85,7 @@ class NotificationCard extends StatelessWidget {
                         maxLines: 2,
                         softWrap: true,
                         desc,
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        style: const TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ],
                   ),

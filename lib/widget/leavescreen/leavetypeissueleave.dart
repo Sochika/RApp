@@ -6,6 +6,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
 class LeaveTypeIssueLeave extends StatefulWidget {
+  const LeaveTypeIssueLeave({super.key});
+
 
   @override
   State<StatefulWidget> createState() => LeaveTypeIssueLeaveState();
@@ -21,8 +23,8 @@ class LeaveTypeIssueLeaveState extends State<LeaveTypeIssueLeave>{
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
         isExpanded: true,
-        hint: Row(
-          children: const [
+        hint: const Row(
+          children: [
             Icon(
               Icons.list,
               size: 16,
@@ -60,15 +62,15 @@ class LeaveTypeIssueLeaveState extends State<LeaveTypeIssueLeave>{
             .toList(),
         value: selectedValue,
         onChanged: (value) {
-          selectedValue = value as Leave?;
+          selectedValue = value;
           if (selectedValue != null) {
             setState(() {
 
             });
           }
         },
-        iconStyleData: IconStyleData(
-          icon: const Icon(
+        iconStyleData: const IconStyleData(
+          icon: Icon(
             Icons.arrow_forward_ios_outlined,
           ),
           iconSize: 14,
@@ -80,7 +82,7 @@ class LeaveTypeIssueLeaveState extends State<LeaveTypeIssueLeave>{
           width: 160,
           padding: const EdgeInsets.only(left: 14, right: 14),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(0),
                 bottomLeft: Radius.circular(0),
@@ -93,7 +95,7 @@ class LeaveTypeIssueLeaveState extends State<LeaveTypeIssueLeave>{
           maxHeight: 200,
           padding: null,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(0),
                 topRight: Radius.circular(10),
                 bottomLeft: Radius.circular(10),
@@ -102,9 +104,9 @@ class LeaveTypeIssueLeaveState extends State<LeaveTypeIssueLeave>{
           ),
           elevation: 8,
         ),
-        menuItemStyleData: MenuItemStyleData(
+        menuItemStyleData: const MenuItemStyleData(
           height: 40,
-          padding: const EdgeInsets.only(left: 14, right: 14),
+          padding: EdgeInsets.only(left: 14, right: 14),
         ),
       ),
     );

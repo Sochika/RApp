@@ -42,19 +42,17 @@ class Project {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['assigned_task_count'] = this.assigned_task_count;
-    data['end_date'] = this.end_date;
-    data['id'] = this.id;
-    data['priority'] = this.priority;
-    data['project_name'] = this.project_name;
-    data['project_progress_percent'] = this.project_progress_percent;
-    data['start_date'] = this.start_date;
-    data['status'] = this.status;
-    if (this.assigned_member != null) {
-      data['assigned_member'] =
-          this.assigned_member.map((v) => v.toJson()).toList();
-    }
-    return data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['assigned_task_count'] = assigned_task_count;
+    data['end_date'] = end_date;
+    data['id'] = id;
+    data['priority'] = priority;
+    data['project_name'] = project_name;
+    data['project_progress_percent'] = project_progress_percent;
+    data['start_date'] = start_date;
+    data['status'] = status;
+    data['assigned_member'] =
+        assigned_member.map((v) => v.toJson()).toList();
+      return data;
   }
 }

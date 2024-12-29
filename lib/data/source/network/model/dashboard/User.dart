@@ -1,53 +1,83 @@
 class User {
+  final int userId;
+  final bool logoutStatus;
+  final Staff staff;
+
   User({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.username,
-    required this.avatar,
-    required this.onlineStatus,
-    required this.department,
-    required this.branch,
-    required this.dob,
-    required this.gender,
-    required this.workspace_type,
+    required this.userId,
+    required this.logoutStatus,
+    required this.staff,
   });
 
-  factory User.fromJson(dynamic json) {
+  // Factory constructor to create a User instance from JSON
+  factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        id: json['id'],
-        name: json['name'].toString() ?? "",
-        email: json['email'].toString() ?? "",
-        username: json['username'].toString() ?? "",
-        avatar: json['avatar'].toString() ?? "",
-        onlineStatus: json['online_status'] ?? false,
-        department: json['department'] ?? "",
-        branch: json['branch'] ?? "",
-        dob: json['dob'] ?? "",
-        gender: json['gender'] ?? "",
-        workspace_type: json['workspace_type'].toString() ?? "");
+      userId: json['user_id'] ?? 0,  // Default to 0 if user_id is not present
+      logoutStatus: json['logout_status'] ?? false,  // Default to false if logout_status is not present
+      staff: Staff.fromJson(json['staff'] ?? {}),  // Create Staff instance from nested JSON
+    );
   }
 
-  int id;
-  String name;
-  String email;
-  String username;
-  String avatar;
-  bool onlineStatus;
-  String workspace_type;
-  String department;
-  String branch;
-  String dob;
-  String gender;
-
+  // Method to convert User instance back to JSON
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['name'] = name;
-    map['email'] = email;
-    map['username'] = username;
-    map['avatar'] = avatar;
-    map['online_status'] = onlineStatus;
-    return map;
+    return {
+      'user_id': userId,
+      'logout_status': logoutStatus,
+      'staff': staff.toJson(),
+    };
+  }
+}
+
+class Staff {
+  final String firstName;
+  final String lastName;
+  final String avatar;
+  final String gender;
+  final String staff_no;
+  final String hire_date;
+  final String dob;
+
+  Staff({
+    required this.firstName,
+    required this.lastName,
+    required this.avatar,
+    required this.gender,
+    required this.staff_no,
+    required this.hire_date,
+    required this.dob,
+  });
+
+  // Factory constructor to create a Staff instance from JSON
+  factory Staff.fromJson(Map<String, dynamic> json) {
+    return Staff(
+      firstName: json['first_name'] ?? '',  // Default to empty string if first_name is not present
+      lastName: json['last_name'] ?? '',  // Default to empty string if last_name is not present
+      avatar: json['avatar'] ?? '',  // Default to empty string if avatar is not present
+      gender: json['gender'] ?? '',  // Default to empty string if last_name is not present
+      staff_no: json['staff_no'] ?? '',  // Default to empty string if avatar is not present
+      hire_date: json['hire_date'] ?? '',
+      dob:json['date_of_birth'] ?? '',
+    );
+  }
+
+  // Method to convert Staff instance back to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'first_name': firstName,
+      'last_name': lastName,
+      'avatar': avatar,
+      'gender': gender,
+      'staff_no': staff_no,
+      'hire_date': hire_date,
+      'date_of_birth': dob,
+    };
+  }
+
+  // Method to return the avatar URL or default image if avatar is not set
+  String getAvatarUrl() {
+    if (avatar.isNotEmpty) {
+      return 'path/to/avatar/$avatar';  // Replace with actual path or URL
+    }
+    return 'assets/images/img.png';  // Default image if avatar is missing
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -53,7 +52,7 @@ void main() async {
   await GetStorage.init();
 
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
-  FirebaseFirestore.instance.settings = Settings(persistenceEnabled: false);
+  FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: false);
   FirebaseFirestore.instance.clearPersistence();
   // Step required to send ios push notification
   NotificationSettings settings =
@@ -79,7 +78,7 @@ void main() async {
             channelKey: 'digital_hr_channel',
             channelName: 'Radius notifications',
             channelDescription: 'Radius Alert',
-            defaultColor: Color(0xFF9D50DD),
+            defaultColor: const Color(0xFF9D50DD),
             ledColor: Colors.white)
       ],
       // Channel groups are only visual and are not required
@@ -123,8 +122,8 @@ void main() async {
             tileColor: Colors.white,
             title: Row(
               children: [
-                Container(child: Icon(Icons.notifications)),
-                SizedBox(
+                Container(child: const Icon(Icons.notifications)),
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -139,7 +138,7 @@ void main() async {
               child: Text(
                 event.notification!.body!,
                 textAlign: TextAlign.justify,
-                style: TextStyle(color: Colors.grey),
+                style: const TextStyle(color: Colors.grey),
               ),
             ),
           ),
@@ -155,7 +154,7 @@ void main() async {
     if (message.data.containsKey("type")) {
       print(message.data.toString());
       if (message.data["type"] == "chat") {
-        Get.to(ChatScreen(), arguments: {
+        Get.to(const ChatScreen(), arguments: {
           "name": message.data["sender_name"],
           "avatar": message.data["sender_image"],
           "username": message.data["sender_username"],
@@ -164,7 +163,7 @@ void main() async {
       }
 
       if (message.data["type"] == "group_chat") {
-        Get.to(GroupChatScreen(), arguments: {
+        Get.to(const GroupChatScreen(), arguments: {
           "projectName": "",
           "projectId": message.data["project_id"],
           "projectSlug": message.data["conversation_id"],
@@ -186,7 +185,7 @@ void main() async {
   SecurityContext.defaultContext
       .setTrustedCertificatesBytes(data.buffer.asUint8List());
 
-  runApp(LocalizedApp(delegate, MyApp()));
+  runApp(LocalizedApp(delegate, const MyApp()));
   configLoading();
 }
 
@@ -213,7 +212,7 @@ void configLoading() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -285,11 +284,11 @@ class MyApp extends StatelessWidget {
                       primarySwatch: Colors.blue,
                       elevatedButtonTheme: ElevatedButtonThemeData(
                           style: ElevatedButton.styleFrom(
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
                                   fontFamily: "GoogleSans"))),
-                      appBarTheme: AppBarTheme(
+                      appBarTheme: const AppBarTheme(
                           actionsIconTheme: IconThemeData(color: Colors.white),
                           iconTheme: IconThemeData(color: Colors.white),
                           titleTextStyle: TextStyle(
@@ -298,12 +297,12 @@ class MyApp extends StatelessWidget {
                               fontFamily: "GoogleSans"))),
                   initialRoute: '/',
                   routes: {
-                    '/': (_) => SplashScreen(),
+                    '/': (_) => const SplashScreen(),
                     LoginScreen.routeName: (_) => LoginScreen(),
-                    DashboardScreen.routeName: (_) => DashboardScreen(),
-                    ProfileScreen.routeName: (_) => ProfileScreen(),
-                    EditProfileScreen.routeName: (_) => EditProfileScreen(),
-                    MeetingDetailScreen.routeName: (_) => MeetingDetailScreen(),
+                    DashboardScreen.routeName: (_) => const DashboardScreen(),
+                    ProfileScreen.routeName: (_) => const ProfileScreen(),
+                    EditProfileScreen.routeName: (_) => const EditProfileScreen(),
+                    MeetingDetailScreen.routeName: (_) => const MeetingDetailScreen(),
                     PaySlipDetailScreen.routeName: (_) => PaySlipDetailScreen(),
                   },
                   builder: EasyLoading.init(),

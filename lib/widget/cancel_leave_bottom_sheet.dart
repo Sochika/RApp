@@ -12,7 +12,7 @@ class CancelLeaveBottomSheet extends StatefulWidget {
   int id;
   String leaveTypeId;
 
-  CancelLeaveBottomSheet(this.id, this.leaveTypeId);
+  CancelLeaveBottomSheet(this.id, this.leaveTypeId, {super.key});
 
   @override
   State<StatefulWidget> createState() =>
@@ -83,7 +83,7 @@ class CancelLeaveBottomSheetState extends State<CancelLeaveBottomSheet> {
               children: [
                 Text(
                   translate('common.cancel_leave'),
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 IconButton(
                     onPressed: () {
@@ -97,10 +97,10 @@ class CancelLeaveBottomSheetState extends State<CancelLeaveBottomSheet> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(
                 translate('common.cancel_leave_alert'),
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: const TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),
             Padding(
@@ -122,7 +122,7 @@ class CancelLeaveBottomSheetState extends State<CancelLeaveBottomSheet> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               translate('common.confirm'),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           )),
                     ),
@@ -141,7 +141,7 @@ class CancelLeaveBottomSheetState extends State<CancelLeaveBottomSheet> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               translate('common.go_back'),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           )),
                     ),

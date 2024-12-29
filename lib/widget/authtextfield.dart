@@ -4,7 +4,7 @@ class AuthTextField extends StatelessWidget {
 
   final TextEditingController _controller;
 
-  AuthTextField(this._controller);
+  const AuthTextField(this._controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +12,12 @@ class AuthTextField extends StatelessWidget {
       controller: _controller,
       cursorColor: Colors.white,
       decoration: InputDecoration(
-          labelStyle: TextStyle(color: Colors.white),
+          labelStyle: const TextStyle(color: Colors.white),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: Colors.white, width: 2)),
+              borderSide: const BorderSide(color: Colors.white, width: 2)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white, width: 2.0),
+              borderSide: const BorderSide(color: Colors.white, width: 2.0),
               borderRadius: BorderRadius.circular(20)
           ),
       ),

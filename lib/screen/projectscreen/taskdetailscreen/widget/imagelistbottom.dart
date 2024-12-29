@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import '../../../../model/attachment.dart';
 
 class ItemListBottom extends StatelessWidget {
+  const ItemListBottom({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TaskDetailController model = Get.find();
@@ -17,7 +19,7 @@ class ItemListBottom extends StatelessWidget {
       }
     }
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       child: GridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 5.0,
@@ -46,12 +48,12 @@ class ItemListBottom extends StatelessWidget {
                       onTap: () async {
                         model.launchUrls(attachment.url);
                       },
-                      child: Card(
+                      child: const Card(
                         elevation: 0,
                         color: Colors.blueAccent,
                         shape: CircleBorder(),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Icon(
                             Icons.download,
                             color: Colors.white,

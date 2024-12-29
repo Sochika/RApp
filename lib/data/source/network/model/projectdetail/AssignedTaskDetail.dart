@@ -29,14 +29,14 @@ class AssignedTaskDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['deadline'] = this.deadline;
-    data['priority'] = this.priority;
-    data['start_date'] = this.start_date;
-    data['status'] = this.status;
-    data['task_id'] = this.task_id;
-    data['task_name'] = this.task_name;
-    data['task_progress_percent'] = this.task_progress_percent;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['deadline'] = deadline;
+    data['priority'] = priority;
+    data['start_date'] = start_date;
+    data['status'] = status;
+    data['task_id'] = task_id;
+    data['task_name'] = task_name;
+    data['task_progress_percent'] = task_progress_percent;
     return data;
   }
 }

@@ -9,13 +9,13 @@ class TeamBottomSheet extends StatelessWidget {
   List<Member> leaders;
   List<Member> members;
 
-  TeamBottomSheet(this.leaders,this.members);
+  TeamBottomSheet(this.leaders,this.members, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         decoration: RadialDecoration(),
         child: SingleChildScrollView(
           child: Column(
@@ -30,7 +30,7 @@ class TeamBottomSheet extends StatelessWidget {
                   children: [
                     Text(
                       translate('project_detail_screen.team_members'),
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
@@ -39,7 +39,7 @@ class TeamBottomSheet extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.close,
                           color: Colors.white,
                         )),
@@ -49,16 +49,16 @@ class TeamBottomSheet extends StatelessWidget {
               ListView.builder(
                   shrinkWrap: true,
                   primary: false,
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                   itemCount: leaders.length,
                   itemBuilder: (ctx, i) =>
-                      Padding(padding: EdgeInsets.all(5), child: teamCard(leaders[i]))),
+                      Padding(padding: const EdgeInsets.all(5), child: teamCard(leaders[i]))),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   translate('project_detail_screen.team_members'),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
@@ -67,10 +67,10 @@ class TeamBottomSheet extends StatelessWidget {
               ListView.builder(
                   shrinkWrap: true,
                   primary: false,
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                   itemCount: members.length,
                   itemBuilder: (ctx, i) =>
-                      Padding(padding: EdgeInsets.all(5), child: teamCard(members[i]))),
+                      Padding(padding: const EdgeInsets.all(5), child: teamCard(members[i]))),
             ],
           ),
         ),
@@ -84,7 +84,7 @@ class TeamBottomSheet extends StatelessWidget {
       elevation: 0,
       color: Colors.white10,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             ClipRRect(
@@ -98,18 +98,18 @@ class TeamBottomSheet extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       member.name,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(member.post,
-                        style: TextStyle(color: Colors.white70)),
+                        style: const TextStyle(color: Colors.white70)),
                   ],
                 ),
               ),

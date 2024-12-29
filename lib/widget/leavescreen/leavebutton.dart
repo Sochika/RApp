@@ -1,5 +1,4 @@
 import 'package:radius/provider/dashboardprovider.dart';
-import 'package:radius/utils/navigationservice.dart';
 import 'package:radius/widget/buttonborder.dart';
 import 'package:radius/widget/leavescreen/earlyleavesheet.dart';
 import 'package:radius/widget/leavescreen/issueleavesheet.dart';
@@ -9,6 +8,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
 class LeaveButton extends StatelessWidget {
+  const LeaveButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DashboardProvider>(context);
@@ -16,7 +17,7 @@ class LeaveButton extends StatelessWidget {
       children: [
         Expanded(
             child: Padding(
-          padding: EdgeInsets.only(right: 5),
+          padding: const EdgeInsets.only(right: 5),
           child: TextButton(
               style:
               TextButton.styleFrom(backgroundColor: HexColor("#036eb7"),shape: ButtonBorder()),
@@ -33,21 +34,21 @@ class LeaveButton extends StatelessWidget {
                     builder: (context) {
                       return Padding(
                         padding: MediaQuery.of(context).viewInsets,
-                        child: IssueLeaveSheet(),
+                        child: const IssueLeaveSheet(),
                       );
                     });
               },
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   translate('leave_screen.issue_leave'),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               )),
         )),
         Expanded(
             child: Padding(
-          padding: EdgeInsets.only(left: 5),
+          padding: const EdgeInsets.only(left: 5),
           child: TextButton(
               style:
               TextButton.styleFrom(backgroundColor: HexColor("#036eb7"),shape: ButtonBorder()),
@@ -91,7 +92,7 @@ class LeaveButton extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   translate('leave_screen.time_leave'),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               )),
         )),

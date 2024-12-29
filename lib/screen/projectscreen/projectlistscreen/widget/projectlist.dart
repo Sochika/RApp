@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProjectList extends StatelessWidget {
+  const ProjectList({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ProjectListScreenController model = Get.find();
     return Obx(
       () => model.filteredList.isEmpty
           ? SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: Container(),
             )
           : ListView.builder(

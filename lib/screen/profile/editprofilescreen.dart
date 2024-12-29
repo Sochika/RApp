@@ -17,6 +17,8 @@ import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
 class EditProfileScreen extends StatefulWidget {
   static const String routeName = '/editprofile';
 
+  const EditProfileScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => EditProfileScreenState();
 }
@@ -185,26 +187,26 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                 style: TextButton.styleFrom(
                     backgroundColor: HexColor("#036eb7"),
                     shape: ButtonBorder(),
-                    fixedSize: Size(double.maxFinite, 55)),
+                    fixedSize: const Size(double.maxFinite, 55)),
                 onPressed: () {
                   validateValue();
                 },
                 child: Text(
                   translate('edit_profile_screen.update'),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 )),
           ),
           body: Form(
             key: _form,
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        final ImagePicker _picker = ImagePicker();
-                        final XFile? image = await _picker.pickImage(
+                        final ImagePicker picker = ImagePicker();
+                        final XFile? image = await picker.pickImage(
                             source: ImageSource.gallery,
                             imageQuality: 50,
                             maxWidth: 500);
@@ -228,7 +230,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                         }
                       },
                       child: ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(10),
                               bottomRight: Radius.circular(10)),
                           child: Container(
@@ -250,13 +252,13 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                                     textAlign: TextAlign.center),
                               ))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     TextFormField(
                       controller: _nameController,
                       keyboardType: TextInputType.name,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (!validateField(value!)) {
                           return "Empty Field";
@@ -267,30 +269,30 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         hintText: translate('edit_profile_screen.fullname'),
-                        hintStyle: TextStyle(color: Colors.white70),
-                        prefixIcon: Icon(Icons.person, color: Colors.white),
-                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.white70),
+                        prefixIcon: const Icon(Icons.person, color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         fillColor: Colors.white24,
                         filled: true,
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedErrorBorder: OutlineInputBorder(
+                        focusedErrorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        errorBorder: OutlineInputBorder(
+                        errorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
@@ -298,13 +300,13 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                                 bottomRight: Radius.circular(10))),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (!validateField(value!)) {
                           return "Empty Field";
@@ -315,30 +317,30 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         hintText: translate('edit_profile_screen.email'),
-                        hintStyle: TextStyle(color: Colors.white70),
-                        prefixIcon: Icon(Icons.email, color: Colors.white),
-                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.white70),
+                        prefixIcon: const Icon(Icons.email, color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         fillColor: Colors.white24,
                         filled: true,
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedErrorBorder: OutlineInputBorder(
+                        focusedErrorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        errorBorder: OutlineInputBorder(
+                        errorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
@@ -346,13 +348,13 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                                 bottomRight: Radius.circular(10))),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
                       controller: _addressController,
                       keyboardType: TextInputType.streetAddress,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (!validateField(value!)) {
                           return "Empty Field";
@@ -363,31 +365,31 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         hintText: translate('edit_profile_screen.address'),
-                        hintStyle: TextStyle(color: Colors.white70),
+                        hintStyle: const TextStyle(color: Colors.white70),
                         prefixIcon:
-                            Icon(Icons.location_on, color: Colors.white),
-                        labelStyle: TextStyle(color: Colors.white),
+                            const Icon(Icons.location_on, color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         fillColor: Colors.white24,
                         filled: true,
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedErrorBorder: OutlineInputBorder(
+                        focusedErrorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        errorBorder: OutlineInputBorder(
+                        errorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
@@ -395,13 +397,13 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                                 bottomRight: Radius.circular(10))),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
                       controller: _phoneController,
                       keyboardType: TextInputType.phone,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (!validateField(value!)) {
                           return "Empty Field";
@@ -412,31 +414,31 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         hintText: translate('edit_profile_screen.phone_number'),
-                        hintStyle: TextStyle(color: Colors.white70),
+                        hintStyle: const TextStyle(color: Colors.white70),
                         prefixIcon:
-                            Icon(Icons.phone_android, color: Colors.white),
-                        labelStyle: TextStyle(color: Colors.white),
+                            const Icon(Icons.phone_android, color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         fillColor: Colors.white24,
                         filled: true,
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedErrorBorder: OutlineInputBorder(
+                        focusedErrorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        errorBorder: OutlineInputBorder(
+                        errorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
@@ -444,7 +446,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                                 bottomRight: Radius.circular(10))),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
@@ -457,35 +459,35 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                         return null;
                       },
                       keyboardType: TextInputType.datetime,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         hintText: translate('edit_profile_screen.dob'),
-                        hintStyle: TextStyle(color: Colors.white70),
-                        prefixIcon: Icon(Icons.calendar_month_sharp,
+                        hintStyle: const TextStyle(color: Colors.white70),
+                        prefixIcon: const Icon(Icons.calendar_month_sharp,
                             color: Colors.white),
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         fillColor: Colors.white24,
                         filled: true,
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        focusedErrorBorder: OutlineInputBorder(
+                        focusedErrorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(10))),
-                        errorBorder: OutlineInputBorder(
+                        errorBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
@@ -532,25 +534,25 @@ class EditProfileScreenState extends State<EditProfileScreen> {
                         } else {}
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             translate('edit_profile_screen.gender'),
-                            style: TextStyle(fontSize: 15, color: Colors.white),
+                            style: const TextStyle(fontSize: 15, color: Colors.white),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           ToggleSwitch(
                             borderWidth: 1,
-                            borderColor: [Colors.white12],
+                            borderColor: const [Colors.white12],
                             dividerColor: Colors.white12,
                             activeBgColor: const [Colors.white12],
                             activeFgColor: Colors.white,

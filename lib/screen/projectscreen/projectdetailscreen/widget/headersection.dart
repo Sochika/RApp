@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class HeaderSection extends StatelessWidget {
+  const HeaderSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     ProjectDetailController model = Get.find();
@@ -20,7 +22,7 @@ class HeaderSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3),
             child: Obx(() => Text(
                   model.project.value.priority,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 )),
           ),
         ),
@@ -29,7 +31,7 @@ class HeaderSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
               model.project.value.name,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white,
                   fontSize: 21,
                   fontWeight: FontWeight.bold),
@@ -50,7 +52,7 @@ class HeaderSection extends StatelessWidget {
                   children: [
                     Text(
                       "${translate('project_detail_screen.due_date')}:  ",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 12,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
@@ -58,7 +60,7 @@ class HeaderSection extends StatelessWidget {
                     Obx(
                       () => Text(
                         model.project.value.date,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 12,
                             color: Colors.redAccent,
                             fontWeight: FontWeight.bold),
@@ -84,7 +86,7 @@ class HeaderSection extends StatelessWidget {
                 child: Obx(
                   () => Text(
                     model.project.value.status,
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                    style: const TextStyle(fontSize: 12, color: Colors.white),
                   ),
                 ),
               ),

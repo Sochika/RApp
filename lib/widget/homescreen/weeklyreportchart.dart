@@ -6,6 +6,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:provider/provider.dart';
 
 class WeeklyReportChart extends StatefulWidget {
+  const WeeklyReportChart({super.key});
+
   @override
   State<StatefulWidget> createState() => WeeklyReportChartState();
 }
@@ -53,14 +55,14 @@ class WeeklyReportChartState extends State<WeeklyReportChart> {
                     ),
                     Text(
                       translate('home_screen.weekly'),
-                      style: TextStyle(color: Colors.white, fontSize: 22),
+                      style: const TextStyle(color: Colors.white, fontSize: 22),
                     ),
                     const SizedBox(
                       width: 4,
                     ),
                     Text(
                       translate('home_screen.reports'),
-                      style: TextStyle(color: Color(0xff77839a), fontSize: 16),
+                      style: const TextStyle(color: Color(0xff77839a), fontSize: 16),
                     ),
                   ],
                 ),
@@ -73,7 +75,7 @@ class WeeklyReportChartState extends State<WeeklyReportChart> {
                       maxY: 13,
                       barTouchData: BarTouchData(
                           touchTooltipData: BarTouchTooltipData(
-                            getTooltipItem: (_a, _b, _c, _d) => null,
+                            getTooltipItem: (a, b, c, d) => null,
                           ),
                           touchCallback: (FlTouchEvent event, response) {
                             if (response == null || response.spot == null) {
@@ -123,10 +125,10 @@ class WeeklyReportChartState extends State<WeeklyReportChart> {
                           }),
                       titlesData: FlTitlesData(
                         show: true,
-                        rightTitles: AxisTitles(
+                        rightTitles: const AxisTitles(
                           sideTitles: SideTitles(showTitles: false),
                         ),
-                        topTitles: AxisTitles(
+                        topTitles: const AxisTitles(
                           sideTitles: SideTitles(showTitles: false),
                         ),
                         bottomTitles: AxisTitles(
@@ -149,7 +151,7 @@ class WeeklyReportChartState extends State<WeeklyReportChart> {
                         show: false,
                       ),
                       barGroups: provider.showingBarGroups,
-                      gridData: FlGridData(
+                      gridData: const FlGridData(
                           show: false,
                           horizontalInterval: 2,
                           verticalInterval: 2),

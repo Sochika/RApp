@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 class MeetingParticipator extends StatelessWidget{
   final String image;
 
-  MeetingParticipator(this.image);
+  const MeetingParticipator(this.image, {super.key});
 
   @override
   Widget build(BuildContext context) {

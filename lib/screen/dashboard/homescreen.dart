@@ -28,7 +28,7 @@ import 'package:quick_actions/quick_actions.dart';
 class HomeScreen extends StatefulWidget {
   PersistentTabController controller;
 
-  HomeScreen(this.controller);
+  HomeScreen(this.controller, {super.key});
 
   @override
   State<StatefulWidget> createState() => HomeScreenState(controller);
@@ -217,12 +217,14 @@ class HomeScreenState extends State<HomeScreen> {
       final user = dashboardResponse.data.user;
 
       Provider.of<PrefProvider>(context, listen: false).saveBasicUser(User(
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          username: user.username,
-          avatar: user.avatar,
-          workspace_type: user.workspace_type));
+          id: user.userId,
+          firstName: user.staff.firstName,
+          lastName: user.staff.lastName,
+          avatar: user.staff.avatar,
+          gender: user.staff.gender,
+          staffNo: user.staff.staff_no,
+          hireDate: user.staff.hire_date,
+          dob: user.staff.dob));
 
       Provider.of<PrefProvider>(context, listen: false)
           .saveEngDateEnabled(dashboardResponse.data.dateInAd);
@@ -285,13 +287,13 @@ class HomeScreenState extends State<HomeScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  HeaderProfile(),
+                  const HeaderProfile(),
                   CheckAttendance(),
                   OverviewDashboard(controller),
-                  UpcomingHoliday(),
-                  RecentAward(),
-                  WeeklyReportChart(),
-                  MyTeam()
+                  const UpcomingHoliday(),
+                  const RecentAward(),
+                  const WeeklyReportChart(),
+                  const MyTeam()
                 ],
               ),
             )),

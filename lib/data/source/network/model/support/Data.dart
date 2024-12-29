@@ -23,12 +23,12 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['created_at'] = this.created_at;
-    data['created_by'] = this.created_by;
-    data['description'] = this.description;
-    data['id'] = this.id;
-    data['title'] = this.title;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['created_at'] = created_at;
+    data['created_by'] = created_by;
+    data['description'] = description;
+    data['id'] = id;
+    data['title'] = title;
     return data;
   }
 }

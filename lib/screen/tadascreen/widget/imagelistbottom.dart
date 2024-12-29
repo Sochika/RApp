@@ -1,15 +1,12 @@
 import 'package:radius/model/attachment.dart';
-import 'package:radius/utils/navigationservice.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:gallery_image_viewer/gallery_image_viewer.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:in_app_notification/in_app_notification.dart';
 
 class ItemListBottom extends StatelessWidget{
   List<Attachment> attachments;
 
-  ItemListBottom(this.attachments);
+  ItemListBottom(this.attachments, {super.key});
   @override
   Widget build(BuildContext context) {
     final attachList = <Attachment>[];
@@ -19,7 +16,7 @@ class ItemListBottom extends StatelessWidget{
       }
     }
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       child: GridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 5.0,

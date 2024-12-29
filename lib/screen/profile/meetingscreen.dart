@@ -7,6 +7,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:provider/provider.dart';
 
 class MeetingScreen extends StatefulWidget {
+  const MeetingScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => MeetingState();
 }
@@ -60,7 +62,7 @@ class MeetingState extends State<MeetingScreen> {
                 Provider.of<MeetingProvider>(context, listen: false).page = 1;
                 return getMeetingList();
               },
-              child: MeetingListView()),
+              child: const MeetingListView()),
         ),
       ),
     );

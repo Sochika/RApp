@@ -3,11 +3,12 @@ import 'package:radius/provider/prefprovider.dart';
 import 'package:radius/screen/profile/NotificationScreen.dart';
 import 'package:radius/screen/profile/profilescreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:provider/provider.dart';
 
 class HeaderProfile extends StatefulWidget {
+  const HeaderProfile({super.key});
+
   @override
   State<StatefulWidget> createState() => HeaderState();
 }
@@ -16,10 +17,11 @@ class HeaderState extends State<HeaderProfile> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<PrefProvider>(context);
+    // print('Hello from profile_dash${provider.staffNo}');
     return GestureDetector(
       onTap: () {
         pushScreen(context,
-            screen: ProfileScreen(),
+            screen: const ProfileScreen(),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.fade);
       },
@@ -56,12 +58,13 @@ class HeaderState extends State<HeaderProfile> {
                    "Hello Operative",
                     style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
+
                   Text(
                     provider.fullname,
                     style: const TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   Text(
-                    provider.userName,
+                    provider.staffNo,
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ],
@@ -71,7 +74,7 @@ class HeaderState extends State<HeaderProfile> {
             IconButton(
                 onPressed: () {
                   pushScreen(context,
-                      screen: NotificationScreen(),
+                      screen: const NotificationScreen(),
                       withNavBar: false,
                       pageTransitionAnimation: PageTransitionAnimation.fade);
                 },

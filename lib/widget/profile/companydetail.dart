@@ -6,6 +6,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:provider/provider.dart';
 
 class CompanyDetail extends StatelessWidget{
+  const CompanyDetail({super.key});
+
   @override
   Widget build(BuildContext context) {
     final profile  = Provider.of<ProfileProvider>(context).profile;

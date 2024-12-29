@@ -4,7 +4,7 @@ class CardTitle extends StatelessWidget {
   final String value;
   final String title;
 
-  CardTitle(this.title, this.value);
+  const CardTitle(this.title, this.value, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CardTitle extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(color: Colors.white, fontSize: 15),
+            style: const TextStyle(color: Colors.white, fontSize: 15),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 0),

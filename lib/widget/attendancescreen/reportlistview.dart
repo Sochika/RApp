@@ -6,20 +6,22 @@ import 'package:provider/provider.dart';
 import 'package:radius/widget/attendancescreen/attendancecardview.dart';
 
 class ReportListView extends StatelessWidget {
+  const ReportListView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final attendanceList =
         Provider.of<AttendanceReportProvider>(context).attendanceReport;
     final currentMonth =
         Provider.of<AttendanceReportProvider>(context).currentMonthReport;
-    if (attendanceList.length > 0) {
+    if (attendanceList.isNotEmpty) {
       return SingleChildScrollView(
         child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 attendanceSummary(currentMonth),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 attendanceReportTitle(),
                 ListView.builder(
                     shrinkWrap: true,
@@ -56,10 +58,10 @@ class ReportListView extends StatelessWidget {
       children: [
         Expanded(
           child: ClipRRect(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
             child: Container(
               color: Colors.white12,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -67,9 +69,9 @@ class ReportListView extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     translate('attendance_screen.present_days'),
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -90,13 +92,13 @@ class ReportListView extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: 10,),
+        const SizedBox(width: 10,),
         Expanded(
           child: ClipRRect(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
             child: Container(
               color: Colors.white12,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -104,9 +106,9 @@ class ReportListView extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     translate('attendance_screen.worked_hours'),
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   Text(
                     currentMonth["worked_hour"],
                     style: const TextStyle(
@@ -138,7 +140,7 @@ class ReportListView extends StatelessWidget {
               flex: 1,
               child: Container(
                 child: Text(translate('attendance_screen.date'),
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.start),
               ),
             ),
@@ -146,7 +148,7 @@ class ReportListView extends StatelessWidget {
               flex: 1,
               child: Container(
                 child: Text(translate('attendance_screen.day'),
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.start),
               ),
             ),
@@ -154,7 +156,7 @@ class ReportListView extends StatelessWidget {
               flex: 2,
               child: Container(
                 child: Text(translate('attendance_screen.start_time'),
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.center),
               ),
             ),
@@ -162,7 +164,7 @@ class ReportListView extends StatelessWidget {
               flex: 2,
               child: Container(
                 child: Text(translate('attendance_screen.end_time'),
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.right),
               ),
             ),
@@ -172,7 +174,7 @@ class ReportListView extends StatelessWidget {
                 child: Text(translate('attendance_screen.worked_hours'),
                     maxLines: 1,
                     overflow: TextOverflow.clip,
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.right),
               ),
             ),

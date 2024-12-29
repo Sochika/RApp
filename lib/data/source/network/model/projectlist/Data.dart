@@ -54,26 +54,22 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['assigned_task_count'] = this.assigned_task_count;
-    data['client_name'] = this.client_name;
-    data['cover_pic'] = this.cover_pic;
-    data['deadline'] = this.deadline;
-    data['description'] = this.description;
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['priority'] = this.priority;
-    data['start_date'] = this.start_date;
-    data['status'] = this.status;
-    data['progress_percent'] = this.progress_percent;
-    if (this.assigned_member != null) {
-      data['assigned_member'] =
-          this.assigned_member.map((v) => v.toJson()).toList();
-    }
-    if (this.project_leader != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['assigned_task_count'] = assigned_task_count;
+    data['client_name'] = client_name;
+    data['cover_pic'] = cover_pic;
+    data['deadline'] = deadline;
+    data['description'] = description;
+    data['id'] = id;
+    data['name'] = name;
+    data['priority'] = priority;
+    data['start_date'] = start_date;
+    data['status'] = status;
+    data['progress_percent'] = progress_percent;
+    data['assigned_member'] =
+        assigned_member.map((v) => v.toJson()).toList();
       data['project_leader'] =
-          this.project_leader.map((v) => v.toJson()).toList();
-    }
-    return data;
+        project_leader.map((v) => v.toJson()).toList();
+      return data;
   }
 }

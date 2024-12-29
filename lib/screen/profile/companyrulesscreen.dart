@@ -6,14 +6,18 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:provider/provider.dart';
 
 class CompanyRulesScreen extends StatelessWidget {
+  const CompanyRulesScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (_) => CompanyRulesProvider(), child: CompanyRules());
+        create: (_) => CompanyRulesProvider(), child: const CompanyRules());
   }
 }
 
 class CompanyRules extends StatefulWidget {
+  const CompanyRules({super.key});
+
   @override
   State<StatefulWidget> createState() => CompanyRulesState();
 }
@@ -41,7 +45,7 @@ class CompanyRulesState extends State<CompanyRules> {
           backgroundColor: Colors.transparent,
           title: Text(translate('company_rules_screen.company_rules')),
         ),
-        body: Padding(
+        body: const Padding(
           padding: EdgeInsets.all(20),
           child: RulesList(),
         ),

@@ -45,7 +45,7 @@ class EditTadaController extends GetxController {
   Future<String> getTadaDetail() async {
     Preferences preferences = Preferences();
     var uri =
-    Uri.parse(await preferences.getAppUrl()+Constant.TADA_DETAIL_URL + "/${Get.arguments["tadaId"]}");
+    Uri.parse("${await preferences.getAppUrl()}${Constant.TADA_DETAIL_URL}/${Get.arguments["tadaId"]}");
 
     String token = await preferences.getToken();
 
@@ -92,7 +92,7 @@ class EditTadaController extends GetxController {
     } catch (e) {
       print(e);
       showToast(e.toString());
-      throw e;
+      rethrow;
     }
   }
 
@@ -165,7 +165,7 @@ class EditTadaController extends GetxController {
   Future<void> removeAttachment(int id,int index) async {
     Preferences preferences = Preferences();
     var uri =
-    Uri.parse(await preferences.getAppUrl()+Constant.TADA_DELETE_ATTACHMENT_URL + "/$id");
+    Uri.parse("${await preferences.getAppUrl()}${Constant.TADA_DELETE_ATTACHMENT_URL}/$id");
 
     String token = await preferences.getToken();
 
@@ -199,7 +199,7 @@ class EditTadaController extends GetxController {
       }
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
@@ -210,15 +210,15 @@ class EditTadaController extends GetxController {
     super.onInit();
   }
 
-  Future<void> launchUrls(String _url) async {
-    if (!await launchUrl(Uri.parse(_url),mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch $_url');
+  Future<void> launchUrls(String url) async {
+    if (!await launchUrl(Uri.parse(url),mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
     }
   }
 
-  Future<void> launchFile(String _url) async {
-    if (!await launchUrl(Uri.file(_url))) {
-      throw Exception('Could not launch $_url');
+  Future<void> launchFile(String url) async {
+    if (!await launchUrl(Uri.file(url))) {
+      throw Exception('Could not launch $url');
     }
   }
 }

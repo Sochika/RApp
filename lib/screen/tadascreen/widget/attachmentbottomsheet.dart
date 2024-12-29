@@ -8,13 +8,13 @@ import 'package:get/get.dart';
 class AttachmentBottomSheet extends StatelessWidget {
   List<Attachment> attachments;
 
-  AttachmentBottomSheet(this.attachments);
+  AttachmentBottomSheet(this.attachments, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * .9,
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: RadialDecoration(),
       child: SingleChildScrollView(
         child: Column(
@@ -26,7 +26,7 @@ class AttachmentBottomSheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Attachments",
                     style: TextStyle(
                         color: Colors.white,
@@ -37,17 +37,17 @@ class AttachmentBottomSheet extends StatelessWidget {
                       onTap: () {
                         Get.back();
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         color: Colors.white,
                       )),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
@@ -60,7 +60,7 @@ class AttachmentBottomSheet extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(

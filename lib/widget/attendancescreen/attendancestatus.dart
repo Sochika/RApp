@@ -6,12 +6,14 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class AttendanceStatus extends StatelessWidget {
+  const AttendanceStatus({super.key});
+
   @override
   Widget build(BuildContext context) {
     final status = Provider.of<AttendanceReportProvider>(context).todayReport;
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -19,7 +21,7 @@ class AttendanceStatus extends StatelessWidget {
           children: [
             Text(
               '${translate('attendance_screen.check_in')} | ${translate('attendance_screen.check_out')}',
-              style: TextStyle(fontSize: 15, color: Colors.white),
+              style: const TextStyle(fontSize: 15, color: Colors.white),
             ),
             Container(
               width: double.infinity,
@@ -28,11 +30,11 @@ class AttendanceStatus extends StatelessWidget {
                 animation: true,
                 animationDuration: 1000,
                 lineHeight: 30.0,
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 percent: status['production_percent']!,
                 center: Text(
                   status['production_hour']!,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 barRadius: const Radius.circular(20),
                 backgroundColor: HexColor("#3dFFFFFF"),
@@ -41,17 +43,17 @@ class AttendanceStatus extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       status['check_in_at']!,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     Text(
                       status['check_out_at']!,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ]),
             ),

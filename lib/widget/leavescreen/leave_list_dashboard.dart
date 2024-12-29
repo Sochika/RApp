@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LeaveListDashboard extends StatelessWidget{
+  const LeaveListDashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
     final leaveData = Provider.of<LeaveProvider>(context,listen: true);
@@ -14,7 +16,7 @@ class LeaveListDashboard extends StatelessWidget{
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: leaves.length,
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 3.5 / 2,

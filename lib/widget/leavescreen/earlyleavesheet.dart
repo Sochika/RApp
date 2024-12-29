@@ -16,7 +16,7 @@ import 'package:nepali_date_picker/nepali_date_picker.dart';
 class EarlyLeaveSheet extends StatefulWidget {
   bool isEarlyLeave;
 
-  EarlyLeaveSheet(this.isEarlyLeave);
+  EarlyLeaveSheet(this.isEarlyLeave, {super.key});
 
   @override
   State<StatefulWidget> createState() => EarlyLeaveSheetState();
@@ -124,7 +124,7 @@ class EarlyLeaveSheetState extends State<EarlyLeaveSheet> {
                 children: [
                   Text(
                     translate('leave_screen.time_leave'),
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: const TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   IconButton(
                       onPressed: () {
@@ -142,36 +142,36 @@ class EarlyLeaveSheetState extends State<EarlyLeaveSheet> {
                   gaps(10),
                   TextField(
                     controller: issueDate,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     //editing controller of this TextField
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: translate('leave_screen.select_date'),
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white),
                       prefixIcon:
-                          Icon(Icons.calendar_month, color: Colors.white),
-                      labelStyle: TextStyle(color: Colors.white),
+                          const Icon(Icons.calendar_month, color: Colors.white),
+                      labelStyle: const TextStyle(color: Colors.white),
                       fillColor: Colors.white24,
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedErrorBorder: OutlineInputBorder(
+                      focusedErrorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      errorBorder: OutlineInputBorder(
+                      errorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
@@ -216,36 +216,36 @@ class EarlyLeaveSheetState extends State<EarlyLeaveSheet> {
                   gaps(10),
                   TextField(
                     controller: startTime,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     //editing controller of this TextField
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: translate('leave_screen.select_start_time'),
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white),
                       prefixIcon:
-                          Icon(Icons.calendar_month, color: Colors.white),
-                      labelStyle: TextStyle(color: Colors.white),
+                          const Icon(Icons.calendar_month, color: Colors.white),
+                      labelStyle: const TextStyle(color: Colors.white),
                       fillColor: Colors.white24,
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedErrorBorder: OutlineInputBorder(
+                      focusedErrorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      errorBorder: OutlineInputBorder(
+                      errorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
@@ -271,35 +271,35 @@ class EarlyLeaveSheetState extends State<EarlyLeaveSheet> {
               gaps(10),
               TextField(
                 controller: endTime,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 //editing controller of this TextField
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
                   hintText: translate('leave_screen.select_end_time'),
-                  hintStyle: TextStyle(color: Colors.white),
-                  prefixIcon: Icon(Icons.calendar_month, color: Colors.white),
-                  labelStyle: TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  prefixIcon: const Icon(Icons.calendar_month, color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   fillColor: Colors.white24,
                   filled: true,
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
                           bottomLeft: Radius.circular(0),
                           bottomRight: Radius.circular(10))),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
                           bottomLeft: Radius.circular(0),
                           bottomRight: Radius.circular(10))),
-                  focusedErrorBorder: OutlineInputBorder(
+                  focusedErrorBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
                           bottomLeft: Radius.circular(0),
                           bottomRight: Radius.circular(10))),
-                  errorBorder: OutlineInputBorder(
+                  errorBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
@@ -332,36 +332,36 @@ class EarlyLeaveSheetState extends State<EarlyLeaveSheet> {
                     FocusManager.instance.primaryFocus?.unfocus();
                   }
                 },
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 //editing controller of this TextField
                 cursorColor: Colors.white,
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                   hintText: translate('leave_screen.reason'),
-                  hintStyle: TextStyle(color: Colors.white),
-                  prefixIcon: Icon(Icons.edit_note, color: Colors.white),
-                  labelStyle: TextStyle(color: Colors.white),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  prefixIcon: const Icon(Icons.edit_note, color: Colors.white),
+                  labelStyle: const TextStyle(color: Colors.white),
                   fillColor: Colors.white24,
                   filled: true,
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
                           bottomLeft: Radius.circular(0),
                           bottomRight: Radius.circular(10))),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
                           bottomLeft: Radius.circular(0),
                           bottomRight: Radius.circular(10))),
-                  focusedErrorBorder: OutlineInputBorder(
+                  focusedErrorBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
                           bottomLeft: Radius.circular(0),
                           bottomRight: Radius.circular(10))),
-                  errorBorder: OutlineInputBorder(
+                  errorBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
@@ -372,7 +372,7 @@ class EarlyLeaveSheetState extends State<EarlyLeaveSheet> {
               gaps(20),
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 5),
                 child: TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: HexColor("#036eb7"),
@@ -383,10 +383,10 @@ class EarlyLeaveSheetState extends State<EarlyLeaveSheet> {
                       issueLeave();
                     },
                     child: Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Text(
                         translate('leave_screen.request_leave'),
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     )),
               ),

@@ -12,9 +12,9 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['dept_name'] = this.dept_name;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['dept_name'] = dept_name;
+    data['id'] = id;
     return data;
   }
 }

@@ -12,8 +12,8 @@ class LeaveDetailRow extends StatelessWidget {
   final String authorization;
   final String requestedAt;
 
-  LeaveDetailRow(
-      {required this.id,
+  const LeaveDetailRow(
+      {super.key, required this.id,
       required this.leaveTypeId,
       required this.name,
       required this.from,
@@ -37,10 +37,10 @@ class LeaveDetailRow extends StatelessWidget {
     }
 
     return ClipRRect(
-      borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+      borderRadius: const BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
       child: Container(
         color: Colors.white12,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -51,13 +51,13 @@ class LeaveDetailRow extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Text(
                       "$from - $to",
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                   Text(
@@ -76,7 +76,7 @@ class LeaveDetailRow extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       requestedAt,
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                   GestureDetector(
@@ -89,11 +89,11 @@ class LeaveDetailRow extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         color: getStatus(),
                         child: Text(
                           status,
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          style: const TextStyle(color: Colors.white, fontSize: 12),
                         ),
                       ),
                     ),

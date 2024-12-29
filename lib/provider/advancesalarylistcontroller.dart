@@ -39,22 +39,22 @@ class AdvanceSalaryController extends GetxController {
     } catch (e) {
       EasyLoading.dismiss(animation: true);
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
   void onAdvanceSalaryClicked(String id) {
-    Get.to(AdvanceDetailScreen(),
+    Get.to(const AdvanceDetailScreen(),
         transition: Transition.cupertino, arguments: {"id": id});
   }
 
   void onAdvanceSalaryEditClicked(String id) {
-    Get.to(EditAdvanceSalaryScreen(),
+    Get.to(const EditAdvanceSalaryScreen(),
         transition: Transition.cupertino, arguments: {"id": id});
   }
 
   void onAdvanceSalaryCreateClicked() {
-    Get.to(CreateAdvanceSalaryScreen(), transition: Transition.cupertino);
+    Get.to(const CreateAdvanceSalaryScreen(), transition: Transition.cupertino);
   }
 
   @override

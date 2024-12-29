@@ -10,16 +10,20 @@ import 'package:provider/provider.dart';
 class HolidayScreen extends StatelessWidget {
   static const routeName = '/holidays';
 
+  const HolidayScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => HolidayProvider(),
-      child: Holiday(),
+      child: const Holiday(),
     );
   }
 }
 
 class Holiday extends StatefulWidget {
+  const Holiday({super.key});
+
   @override
   State<StatefulWidget> createState() => HolidayState();
 }
@@ -65,8 +69,8 @@ class HolidayState extends State<Holiday> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            title: Text(translate('holiday_screen.holidays'), style: TextStyle(color: Colors.white)),
-            iconTheme: IconThemeData(color: Colors.white),
+            title: Text(translate('holiday_screen.holidays'), style: const TextStyle(color: Colors.white)),
+            iconTheme: const IconThemeData(color: Colors.white),
           ),
           body: RefreshIndicator(
             onRefresh: () {
@@ -75,7 +79,7 @@ class HolidayState extends State<Holiday> {
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               child: Container(
-                child: Column(
+                child: const Column(
                   children: [ToggleHoliday(), HolidayCardView()],
                 ),
               ),

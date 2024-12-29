@@ -9,6 +9,7 @@ class Dashboardresponse {
   });
 
   factory Dashboardresponse.fromJson(dynamic json) {
+    print('hello dash' + json['status']);
     return Dashboardresponse(
         status: json['status'],
         message : json['message'],

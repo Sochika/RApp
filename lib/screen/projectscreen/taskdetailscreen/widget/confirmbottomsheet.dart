@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ConfirmBottomSheet extends StatelessWidget {
+  const ConfirmBottomSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(TaskDetailController());
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: RadialDecoration(),
       child: SafeArea(
         child: SingleChildScrollView(
@@ -26,7 +28,7 @@ class ConfirmBottomSheet extends StatelessWidget {
                   children: [
                     Text(
                       translate('task_detail_screen.mask_as_finish'),
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
@@ -35,22 +37,22 @@ class ConfirmBottomSheet extends StatelessWidget {
                         onTap: () {
                           Get.back();
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.close,
                           color: Colors.white,
                         )),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
 
               Padding(
-                padding: EdgeInsets.only(bottom: 8.0,left: 10,right: 10),
+                padding: const EdgeInsets.only(bottom: 8.0,left: 10,right: 10),
                 child: Text(
                   translate('task_detail_screen.checklist_complete'),
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
               Padding(
@@ -73,7 +75,7 @@ class ConfirmBottomSheet extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 translate('task_detail_screen.confirm'),
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             )),
                       ),
@@ -92,7 +94,7 @@ class ConfirmBottomSheet extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 translate('task_detail_screen.go_back'),
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             )),
                       ),

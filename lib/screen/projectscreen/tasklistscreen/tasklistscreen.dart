@@ -9,6 +9,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class TaskListScreen extends StatelessWidget {
+  const TaskListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(TaskListController());
@@ -30,11 +32,11 @@ class TaskListScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(
+                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(
                         10),bottomRight: Radius.circular(10))),
                     color: Colors.white12,
                     elevation: 0,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Obx(
@@ -59,7 +61,7 @@ class TaskListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('task_list_screen.all'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -82,7 +84,7 @@ class TaskListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('task_list_screen.in_progress'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -105,7 +107,7 @@ class TaskListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('task_list_screen.completed'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -128,7 +130,7 @@ class TaskListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('task_list_screen.on_hold'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -151,7 +153,7 @@ class TaskListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('task_list_screen.cancelled'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -174,7 +176,7 @@ class TaskListScreen extends StatelessWidget {
                                           vertical: 8.0, horizontal: 15),
                                       child: Text(
                                         translate('task_list_screen.not_started'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -189,31 +191,31 @@ class TaskListScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Expanded(
                     child: Obx(
                       () => model.filteredList.isEmpty
                           ? SingleChildScrollView(
-                              physics: AlwaysScrollableScrollPhysics(),
+                              physics: const AlwaysScrollableScrollPhysics(),
                               child: Container(),
                             )
                           : Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: ListView.builder(
-                        physics: AlwaysScrollableScrollPhysics(),
+                        physics: const AlwaysScrollableScrollPhysics(),
                               primary: false,
                               itemCount: model.filteredList.length,
                               itemBuilder: (context, index) {
                                 Task item = model.filteredList[index];
                                 return InkWell(
                                   onTap: () {
-                                    Get.to(TaskDetailScreen(), arguments: {"id": item.id});
+                                    Get.to(const TaskDetailScreen(), arguments: {"id": item.id});
                                   },
                                   child: Card(
-                                    margin: EdgeInsets.symmetric(vertical: 10),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10))),
+                                    margin: const EdgeInsets.symmetric(vertical: 10),
+                                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10))),
                                     color: Colors.white12,
                                     elevation: 0,
                                     child: Padding(
@@ -232,30 +234,30 @@ class TaskListScreen extends StatelessWidget {
                                                     Text(
                                                       maxLines: 1,
                                                       item.name!,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 18,
                                                           fontWeight: FontWeight.bold),
                                                     ),
                                                 
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
                                                     Row(
                                                       children: [
-                                                        Icon(Icons.work,color: Colors.white54,size: 15,),
-                                                        SizedBox(width: 5,),
+                                                        const Icon(Icons.work,color: Colors.white54,size: 15,),
+                                                        const SizedBox(width: 5,),
                                                         Text(
                                                           maxLines: 1,
                                                           item.projectName!,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               color: Colors.white54,
                                                               fontSize: 12,
                                                               fontWeight: FontWeight.bold),
                                                         ),
                                                       ],
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 5,
                                                     ),
                                                   ],
@@ -269,7 +271,7 @@ class TaskListScreen extends StatelessWidget {
                                                 percent: (item.progress! / 100),
                                                 center: Text(
                                                     item.progress.toString(),
-                                                    style: new TextStyle(
+                                                    style: const TextStyle(
                                                         fontWeight: FontWeight.bold,
                                                         fontSize: 12.0,
                                                         color: Colors.white),
@@ -287,8 +289,8 @@ class TaskListScreen extends StatelessWidget {
                                               )
                                             ],
                                           ),
-                                          Divider(color: Colors.white24),
-                                          SizedBox(
+                                          const Divider(color: Colors.white24),
+                                          const SizedBox(
                                             height: 0,
                                           ),
                                           Row(
@@ -296,8 +298,8 @@ class TaskListScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                item.date! + "-" + item.endDate!,
-                                                style: TextStyle(
+                                                "${item.date!}-${item.endDate!}",
+                                                style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.normal),
@@ -315,8 +317,8 @@ class TaskListScreen extends StatelessWidget {
                                                   padding: const EdgeInsets.symmetric(
                                                       horizontal: 8.0, vertical: 5),
                                                   child: Text(
-                                                    item.status!,
-                                                    style: TextStyle(
+                                                    item.status,
+                                                    style: const TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 12,
                                                         fontWeight: FontWeight.normal),

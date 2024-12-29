@@ -30,6 +30,7 @@ class MoreScreenProvider with ChangeNotifier {
     var uri = Uri.parse(await preferences.getAppUrl()+Constant.LOGOUT_URL);
 
     String token = await preferences.getToken();
+    // print(token);
 
     Map<String, String> headers = {
       'Accept': 'application/json; charset=UTF-8',
@@ -38,6 +39,8 @@ class MoreScreenProvider with ChangeNotifier {
 
     try {
       final response = await http.get(uri, headers: headers);
+      print('hello ${response.body.toString()}');
+
       debugPrint(response.body.toString());
 
       final responseData = json.decode(response.body);
@@ -52,7 +55,7 @@ class MoreScreenProvider with ChangeNotifier {
         throw errorMessage;
       }
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

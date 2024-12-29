@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class ShowLanguage extends StatelessWidget{
+  const ShowLanguage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: RadialDecoration(),
       height: 500,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,75 +23,75 @@ class ShowLanguage extends StatelessWidget{
                 children: [
                   Text(
                     translate('common.select_language'),
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: const TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   GestureDetector(
                       onTap: () {
                         Get.back();
                       },
-                      child: Icon(Icons.close,color: Colors.white,))
+                      child: const Icon(Icons.close,color: Colors.white,))
                 ],
               ),
             ),
             languageCard("English", "🇺🇸", "en"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("русский", "🇷🇺", "ru"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("Española", "🇪🇸", "es"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("فارسی", "🇮🇷", "fa"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("हिंदी", "🇮🇳", "in"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("Deutsch", "🇩🇪", "de"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("Français", "🇫🇷", "fr"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("नेपाली", "🇳🇵", "ne"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
               color: Colors.white30,
             ),
             languageCard("عربي", "🇦🇪", "ar"),
-            Divider(
+            const Divider(
               endIndent: 10,
               indent: 10,
               height: 1,
@@ -105,22 +107,22 @@ class ShowLanguage extends StatelessWidget{
   Widget languageCard(String title, String flag, String language) {
     final storage = GetStorage();
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 5),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 5),
       dense: false,
       visualDensity: VisualDensity.compact,
       leading: Text(
         flag,
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
       ),
       trailing: language == storage.read("language")
-          ? Icon(
+          ? const Icon(
         Icons.check,
         color: Colors.white,
       )
-          : SizedBox.shrink(),
+          : const SizedBox.shrink(),
       title: Text(
         title,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
       onTap: () {
         final storage = GetStorage();

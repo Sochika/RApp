@@ -247,12 +247,10 @@ class LeaveProvider with ChangeNotifier {
     late Uri uri;
 
     if (leaveTypeId == "0") {
-      uri = Uri.parse(await preferences.getAppUrl() +
-          Constant.CANCEL_TIME_LEAVE +
-          "/$leaveId");
+      uri = Uri.parse("${await preferences.getAppUrl()}${Constant.CANCEL_TIME_LEAVE}/$leaveId");
     } else {
       uri = Uri.parse(
-          await preferences.getAppUrl() + Constant.CANCEL_LEAVE + "/$leaveId");
+          "${await preferences.getAppUrl()}${Constant.CANCEL_LEAVE}/$leaveId");
     }
 
     String token = await preferences.getToken();

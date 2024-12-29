@@ -20,10 +20,6 @@ class AwardListController extends GetxController {
   var totalAwards = 0.obs;
   final respository = AwardRepository();
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   Future<void> getAwards() async {
       EasyLoading.show(

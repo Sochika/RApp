@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 class AwardsScreen extends StatelessWidget {
   final model = Get.put(AwardListController());
 
+   AwardsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FocusDetector(
@@ -35,9 +37,9 @@ class AwardsScreen extends StatelessWidget {
             },
             child: SafeArea(
                 child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,14 +61,14 @@ class AwardsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   translate('award_screen.total_awards'),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 24,
                                       color: Colors.white,
                                       fontWeight: FontWeight.normal),
                                 ),
                                 Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.workspace_premium,
                                       color: Colors.orangeAccent,
                                       size: 35,
@@ -74,7 +76,7 @@ class AwardsScreen extends StatelessWidget {
                                     Obx(
                                       () => Text(
                                         model.totalAwards.value.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 38,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
@@ -98,7 +100,7 @@ class AwardsScreen extends StatelessWidget {
                                   vertical: 8.0, horizontal: 5),
                               child: Text(
                                 translate('award_screen.recent_achievement'),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
@@ -107,7 +109,7 @@ class AwardsScreen extends StatelessWidget {
                             Obx(
                               () => GestureDetector(
                                 onTap: () {
-                                  Get.to(AwardDetailScreen(), arguments: {
+                                  Get.to(const AwardDetailScreen(), arguments: {
                                     "award": model.recentAward.value
                                   });
                                 },
@@ -115,7 +117,7 @@ class AwardsScreen extends StatelessWidget {
                                   shape: ButtonBorder(),
                                   elevation: 0,
                                   color: Colors.green.withOpacity(.50),
-                                  child: Container(
+                                  child: SizedBox(
                                     width: MediaQuery.of(context).size.width - 30,
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -138,7 +140,7 @@ class AwardsScreen extends StatelessWidget {
                                                           vertical: 5),
                                                   child: Text(
                                                     "${translate('award_screen.rewcode')} : ${model.recentAward.value.reward_code}",
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 12,
                                                         fontWeight:
@@ -149,7 +151,7 @@ class AwardsScreen extends StatelessWidget {
                                               Text(
                                                 model.recentAward.value.award_name,
                                                 maxLines: 2,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold),
@@ -157,15 +159,15 @@ class AwardsScreen extends StatelessWidget {
                                               Text(
                                                 model
                                                     .recentAward.value.awarded_date,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.bold),
                                               ),
                                             ],
                                           ),
-                                          Spacer(),
-                                          Icon(
+                                          const Spacer(),
+                                          const Icon(
                                             Icons.workspace_premium_outlined,
                                             color: Colors.white24,
                                             size: 80,
@@ -190,7 +192,7 @@ class AwardsScreen extends StatelessWidget {
                                   vertical: 8.0, horizontal: 5),
                               child: Text(
                                 translate('award_screen.all_achievement'),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
@@ -205,7 +207,7 @@ class AwardsScreen extends StatelessWidget {
                                   final award = model.awardlist[index];
                                   return GestureDetector(
                                     onTap: () {
-                                      Get.to(AwardDetailScreen(),
+                                      Get.to(const AwardDetailScreen(),
                                           arguments: {"award": award});
                                     },
                                     child: Card(
@@ -236,7 +238,7 @@ class AwardsScreen extends StatelessWidget {
                                                   children: [
                                                     Text(
                                                       "${translate('award_screen.rewcode')} : ${model.recentAward.value.reward_code}",
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 12,
                                                           fontWeight: FontWeight.normal),
@@ -247,13 +249,13 @@ class AwardsScreen extends StatelessWidget {
                                                       child: Text(
                                                         award.award_name,
                                                         maxLines: 1,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 15,
                                                             fontWeight: FontWeight.bold),
                                                       ),
                                                     ),
-                                                    Container(
+                                                    SizedBox(
                                                       width: MediaQuery.of(context)
                                                           .size
                                                           .width -
@@ -265,7 +267,7 @@ class AwardsScreen extends StatelessWidget {
                                                         children: [
                                                           Text(
                                                             "${translate('award_screen.awarded_by')} : ${award.awarded_by}",
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 color: Colors.grey,
                                                                 fontSize: 12,
                                                                 fontWeight:
@@ -273,7 +275,7 @@ class AwardsScreen extends StatelessWidget {
                                                           ),
                                                           Text(
                                                             award.awarded_date,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 color: Colors.white,
                                                                 fontSize: 12,
                                                                 fontWeight:
@@ -284,7 +286,7 @@ class AwardsScreen extends StatelessWidget {
                                                     ),
                                                   ],
                                                 ),
-                                                Spacer(),
+                                                const Spacer(),
                                               ],
                                             ),
                                           ),

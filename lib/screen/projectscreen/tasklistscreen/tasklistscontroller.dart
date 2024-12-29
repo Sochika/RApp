@@ -88,7 +88,7 @@ class TaskListController extends GetxController {
       }
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 

@@ -6,16 +6,20 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => NotificationProvider(),
-      child: Notification(),
+      child: const Notification(),
     );
   }
 }
 
 class Notification extends StatefulWidget {
+  const Notification({super.key});
+
   @override
   State<StatefulWidget> createState() => NotificationState();
 }
@@ -47,9 +51,9 @@ class NotificationState extends State<Notification> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             elevation: 0,
-            iconTheme: IconThemeData(color: Colors.white),
+            iconTheme: const IconThemeData(color: Colors.white),
             backgroundColor: Colors.transparent,
-            title: Text(translate('notification_screen.notifications'),style: TextStyle(color: Colors.white)),
+            title: Text(translate('notification_screen.notifications'),style: const TextStyle(color: Colors.white)),
           ),
           body: RefreshIndicator(
               onRefresh: () {
@@ -57,7 +61,7 @@ class NotificationState extends State<Notification> {
                     1;
                 return getNotification();
               },
-              child: NotificationList())),
+              child: const NotificationList())),
     );
   }
 }

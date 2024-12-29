@@ -6,16 +6,20 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:provider/provider.dart';
 
 class NoticeScreen extends StatelessWidget {
+  const NoticeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => NoticeProvider(),
-      child: Notice(),
+      child: const Notice(),
     );
   }
 }
 
 class Notice extends StatefulWidget {
+  const Notice({super.key});
+
   @override
   State<StatefulWidget> createState() => NoticeState();
 }
@@ -55,7 +59,7 @@ class NoticeState extends State<Notice> {
                 Provider.of<NoticeProvider>(context, listen: false).page = 1;
                 return getNotification();
               },
-              child: NoticeList())),
+              child: const NoticeList())),
     );
   }
 }

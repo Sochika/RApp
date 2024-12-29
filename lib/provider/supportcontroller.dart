@@ -67,7 +67,7 @@ class SupportController extends GetxController {
 
         Get.dialog(
             Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 width: double.infinity,
                 height: 500,
                 child:
@@ -121,7 +121,7 @@ class SupportController extends GetxController {
   }
 
   void showList() {
-    Get.to(SupportListScreen(), transition: Transition.cupertino);
+    Get.to(const SupportListScreen(), transition: Transition.cupertino);
   }
 
   @override

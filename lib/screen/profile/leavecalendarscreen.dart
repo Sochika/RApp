@@ -11,16 +11,20 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class LeaveCalendarScreen extends StatelessWidget {
+  const LeaveCalendarScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => LeaveCalendarProvider(),
-      child: LeaveCalendar(),
+      child: const LeaveCalendar(),
     );
   }
 }
 
 class LeaveCalendar extends StatefulWidget {
+  const LeaveCalendar({super.key});
+
   @override
   State<StatefulWidget> createState() => LeaveCalendarState();
 }
@@ -59,12 +63,12 @@ class LeaveCalendarState extends State<LeaveCalendar> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(translate('leave_calendar_screen.leave_calendar'),
-              style: TextStyle(color: Colors.white)),
-          iconTheme: IconThemeData(color: Colors.white),
+              style: const TextStyle(color: Colors.white)),
+          iconTheme: const IconThemeData(color: Colors.white),
           elevation: 0,
-          actions: [
+          actions: const [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Tooltip(
                   textStyle: TextStyle(color: Colors.black),
                   decoration: BoxDecoration(color: Colors.white),
@@ -78,13 +82,13 @@ class LeaveCalendarState extends State<LeaveCalendar> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LeaveCalendarView(),
+              const LeaveCalendarView(),
               Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  child: CalendarToggle()),
-              toggle == 0 ? LeaveListView() : SizedBox.shrink(),
-              toggle == 1 ? HolidayListView() : SizedBox.shrink(),
-              toggle == 2 ? BirthdayListView() : SizedBox.shrink(),
+                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  child: const CalendarToggle()),
+              toggle == 0 ? const LeaveListView() : const SizedBox.shrink(),
+              toggle == 1 ? const HolidayListView() : const SizedBox.shrink(),
+              toggle == 2 ? const BirthdayListView() : const SizedBox.shrink(),
             ],
           ),
         ),

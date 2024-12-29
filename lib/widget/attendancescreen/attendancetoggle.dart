@@ -7,6 +7,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
 class AttendanceToggle extends StatefulWidget {
+  const AttendanceToggle({super.key});
+
   @override
   State<StatefulWidget> createState() => AttendanceToggleState();
 }
@@ -18,17 +20,17 @@ class AttendanceToggleState extends State<AttendanceToggle> {
   Widget build(BuildContext context) {
     final provider = Provider.of<AttendanceReportProvider>(context,listen: true);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
            Text(
             translate('attendance_screen.attendance_history'),
-            style: TextStyle(color: Colors.white, fontSize: 15),
+            style: const TextStyle(color: Colors.white, fontSize: 15),
           ),
           Consumer(
             builder: (context, value, child) {
-              return provider.month.isEmpty?SizedBox.shrink(): DropdownButtonHideUnderline(
+              return provider.month.isEmpty?const SizedBox.shrink(): DropdownButtonHideUnderline(
                 child: DropdownButton2(
                   isExpanded: true,
                   items: (provider.month)
@@ -53,8 +55,8 @@ class AttendanceToggleState extends State<AttendanceToggle> {
                       provider.getAttendanceReport();
                     });
                   },
-                  iconStyleData: IconStyleData(
-                    icon: const Icon(
+                  iconStyleData: const IconStyleData(
+                    icon: Icon(
                       Icons.arrow_forward_ios_outlined,
                     ),
                     iconSize: 14,
@@ -66,7 +68,7 @@ class AttendanceToggleState extends State<AttendanceToggle> {
                     width: 160,
                     padding: const EdgeInsets.only(left: 14, right: 14),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(0),
                           bottomLeft: Radius.circular(0),
@@ -79,7 +81,7 @@ class AttendanceToggleState extends State<AttendanceToggle> {
                     maxHeight: 200,
                     padding: null,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(0),
                           topRight: Radius.circular(10),
                           bottomLeft: Radius.circular(10),
@@ -88,9 +90,9 @@ class AttendanceToggleState extends State<AttendanceToggle> {
                     ),
                     elevation: 8,
                   ),
-                  menuItemStyleData: MenuItemStyleData(
+                  menuItemStyleData: const MenuItemStyleData(
                     height: 40,
-                    padding: const EdgeInsets.only(left: 14, right: 14),
+                    padding: EdgeInsets.only(left: 14, right: 14),
                   ),
                 ),
               );

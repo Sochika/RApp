@@ -57,7 +57,7 @@ class TadaDetailController extends GetxController {
       return "Loaded";
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 

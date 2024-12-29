@@ -12,6 +12,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class TaskDetailScreen extends StatelessWidget {
+  const TaskDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(TaskDetailController());
@@ -24,7 +26,7 @@ class TaskDetailScreen extends StatelessWidget {
             elevation: 0,
             title: Obx(() => Text(
                   controller.taskDetail.value.projectName!,
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                 )),
           ),
           bottomNavigationBar: Obx(
@@ -34,7 +36,7 @@ class TaskDetailScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   bottomRight: Radius.circular(10))),
@@ -44,7 +46,7 @@ class TaskDetailScreen extends StatelessWidget {
                                 context: context,
                                 useRootNavigator: true,
                                 builder: (context) {
-                                  return ConfirmBottomSheet();
+                                  return const ConfirmBottomSheet();
                                 });
                           },
                           child: Padding(
@@ -53,7 +55,7 @@ class TaskDetailScreen extends StatelessWidget {
                           )),
                     ),
                 )
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
           ),
           body: Obx(
             () => SafeArea(
@@ -62,10 +64,10 @@ class TaskDetailScreen extends StatelessWidget {
                   return controller.getTaskOverview();
                 },
                 child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   child: controller.taskDetail.value.id != 0
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(
+                      ? const Padding(
+                          padding: EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +90,7 @@ class TaskDetailScreen extends StatelessWidget {
                             ],
                           ),
                         )
-                      : SizedBox.shrink(),
+                      : const SizedBox.shrink(),
                 ),
               ),
             ),

@@ -6,11 +6,13 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class AttachmentBottomSheet extends StatelessWidget {
+  const AttachmentBottomSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * .9,
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: RadialDecoration(),
       child: SingleChildScrollView(
         child: Column(
@@ -24,7 +26,7 @@ class AttachmentBottomSheet extends StatelessWidget {
                 children: [
                   Text(
                     translate('task_detail_screen.attachments'),
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
@@ -33,14 +35,14 @@ class AttachmentBottomSheet extends StatelessWidget {
                       onTap: () {
                         Get.back();
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         color: Colors.white,
                       )),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -48,21 +50,21 @@ class AttachmentBottomSheet extends StatelessWidget {
               children: [
                 Text(
                   translate('project_detail_screen.image'),
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                  style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 Text(
                   translate('project_detail_screen.files'),
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                  style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height,
               child: PageView(
-                children: [
+                children: const [
                   ItemListBottom(),
                   FilesListBottom(),
                 ],

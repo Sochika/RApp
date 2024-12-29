@@ -1,4 +1,3 @@
-import 'package:radius/provider/createadvancesalarycontroller.dart';
 import 'package:radius/provider/editadvancesalarycontroller.dart';
 import 'package:radius/widget/radialDecoration.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +5,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class EditAdvanceSalaryScreen extends StatelessWidget {
+  const EditAdvanceSalaryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(EditAdvanceSalaryController());
@@ -19,10 +20,10 @@ class EditAdvanceSalaryScreen extends StatelessWidget {
         ),
         bottomNavigationBar: SafeArea(
           child: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(0),
@@ -48,7 +49,7 @@ class EditAdvanceSalaryScreen extends StatelessWidget {
                   TextFormField(
                     controller: model.expensesController,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Field is required";
@@ -58,29 +59,29 @@ class EditAdvanceSalaryScreen extends StatelessWidget {
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: translate('edit_salary_screen.expected_amount'),
-                      hintStyle: TextStyle(color: Colors.white70),
-                      labelStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white70),
+                      labelStyle: const TextStyle(color: Colors.white),
                       fillColor: Colors.white24,
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedErrorBorder: OutlineInputBorder(
+                      focusedErrorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      errorBorder: OutlineInputBorder(
+                      errorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
@@ -88,14 +89,14 @@ class EditAdvanceSalaryScreen extends StatelessWidget {
                               bottomRight: Radius.circular(10))),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: model.descriptionController,
                     maxLines: 5,
                     keyboardType: TextInputType.name,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Field is required";
@@ -105,29 +106,29 @@ class EditAdvanceSalaryScreen extends StatelessWidget {
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: translate('edit_salary_screen.reason'),
-                      hintStyle: TextStyle(color: Colors.white70),
-                      labelStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white70),
+                      labelStyle: const TextStyle(color: Colors.white),
                       fillColor: Colors.white24,
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedErrorBorder: OutlineInputBorder(
+                      focusedErrorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      errorBorder: OutlineInputBorder(
+                      errorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),

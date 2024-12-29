@@ -6,6 +6,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:provider/provider.dart';
 
 class BankDetail extends StatelessWidget {
+  const BankDetail({super.key});
+
   @override
   Widget build(BuildContext context) {
     final profile =

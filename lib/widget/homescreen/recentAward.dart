@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class RecentAward extends StatelessWidget {
+  const RecentAward({super.key});
+
   @override
   Widget build(BuildContext context) {
     final award = context.watch<DashboardProvider>().award;
@@ -22,16 +24,16 @@ class RecentAward extends StatelessWidget {
               children: [
                 Text(
                   translate('home_screen.recent_award'),
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                   onTap: () {
                     Get.to(AwardsScreen());
                   },
                   child: Text(
                     translate('home_screen.show_all'),
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
               ],
@@ -42,13 +44,13 @@ class RecentAward extends StatelessWidget {
             award != null
                 ? GestureDetector(
                     onTap: () {
-                      Get.to(AwardDetailScreen(), arguments: {"award": award});
+                      Get.to(const AwardDetailScreen(), arguments: {"award": award});
                     },
                     child: Card(
                       shape: ButtonBorder(),
                       elevation: 0,
                       color: Colors.white12,
-                      child: Container(
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width - 30,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -62,13 +64,13 @@ class RecentAward extends StatelessWidget {
                                 children: [
                                   Card(
                                     color: Colors.deepOrange,
-                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    margin: const EdgeInsets.symmetric(vertical: 5),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0, vertical: 5),
                                       child: Text(
                                         award.award_name,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
                                             fontWeight: FontWeight.normal),
@@ -78,21 +80,21 @@ class RecentAward extends StatelessWidget {
                                   Text(
                                     award.employee_name,
                                     maxLines: 2,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     award.awarded_date,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
-                              Spacer(),
+                              const Spacer(),
                               ClipOval(
                                 child: Image.network(
                                   award.image,
@@ -106,7 +108,7 @@ class RecentAward extends StatelessWidget {
                       ),
                     ),
                   )
-                : SizedBox.shrink()
+                : const SizedBox.shrink()
           ],
         ),
       ),

@@ -6,32 +6,34 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class TaskSection extends StatelessWidget {
+  const TaskSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ProjectDetailController model = Get.find();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(
           translate('project_detail_screen.tasks'),
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Obx(
           () => ListView.builder(
             primary: false,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: model.project.value.tasks.length,
             itemBuilder: (context, index) {
               Task task = model.project.value.tasks[index];
               return Card(
-                margin: EdgeInsets.symmetric(vertical: 5),
-                shape: RoundedRectangleBorder(
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10))),
@@ -39,7 +41,7 @@ class TaskSection extends StatelessWidget {
                 color: Colors.white10,
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(TaskDetailScreen(), arguments: {"id": task.id});
+                    Get.to(const TaskDetailScreen(), arguments: {"id": task.id});
                   },
                   child: IntrinsicHeight(
                     child: Row(
@@ -50,7 +52,7 @@ class TaskSection extends StatelessWidget {
                             padding: const EdgeInsets.all(20),
                             child: Text(task.name!,
                                 maxLines: 2,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     height: 1.2,
                                     color: Colors.white,
                                     fontWeight: FontWeight.normal,
@@ -58,7 +60,7 @@ class TaskSection extends StatelessWidget {
                           ),
                         ),
                         ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(10)),
                           child: Container(
                             width: 10,

@@ -22,7 +22,7 @@ class Services extends StatefulWidget {
   final Widget route;
   final int control;
 
-  Services(this.name, this.icon, this.route, {this.control = 0});
+  const Services(this.name, this.icon, this.route, {super.key, this.control = 0});
 
   @override
   State<StatefulWidget> createState() => ServicesState();
@@ -50,7 +50,7 @@ class ServicesState extends State<Services> {
         showDialog(
           context: context,
           builder: (context) {
-            return Dialog(
+            return const Dialog(
               child: CustomAlertDialog("Nfc Added Successfully"),
             );
           },
@@ -84,7 +84,7 @@ class ServicesState extends State<Services> {
           barrierDismissible: false,
           context: context,
           builder: (context) {
-            return Dialog(
+            return const Dialog(
               child: CustomNfcDialog(NFCMODE.add),
             );
           },
@@ -102,7 +102,7 @@ class ServicesState extends State<Services> {
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       child: Column(
         children: [
           ListTile(
@@ -114,7 +114,7 @@ class ServicesState extends State<Services> {
             ),
             title: Text(
               widget.name,
-              style: TextStyle(color: Colors.white, fontSize: 15),
+              style: const TextStyle(color: Colors.white, fontSize: 15),
             ),
             onTap: () async {
               if (widget.control == 1) {
@@ -125,7 +125,7 @@ class ServicesState extends State<Services> {
                     context: context,
                     useRootNavigator: true,
                     builder: (context) {
-                      return LogOutBottomSheet();
+                      return const LogOutBottomSheet();
                     });
               } else if (widget.control == 3) {
                 bool isAvailable = await NfcManager.instance.isAvailable();
@@ -140,7 +140,7 @@ class ServicesState extends State<Services> {
                     context: context,
                     useRootNavigator: true,
                     builder: (context) {
-                      return ShowLanguage();
+                      return const ShowLanguage();
                     });
               } else {
                 pushScreen(context,

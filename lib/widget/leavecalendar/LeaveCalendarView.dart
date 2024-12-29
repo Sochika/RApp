@@ -8,12 +8,14 @@ import 'package:nepali_utils/nepali_utils.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class LeaveCalendarView extends StatefulWidget {
+  const LeaveCalendarView({super.key});
+
   @override
   State<StatefulWidget> createState() => LeaveCalendarState();
 }
 
 class LeaveCalendarState extends State<LeaveCalendarView> {
-  var _current = DateTime.now();
+  final _current = DateTime.now();
   var _selected = DateTime.now();
   final currentMonth = DateTime.now().month;
   final nextMonth = DateTime.now().month + 1;
@@ -54,7 +56,7 @@ class LeaveCalendarState extends State<LeaveCalendarView> {
 
   TableCalendar englishCalendar(provider) {
     return TableCalendar(
-      daysOfWeekStyle: DaysOfWeekStyle(
+      daysOfWeekStyle: const DaysOfWeekStyle(
           weekdayStyle:
               TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           weekendStyle:
@@ -73,7 +75,7 @@ class LeaveCalendarState extends State<LeaveCalendarView> {
             Icons.arrow_right,
             color: Colors.white,
           )),
-      calendarStyle: CalendarStyle(
+      calendarStyle: const CalendarStyle(
           defaultTextStyle: TextStyle(color: Colors.white),
           weekendTextStyle: TextStyle(color: Colors.white),
           markerDecoration: BoxDecoration(
@@ -92,7 +94,7 @@ class LeaveCalendarState extends State<LeaveCalendarView> {
       currentDay: _current,
       firstDay: DateTime.utc(_current.year, currentMonth, 01),
       lastDay:
-          DateTime.utc(_current.add(Duration(days: 60)).year, nextMonth, 30),
+          DateTime.utc(_current.add(const Duration(days: 60)).year, nextMonth, 30),
       focusedDay: _selected,
       selectedDayPredicate: (day) {
         return isSameDay(_selected, day);
@@ -112,12 +114,12 @@ class LeaveCalendarState extends State<LeaveCalendarView> {
         NepaliCalendar(
           initialCalendarMode: DatePickerMode.day,
           language: NepaliUtils(),
-          monthYearPickerStyle: TextStyle(
+          monthYearPickerStyle: const TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
           //Color to left right button
           rightLeftButtonColor: Colors.blue,
           //Styles to Week Row
-          weekHeaderStyle: TextStyle(
+          weekHeaderStyle: const TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
           firstDate:
               NepaliDateTime(NepaliDateTime.now().year, NepaliDateTime.now().month),
@@ -142,10 +144,10 @@ class LeaveCalendarState extends State<LeaveCalendarView> {
                       NepaliUtils().language == Language.english
                           ? '${dayToBuild.day}'
                           : NepaliUnicode.convert('${dayToBuild.day}'),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                       bottom: 0,
                       right: 0,
                       left: 0,
@@ -164,18 +166,18 @@ class LeaveCalendarState extends State<LeaveCalendarView> {
                       NepaliUtils().language == Language.english
                           ? '${dayToBuild.day}'
                           : NepaliUnicode.convert('${dayToBuild.day}'),
-                      style: TextStyle(color: Colors.white70),
+                      style: const TextStyle(color: Colors.white70),
                     ),
                   ),
                 ],
               );
             }
           },
-          selectedDayDecoration: BoxDecoration(
+          selectedDayDecoration: const BoxDecoration(
             color: Colors.blue,
             shape: BoxShape.circle,
           ),
-          todayDecoration: BoxDecoration(
+          todayDecoration: const BoxDecoration(
             color: Colors.red,
             shape: BoxShape.circle,
           ), initialDate: _selected.toNepaliDateTime(),

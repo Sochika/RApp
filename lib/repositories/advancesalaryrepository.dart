@@ -36,7 +36,7 @@ class AdvanceSalaryRepository {
       }
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
@@ -70,7 +70,7 @@ class AdvanceSalaryRepository {
       }
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
@@ -120,7 +120,7 @@ class AdvanceSalaryRepository {
 
     try {
       final response = await Connect()
-          .getResponse(Constant.ADVANCE_SALARY_DETAIL_URL+"/"+id, headers);
+          .getResponse("${Constant.ADVANCE_SALARY_DETAIL_URL}/$id", headers);
       debugPrint(response.body.toString());
 
       final responseData = json.decode(response.body);

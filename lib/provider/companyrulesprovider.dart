@@ -18,7 +18,7 @@ class CompanyRulesProvider with ChangeNotifier {
 
       makeRules(response.data);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

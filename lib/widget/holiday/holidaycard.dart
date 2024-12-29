@@ -11,7 +11,7 @@ class Holidaycard extends StatelessWidget {
   final String desc;
   final bool isPublicHoliday;
 
-  Holidaycard({
+  const Holidaycard({super.key, 
     required this.id,
     required this.name,
     required this.month,
@@ -37,7 +37,7 @@ class Holidaycard extends StatelessWidget {
                 shape: ButtonBorder(),
                 elevation: 0,
                 color: isPublicHoliday ? Colors.red : Colors.blueAccent,
-                child: Container(
+                child: SizedBox(
                   width: 60,
                   height: 60,
                   child: Column(
@@ -45,12 +45,12 @@ class Holidaycard extends StatelessWidget {
                     children: [
                       Text(
                         day,
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: const TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: TextSizerPlus(month,
-                            maxLines: 1, style: TextStyle(color: Colors.white)),
+                            maxLines: 1, style: const TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),
@@ -67,16 +67,16 @@ class Holidaycard extends StatelessWidget {
                     Text(
                       softWrap: true,
                       name,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
                       overflow: TextOverflow.fade,
                       softWrap: true,
                       parse(desc).body!.text,
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ],
                 ),

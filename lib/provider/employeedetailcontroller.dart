@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:radius/data/source/datastore/preferences.dart';
 import 'package:radius/data/source/network/model/employeedetailresponse/Data.dart';
 import 'package:radius/data/source/network/model/employeedetailresponse/employeedetailresponse.dart';
-import 'package:radius/model/award.dart';
 import 'package:radius/utils/constant.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_translate/flutter_translate.dart';
@@ -36,7 +35,7 @@ class EmployeeDetailController extends GetxController{
   
   Future<employeedetailresponse> getEmployeeDetail(String id) async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl()+Constant.EMPLOYEE_PROFILE_URL+"/$id");
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.EMPLOYEE_PROFILE_URL}/$id");
 
 
     String token = await preferences.getToken();

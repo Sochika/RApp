@@ -6,7 +6,6 @@ import 'package:radius/model/month.dart';
 import 'package:radius/repositories/attendancereportrepository.dart';
 import 'package:radius/utils/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 
 class AttendanceReportProvider with ChangeNotifier {
@@ -49,7 +48,7 @@ class AttendanceReportProvider with ChangeNotifier {
 
     NepaliDateTime currentTime = NepaliDateTime.now();
     selectedMonth =
-        await isAd ? DateTime.now().month - 1 : currentTime.month - 1;
+        isAd ? DateTime.now().month - 1 : currentTime.month - 1;
     notifyListeners();
     getAttendanceReport();
   }
@@ -65,7 +64,7 @@ class AttendanceReportProvider with ChangeNotifier {
       getProdHour(int.parse(responseJson.data.employeeTodayAttendance.productiveTime));
     } catch (error) {
       isLoading = false;
-      throw error;
+      rethrow;
     }
   }
 

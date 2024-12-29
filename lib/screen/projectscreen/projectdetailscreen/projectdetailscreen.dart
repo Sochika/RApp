@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProjectDetailScreen extends StatelessWidget {
+  const ProjectDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(ProjectDetailController());
@@ -23,7 +25,7 @@ class ProjectDetailScreen extends StatelessWidget {
             actions: [
               GestureDetector(
                 onTap: () {
-                  Get.to(GroupChatScreen(), arguments: {
+                  Get.to(const GroupChatScreen(), arguments: {
                     "projectId": model.project.value.id,
                     "projectName": model.project.value.name,
                     "projectSlug": model.project.value.slug,
@@ -31,8 +33,8 @@ class ProjectDetailScreen extends StatelessWidget {
                     "member": model.project.value.members,
                   });
                 },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Icon(
                     Icons.chat,
                     color: Colors.white,
@@ -47,41 +49,41 @@ class ProjectDetailScreen extends StatelessWidget {
                 return model.getProjectOverview();
               },
               child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Obx(
                   () => Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 8.0, horizontal: 20),
                     child: model.project.value.id == 0
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              HeaderSection(),
-                              DescriptionSection(),
-                              SizedBox(
+                              const HeaderSection(),
+                              const DescriptionSection(),
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Divider(
+                              const Divider(
                                 color: Colors.white54,
                               ),
-                              TeamSection(),
-                              SizedBox(
+                              const TeamSection(),
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Divider(
+                              const Divider(
                                 color: Colors.white54,
                               ),
-                              AttachmentSection(),
-                              SizedBox(
+                              const AttachmentSection(),
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Divider(
+                              const Divider(
                                 color: Colors.white54,
                               ),
-                              Obx(() => model.project.value.tasks.length != 0
-                                  ? TaskSection()
-                                  : SizedBox())
+                              Obx(() => model.project.value.tasks.isNotEmpty
+                                  ? const TaskSection()
+                                  : const SizedBox())
                             ],
                           ),
                   ),

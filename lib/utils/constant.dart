@@ -7,8 +7,8 @@ class Constant {
   static const production = "https://radius.mandroid.ng/";
   static const keonUrl = "https://radius.suchtree.com/";
   static const staging = "https://attendance.suchtree.com/";
-  static const localhost = "http://192.168.0.134:8001/";
-  static const codecanyon = "https://radius.suchtree.com/";
+  static const localhost = "http://192.168.0.134:8004/";
+  // static const suchphn = "http://192.168.27.2:8004/";
 
   static const appUrl = localhost;
 

@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EmployeeDetailScreen extends StatelessWidget {
+  const EmployeeDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(EmployeeDetailController());
@@ -40,7 +42,7 @@ class EmployeeDetailScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             ClipRRect(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(20),
                                     bottomRight: Radius.circular(20)),
                                 child: Container(
@@ -78,12 +80,12 @@ class EmployeeDetailScreen extends StatelessWidget {
                                           throw 'Could not launch $url';
                                         }
                                       },
-                                      icon: Card(
+                                      icon: const Card(
                                           elevation: 0,
                                           color: Colors.white24,
                                           shape: CircleBorder(),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(15.0),
+                                            padding: EdgeInsets.all(15.0),
                                             child: Icon(
                                               Icons.call,
                                               color: Colors.white,
@@ -91,19 +93,19 @@ class EmployeeDetailScreen extends StatelessWidget {
                                           ))),
                                   IconButton(
                                       onPressed: () {
-                                        Get.to(ChatScreen(), arguments: {
+                                        Get.to(const ChatScreen(), arguments: {
                                           "name": model.profile.value.name,
                                           "avatar": model.profile.value.avatar,
                                           "username":
                                               model.profile.value.username,
                                         });
                                       },
-                                      icon: Card(
+                                      icon: const Card(
                                           elevation: 0,
                                           color: Colors.white24,
                                           shape: CircleBorder(),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(15.0),
+                                            padding: EdgeInsets.all(15.0),
                                             child: Icon(
                                               Icons.message,
                                               color: Colors.white,
@@ -113,7 +115,7 @@ class EmployeeDetailScreen extends StatelessWidget {
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     model.profile.value.post != ''
                         ? Container(
                             padding: const EdgeInsets.only(
@@ -121,11 +123,11 @@ class EmployeeDetailScreen extends StatelessWidget {
                             width: double.infinity,
                             child: Text(
                               translate('employee_detail_screen.basic_details'),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white38, fontSize: 15),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     model.profile.value.post != ''
                         ? Container(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -168,7 +170,7 @@ class EmployeeDetailScreen extends StatelessWidget {
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     model.profile.value.post != ''
                         ? Container(
                             padding: const EdgeInsets.only(
@@ -177,11 +179,11 @@ class EmployeeDetailScreen extends StatelessWidget {
                             child: Text(
                               translate(
                                   'employee_detail_screen.company_details'),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white38, fontSize: 15),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     model.profile.value.post != ''
                         ? Container(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -221,7 +223,7 @@ class EmployeeDetailScreen extends StatelessWidget {
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     model.awardsList.isNotEmpty
                         ? Container(
                             padding: const EdgeInsets.only(
@@ -229,11 +231,11 @@ class EmployeeDetailScreen extends StatelessWidget {
                             width: double.infinity,
                             child: Text(
                               translate('employee_detail_screen.achievements'),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white38, fontSize: 15),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     model.awardsList.isNotEmpty
                         ? Padding(
                             padding: const EdgeInsets.symmetric(
@@ -257,10 +259,10 @@ class EmployeeDetailScreen extends StatelessWidget {
                                           child: Text(
                                             "🏆   $award",
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                const TextStyle(color: Colors.white),
                                           ),
                                         )),
-                                    Divider(
+                                    const Divider(
                                       color: Colors.white30,
                                       indent: 10,
                                       endIndent: 10,
@@ -270,7 +272,7 @@ class EmployeeDetailScreen extends StatelessWidget {
                               },
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ],
                 ),
               ),

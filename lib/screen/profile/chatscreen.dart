@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(ChatController());
@@ -20,9 +22,9 @@ class ChatScreen extends StatelessWidget {
           title: Obx(() => Row(
             children: [
               ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.network(errorBuilder: (context, error, stackTrace) {
-                return SizedBox.shrink();
+                return const SizedBox.shrink();
               },model.hostImage,width: 30,height: 30,fit: BoxFit.cover,)),
-              SizedBox(width: 5,),
+              const SizedBox(width: 5,),
               Text(model.host.value),
             ],
           )),
@@ -61,17 +63,17 @@ class ChatScreen extends StatelessWidget {
                           message.sender == model.hostUsername?Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.network(model.hostImage,width: 30,height: 30,fit: BoxFit.cover,)),
-                          ):SizedBox.shrink(),
+                          ):const SizedBox.shrink(),
                           Expanded(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 isSameDate
-                                    ? SizedBox.shrink()
+                                    ? const SizedBox.shrink()
                                     : Text(
                                         DateFormat("MMM dd yyyy")
                                             .format(message.dateTime),
-                                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                                        style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                                       ),
                                 Card(
                                   elevation: 0,
@@ -87,13 +89,13 @@ class ChatScreen extends StatelessWidget {
                                         Row(
                                           children: [
                                             message.sender != model.hostUsername
-                                                ? SizedBox(
+                                                ? const SizedBox(
                                                     width: 20,
                                                   )
-                                                : SizedBox.shrink(),
+                                                : const SizedBox.shrink(),
                                             message.sender != model.hostUsername
-                                                ? Spacer()
-                                                : SizedBox.shrink(),
+                                                ? const Spacer()
+                                                : const SizedBox.shrink(),
                                             message.message.length>45?Expanded(
                                               child: Card(
                                                 elevation: 0,
@@ -102,7 +104,7 @@ class ChatScreen extends StatelessWidget {
                                                   padding: const EdgeInsets.all(15.0),
                                                   child: Text(
                                                     message.message,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 15),
                                                   ),
@@ -115,17 +117,17 @@ class ChatScreen extends StatelessWidget {
                                                 padding: const EdgeInsets.all(15.0),
                                                 child: Text(
                                                   message.message,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15),
                                                 ),
                                               ),
                                             ),
                                             message.sender == model.hostUsername
-                                                ? SizedBox(
+                                                ? const SizedBox(
                                                     width: 20,
                                                   )
-                                                : SizedBox.shrink(),
+                                                : const SizedBox.shrink(),
                                           ],
                                         ),
                                         Padding(
@@ -134,7 +136,7 @@ class ChatScreen extends StatelessWidget {
                                           child: Text(
                                             DateFormat("hh:mm a")
                                                 .format(message.dateTime),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.white, fontSize: 12),
                                           ),
                                         ),
@@ -155,7 +157,7 @@ class ChatScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
-                    Divider(color: Colors.white10,),
+                    const Divider(color: Colors.white10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -164,7 +166,7 @@ class ChatScreen extends StatelessWidget {
                           autofocus: false,
                           maxLines: 1,
                           keyboardType: TextInputType.multiline,
-                          style: TextStyle(color: Colors.white, fontSize: 15),
+                          style: const TextStyle(color: Colors.white, fontSize: 15),
                           validator: (value) {
                             return null;
                           },
@@ -172,12 +174,12 @@ class ChatScreen extends StatelessWidget {
                           cursorColor: Colors.white,
                           decoration: InputDecoration(
                               hintText: translate('chat_screen.send_message'),
-                              hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
+                              hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(10.0)),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                              labelStyle: TextStyle(color: Colors.white),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                              labelStyle: const TextStyle(color: Colors.white),
                               filled: true,
                               fillColor: Colors.transparent),
                         )),
@@ -187,7 +189,7 @@ class ChatScreen extends StatelessWidget {
                               model.sendMessage(model.chatController.text);
                             }
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.send,
                             color: Colors.white,
                           ),

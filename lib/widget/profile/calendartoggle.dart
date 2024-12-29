@@ -5,12 +5,14 @@ import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class CalendarToggle extends StatelessWidget {
+  const CalendarToggle({super.key});
+
   @override
   Widget build(BuildContext context) {
     final toggle = context.watch<LeaveCalendarProvider>().toggleValue;
     return Center(
       child: ToggleSwitch(
-        activeBgColor: [Colors.white12],
+        activeBgColor: const [Colors.white12],
         activeFgColor: Colors.white,
         inactiveFgColor: Colors.white,
         inactiveBgColor: Colors.transparent,

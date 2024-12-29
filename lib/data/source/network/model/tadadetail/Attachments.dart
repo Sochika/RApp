@@ -15,13 +15,9 @@ class Attachments {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = new Map<String, dynamic>();
-        if (this.file != null) {
-            data['file'] = this.file.map((v) => v.toJson()).toList();
-        }
-        if (this.image != null) {
-            data['image'] = this.image.map((v) => v.toJson()).toList();
-        }
-        return data;
+        final Map<String, dynamic> data = <String, dynamic>{};
+          data['file'] = file.map((v) => v.toJson()).toList();
+                data['image'] = image.map((v) => v.toJson()).toList();
+              return data;
     }
 }

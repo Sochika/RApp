@@ -37,16 +37,16 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['remark'] = this.remark;
-    data['requested_date'] = this.released_date;
-    data['released_date'] = this.released_date;
-    data['description'] = this.description;
-    data['id'] = this.id;
-    data['is_settled'] = this.is_settled;
-    data['released_amount'] = this.released_amount;
-    data['requested_amount'] = this.requested_amount;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['remark'] = remark;
+    data['requested_date'] = released_date;
+    data['released_date'] = released_date;
+    data['description'] = description;
+    data['id'] = id;
+    data['is_settled'] = is_settled;
+    data['released_amount'] = released_amount;
+    data['requested_amount'] = requested_amount;
+    data['status'] = status;
     return data;
   }
 }

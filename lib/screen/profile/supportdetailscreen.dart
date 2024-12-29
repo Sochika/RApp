@@ -6,7 +6,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 class SupportDetailScreen extends StatelessWidget {
   Support support;
 
-  SupportDetailScreen(this.support);
+  SupportDetailScreen(this.support, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,9 @@ class SupportDetailScreen extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10))),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10))),
                 elevation: 0,
                 color: Colors.white24,
                 child: Padding(
@@ -38,7 +38,7 @@ class SupportDetailScreen extends StatelessWidget {
                         children: [
                           Text(
                             support.query_date,
-                            style: TextStyle(color: Colors.white, fontSize: 14),
+                            style: const TextStyle(color: Colors.white, fontSize: 14),
                           ),
                           Text(
                             support.status,
@@ -54,12 +54,12 @@ class SupportDetailScreen extends StatelessWidget {
                         ],
                       ),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
                         support.title,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ],
                   ),
@@ -68,9 +68,9 @@ class SupportDetailScreen extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10))),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomRight: Radius.circular(10))),
                 elevation: 0,
                 color: Colors.white24,
                 child: Padding(
@@ -80,59 +80,59 @@ class SupportDetailScreen extends StatelessWidget {
                     children: [
                       Text(
                         translate('support_detail_screen.description'),
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                        style: const TextStyle(color: Colors.white70, fontSize: 14),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
                         support.description,
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: const TextStyle(color: Colors.white, fontSize: 14),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
                         translate('support_detail_screen.assigned_to'),
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                        style: const TextStyle(color: Colors.white70, fontSize: 14),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
                         support.requested_department,
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
                         translate('support_detail_screen.solved_by'),
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                        style: const TextStyle(color: Colors.white70, fontSize: 14),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
                         support.status != "Solved"?"-":support.solved_by,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
                         translate('support_detail_screen.solved_at'),
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                        style: const TextStyle(color: Colors.white70, fontSize: 14),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
                         support.status != "Solved"?"-":support.solved_at,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ],
                   ),

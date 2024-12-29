@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NotificationList extends StatefulWidget {
+  const NotificationList({super.key});
+
   @override
   State<StatefulWidget> createState() => NotificationListState();
 }

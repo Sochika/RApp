@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class MyTeam extends StatelessWidget {
+  const MyTeam({super.key});
+
   @override
   Widget build(BuildContext context) {
     final employee =
@@ -24,12 +26,12 @@ class MyTeam extends StatelessWidget {
               children: [
                 Text(
                   translate('home_screen.my_team'),
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: const TextStyle(color: Colors.white, fontSize: 20),
                 ),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                   onTap: () {
-                    Get.to(TeamSheetScreen(), arguments: {
+                    Get.to(const TeamSheetScreen(), arguments: {
                       "department":
                           context.read<DashboardProvider>().department,
                       "branch": context.read<DashboardProvider>().branch
@@ -37,7 +39,7 @@ class MyTeam extends StatelessWidget {
                   },
                   child: Text(
                     translate('home_screen.view_all'),
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ),
               ],
@@ -45,10 +47,10 @@ class MyTeam extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Container(
+            SizedBox(
               height: 100,
               child: ListView.builder(
-                physics: PageScrollPhysics(),
+                physics: const PageScrollPhysics(),
                 primary: false,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -68,7 +70,7 @@ class MyTeam extends StatelessWidget {
 Widget teamCard(Employee teamList) {
   return InkWell(
     onTap: () {
-      Get.to(EmployeeDetailScreen(),
+      Get.to(const EmployeeDetailScreen(),
           arguments: {"employeeId": teamList.id.toString()});
     },
     child: Padding(
@@ -80,7 +82,7 @@ Widget teamCard(Employee teamList) {
           children: [
             Card(
               margin: EdgeInsets.zero,
-              shape: CircleBorder(),
+              shape: const CircleBorder(),
               elevation: 0,
               color: teamList.onlineStatus == "1"
                   ? Colors.green
@@ -101,14 +103,14 @@ Widget teamCard(Employee teamList) {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Text(
               teamList.name,
               maxLines: 1,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             )
           ],
         ),

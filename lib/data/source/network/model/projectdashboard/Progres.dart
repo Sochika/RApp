@@ -17,10 +17,10 @@ class Progres {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['progress_in_percent'] = this.progress_in_percent;
-    data['total_task_assigned'] = this.total_task_assigned;
-    data['total_task_completed'] = this.total_task_completed;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['progress_in_percent'] = progress_in_percent;
+    data['total_task_assigned'] = total_task_assigned;
+    data['total_task_completed'] = total_task_completed;
     return data;
   }
 }

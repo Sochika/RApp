@@ -28,10 +28,7 @@ class TaskDetailController extends GetxController {
 
   Future<TaskDetailResponse> getTaskOverview() async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl() +
-        Constant.TASK_DETAIL_URL +
-        "/" +
-        Get.arguments["id"].toString());
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.TASK_DETAIL_URL}/${Get.arguments["id"]}");
 
     String token = await preferences.getToken();
     bool isAd = await preferences.getEnglishDate();
@@ -113,16 +110,13 @@ class TaskDetailController extends GetxController {
       }
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
   Future<bool> checkListToggle(String checkListId) async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl() +
-        Constant.UPDATE_CHECKLIST_TOGGLE_URL +
-        "/" +
-        checkListId);
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.UPDATE_CHECKLIST_TOGGLE_URL}/$checkListId");
 
     String token = await preferences.getToken();
 
@@ -163,10 +157,7 @@ class TaskDetailController extends GetxController {
 
   Future<bool> checkListTaskToggle(String taskId) async {
     Preferences preferences = Preferences();
-    var uri = Uri.parse(await preferences.getAppUrl() +
-        Constant.UPDATE_TASK_TOGGLE_URL +
-        "/" +
-        taskId);
+    var uri = Uri.parse("${await preferences.getAppUrl()}${Constant.UPDATE_TASK_TOGGLE_URL}/$taskId");
 
     String token = await preferences.getToken();
 
@@ -204,10 +195,10 @@ class TaskDetailController extends GetxController {
     }
   }
 
-  Future<void> launchUrls(String _url) async {
-    if (!await launchUrl(Uri.parse(_url),
+  Future<void> launchUrls(String url) async {
+    if (!await launchUrl(Uri.parse(url),
         mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch $_url');
+      throw Exception('Could not launch $url');
     }
   }
 

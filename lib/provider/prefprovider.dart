@@ -4,14 +4,14 @@ import 'package:radius/data/source/network/model/login/Login.dart';
 import 'package:radius/data/source/network/model/login/User.dart';
 
 class PrefProvider with ChangeNotifier {
-  var _userName = '';
+  var _staffNo = '';
   var _fullname = '';
   var _avatar = '';
   var _auth = false;
   var _attendanceType = "NFC";
 
-  String get userName {
-    return _userName;
+  String get staffNo {
+    return _staffNo;
   }
 
   String get fullname {
@@ -34,7 +34,7 @@ class PrefProvider with ChangeNotifier {
   void getUser() async {
     Preferences preferences = Preferences();
 
-    _userName = await preferences.getUsername();
+    _staffNo = await preferences.getStaffNo();
     _fullname = await preferences.getFullName();
     _avatar = await preferences.getAvatar();
     notifyListeners();

@@ -13,8 +13,8 @@ class NavigationService {
           child: ListTile(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            leading: Container(
-                height: double.infinity, child: const Icon(Icons.notifications)),
+            leading: const SizedBox(
+                height: double.infinity, child: Icon(Icons.notifications)),
             iconColor: HexColor("#011754"),
             textColor: HexColor("#011754"),
             minVerticalPadding: 10,

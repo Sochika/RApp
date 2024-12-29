@@ -12,6 +12,8 @@ class TrainingScreen extends StatelessWidget {
   final completedTraining = 2;
   final totalTraining = 10;
 
+   TrainingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +23,7 @@ class TrainingScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Text("Trainings"),
+          title: const Text("Trainings"),
         ),
         body: RefreshIndicator(
           triggerMode: RefreshIndicatorTriggerMode.onEdge,
@@ -33,8 +35,8 @@ class TrainingScreen extends StatelessWidget {
           },
           child: SafeArea(
               child: SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
-            child: Container(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: SizedBox(
               width: double.infinity,
               child: Column(
                 children: [
@@ -53,13 +55,13 @@ class TrainingScreen extends StatelessWidget {
   Widget trainingOverview() {
     return Card(
       elevation: 0,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10), bottomRight: Radius.circular(10))),
       color: Colors.white12,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Row(
           children: [
             CircularPercentIndicator(
@@ -69,8 +71,8 @@ class TrainingScreen extends StatelessWidget {
               lineWidth: 15.0,
               percent: (progress / 100),
               center: Text(
-                progress.toString() + "%",
-                style: new TextStyle(
+                "$progress%",
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                     color: Colors.white),
@@ -85,29 +87,26 @@ class TrainingScreen extends StatelessWidget {
                           ? HexColor("#93C572")
                           : HexColor("#3cb116"),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Current Training Progress",
+                  const Text("Current Training Progress",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 20)),
-                  Divider(
+                  const Divider(
                     color: Colors.white54,
                     endIndent: 0,
                     indent: 0,
                   ),
                   Text(
-                      completedTraining.toString() +
-                          " / " +
-                          totalTraining.toString() +
-                          " Training Completed",
-                      style: TextStyle(
+                      "$completedTraining / $totalTraining Training Completed",
+                      style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.normal,
                           fontSize: 12)),
@@ -128,7 +127,7 @@ class TrainingScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -140,7 +139,7 @@ class TrainingScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(
@@ -154,7 +153,7 @@ class TrainingScreen extends StatelessWidget {
                   },
                   child: Card(
                     elevation: 0,
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             bottomRight: Radius.circular(10))),
@@ -163,7 +162,7 @@ class TrainingScreen extends StatelessWidget {
                       width: 300,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 5),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -174,7 +173,7 @@ class TrainingScreen extends StatelessWidget {
                                   elevation: 0,
                                   color: Colors.white12,
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                         horizontal: 8.0, vertical: 5),
                                     child: Text(
                                       "Application",
@@ -292,7 +291,7 @@ class TrainingScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -304,7 +303,7 @@ class TrainingScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           ListView.builder(
@@ -315,9 +314,9 @@ class TrainingScreen extends StatelessWidget {
               return GestureDetector(
                 onTap: () {},
                 child: Card(
-                  margin: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+                  margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           bottomRight: Radius.circular(10))),
@@ -325,7 +324,7 @@ class TrainingScreen extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 15),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -336,7 +335,7 @@ class TrainingScreen extends StatelessWidget {
                                 elevation: 0,
                                 color: Colors.white12,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
+                                  padding: EdgeInsets.symmetric(
                                       horizontal: 8.0, vertical: 5),
                                   child: Text(
                                     "Application",

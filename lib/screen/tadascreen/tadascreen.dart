@@ -7,6 +7,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class TadaScreen extends StatelessWidget {
+  const TadaScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(TadaListController());
@@ -19,16 +21,16 @@ class TadaScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           title: Text(
             translate('tada_list_screen.tada'),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
-          iconTheme: IconThemeData(color: Colors.white),
+          iconTheme: const IconThemeData(color: Colors.white),
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               model.onTadaCreateClicked();
             },
-            child: Icon(Icons.add),
-            backgroundColor: Colors.blue),
+            backgroundColor: Colors.blue,
+            child: const Icon(Icons.add)),
         body: Obx(
           () => SafeArea(
             child: Padding(
@@ -42,9 +44,9 @@ class TadaScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     Tada item = model.tadaList[index];
                     return Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
+                      margin: const EdgeInsets.symmetric(vertical: 8),
                       child: ListTile(
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(0),
@@ -58,11 +60,11 @@ class TadaScreen extends StatelessWidget {
                         iconColor: Colors.white,
                         title: Text(
                           item.title,
-                          style: TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                         ),
                         subtitle: Text(
                           item.submittedDate,
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                         ),
                         trailing: GestureDetector(
                           onTap: () {
@@ -72,8 +74,8 @@ class TadaScreen extends StatelessWidget {
                               model.onTadaEditClicked(item.id.toString());
                             }
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
                             child: Icon(Icons.edit),
                           ),
                         ),
@@ -83,7 +85,7 @@ class TadaScreen extends StatelessWidget {
                                 : item.status == "Rejected"
                                     ? Colors.red
                                     : Colors.green,
-                            shape: CircleBorder(),
+                            shape: const CircleBorder(),
                             child: Padding(
                               padding: const EdgeInsets.all(15),
                               child: Text(
@@ -92,7 +94,7 @@ class TadaScreen extends StatelessWidget {
                                     : item.status == "Rejected"
                                         ? "R"
                                         : "A",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),

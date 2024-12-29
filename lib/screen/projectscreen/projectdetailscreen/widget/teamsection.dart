@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
 
 class TeamSection extends StatelessWidget {
+  const TeamSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ProjectDetailController model = Get.find();
@@ -20,21 +22,21 @@ class TeamSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 translate('project_detail_screen.team_leads'),
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 translate('project_detail_screen.view_all'),
-                style: TextStyle(
+                style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.white,
                     fontSize: 12,
@@ -42,7 +44,7 @@ class TeamSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(

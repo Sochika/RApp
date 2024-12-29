@@ -8,6 +8,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class LoanListScreen extends StatelessWidget {
+  const LoanListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,10 +23,10 @@ class LoanListScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Get.to(CreateLoanScreen());
+              Get.to(const CreateLoanScreen());
             },
-            child: Icon(Icons.add),
-            backgroundColor: Colors.blue),
+            backgroundColor: Colors.blue,
+            child: const Icon(Icons.add)),
         body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -32,9 +34,9 @@ class LoanListScreen extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
@@ -42,32 +44,32 @@ class LoanListScreen extends StatelessWidget {
                               bottomRight: Radius.circular(10))),
                       tileColor: Colors.white12,
                       onTap: () {
-                        Get.to(LoanDetailScreen());
+                        Get.to(const LoanDetailScreen());
                       },
                       textColor: Colors.white,
                       iconColor: Colors.white,
-                      title: Text(
+                      title: const Text(
                         "10000",
                         style: TextStyle(fontSize: 18),
                       ),
-                      subtitle: Text(
+                      subtitle: const Text(
                         "24 June 2024",
                         style: TextStyle(color: Colors.grey),
                       ),
                       trailing: GestureDetector(
                         onTap: () {
                           if("pending" == "pending"){
-                            Get.to(EditLoanScreen());
+                            Get.to(const EditLoanScreen());
                           }else{
                             showToast("Accepted/Rejected Loan can't be edited");
                           }
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Icon(Icons.edit),
                         ),
                       ),
-                      leading: Card(
+                      leading: const Card(
                           color: "pending" == "pending"
                               ? Colors.orange
                               : "pending" == "rejected"
@@ -75,7 +77,7 @@ class LoanListScreen extends StatelessWidget {
                                   : Colors.green,
                           shape: CircleBorder(),
                           child: Padding(
-                            padding: const EdgeInsets.all(15),
+                            padding: EdgeInsets.all(15),
                             child: Text(
                               "pending" == "pending"
                                   ? "P"

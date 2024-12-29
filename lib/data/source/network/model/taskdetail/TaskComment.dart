@@ -33,16 +33,14 @@ class TaskComment {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['avatar'] = this.avatar;
-    data['created_at'] = this.created_at;
-    data['created_by_id'] = this.created_by_id;
-    data['created_by_name'] = this.created_by_name;
-    data['description'] = this.description;
-    data['id'] = this.id;
-    if (this.mentioned != null) {
-      data['mentioned'] = this.mentioned.map((v) => v.toJson()).toList();
-    }
-    return data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['avatar'] = avatar;
+    data['created_at'] = created_at;
+    data['created_by_id'] = created_by_id;
+    data['created_by_name'] = created_by_name;
+    data['description'] = description;
+    data['id'] = id;
+    data['mentioned'] = mentioned.map((v) => v.toJson()).toList();
+      return data;
   }
 }

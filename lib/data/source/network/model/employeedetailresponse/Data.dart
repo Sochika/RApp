@@ -54,20 +54,20 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['address'] = this.address;
-    data['avatar'] = this.avatar;
-    data['branch'] = this.branch;
-    data['department'] = this.department;
-    data['dob'] = this.dob;
-    data['employment_type'] = this.employment_type;
-    data['gender'] = this.gender;
-    data['joining_date'] = this.joining_date;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['post'] = this.post;
-    data['user_type'] = this.user_type;
-    data['username'] = this.username;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['address'] = address;
+    data['avatar'] = avatar;
+    data['branch'] = branch;
+    data['department'] = department;
+    data['dob'] = dob;
+    data['employment_type'] = employment_type;
+    data['gender'] = gender;
+    data['joining_date'] = joining_date;
+    data['name'] = name;
+    data['phone'] = phone;
+    data['post'] = post;
+    data['user_type'] = user_type;
+    data['username'] = username;
     return data;
   }
 }

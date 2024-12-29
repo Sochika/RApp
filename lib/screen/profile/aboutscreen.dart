@@ -11,7 +11,7 @@ class AboutScreen extends StatelessWidget {
 
   final String title;
 
-  AboutScreen(this.title, {Key? key}) : super(key: key);
+  const AboutScreen(this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class AboutScreen extends StatelessWidget {
 class About extends StatefulWidget {
   final String title;
 
-  About(this.title, {Key? key}) : super(key: key);
+  const About(this.title, {super.key});
 
   @override
   State<StatefulWidget> createState() => AboutScreenState();
@@ -81,7 +81,7 @@ class AboutScreenState extends State<About> {
           body: SafeArea(
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Visibility(
                   visible: isLoading ? false : true,
                   child: Html(

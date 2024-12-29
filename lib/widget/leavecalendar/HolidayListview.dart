@@ -1,12 +1,12 @@
 import 'package:radius/provider/leavecalendarprovider.dart';
 import 'package:radius/widget/holiday/holidaycard.dart';
-import 'package:radius/widget/holiday/holidaycardview.dart';
-import 'package:radius/widget/leavecalendar/leavelistcardview.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HolidayListView extends StatelessWidget {
+  const HolidayListView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final holiday = Provider.of<LeaveCalendarProvider>(context).employeeHoliday;
@@ -21,6 +21,6 @@ class HolidayListView extends StatelessWidget {
               desc: holiday.description,
               isPublicHoliday: holiday.isPublicHoliday),
         )
-        : SizedBox.shrink();
+        : const SizedBox.shrink();
   }
 }

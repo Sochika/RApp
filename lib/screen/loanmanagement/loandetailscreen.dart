@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class LoanDetailScreen extends StatelessWidget {
+  const LoanDetailScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +18,7 @@ class LoanDetailScreen extends StatelessWidget {
               title: Text(translate('loan_detail_screen.loan_detail')),
             ),
             bottomNavigationBar: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 height: 50,
                 child: Row(
                   children: [
@@ -27,8 +29,8 @@ class LoanDetailScreen extends StatelessWidget {
                           : "pending" == "rejected"
                               ? Colors.red.shade500
                               : Colors.green.shade500,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text("Pending",
                             style: TextStyle(
                               color: Colors.white,
@@ -37,12 +39,12 @@ class LoanDetailScreen extends StatelessWidget {
                             )),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       "${translate('edit_loan_screen.total')} ",
-                      style: TextStyle(color: Colors.grey, fontSize: 18),
+                      style: const TextStyle(color: Colors.grey, fontSize: 18),
                     ),
-                    Text("Rs " + "50000",
+                    const Text("Rs " "50000",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -59,92 +61,92 @@ class LoanDetailScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       alignment: Alignment.centerRight,
-                      child: Text(
+                      child: const Text(
                         "24 June 2024",
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       translate('edit_loan_screen.requested_amount'),
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "800000",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       translate('edit_loan_screen.granted_amount'),
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "55000",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       translate('edit_loan_screen.interest_rate'),
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "10%",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       translate('edit_loan_screen.installment_period'),
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "12 months",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       translate('edit_loan_screen.is_settled'),
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "No",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       translate('edit_loan_screen.loan_detail'),
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales ipsum faucibus imperdiet sodales. Praesent aliquet, magna sed ullamcorper finibus.",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       translate('edit_loan_screen.verified_by'),
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: const TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "Loard Benter",
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       "translate('edit_loan_screen.remarks')",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     ),
-                    Text(
+                    const Text(
                       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales ipsum faucibus imperdiet sodales. Praesent aliquet, magna sed ullamcorper finibus.",
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     ),

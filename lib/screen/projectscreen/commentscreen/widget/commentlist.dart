@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:html/parser.dart';
 
 class CommentList extends StatelessWidget {
+  const CommentList({super.key});
+
   @override
   Widget build(BuildContext context) {
     final CommentScreenController model = Get.find();
@@ -21,10 +23,10 @@ class CommentList extends StatelessWidget {
         itemBuilder: (context, index) {
           Comment comment = model.commentList[index];
           return Card(
-            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             elevation: 0,
             color: Colors.white12,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20))),
@@ -42,7 +44,7 @@ class CommentList extends StatelessWidget {
                         height: 40,
                         fit: BoxFit.cover,
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
@@ -56,20 +58,20 @@ class CommentList extends StatelessWidget {
                           children: [
                             Text(
                               comment.name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(comment.createdAt,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white54, fontSize: 12)),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text.rich(TextSpan(children: [
@@ -80,15 +82,15 @@ class CommentList extends StatelessWidget {
                               elevation: 0,
                               child: InkWell(
                                 onTap: () {
-                                  Get.to(EmployeeDetailScreen(),
+                                  Get.to(const EmployeeDetailScreen(),
                                       arguments: {"employeeId": mention.userId.toString()});
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 5, vertical: 3),
                                   child: Text(
-                                    "@" + mention.name,
-                                    style: TextStyle(color: Colors.white),
+                                    "@${mention.name}",
+                                    style: const TextStyle(color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -102,16 +104,16 @@ class CommentList extends StatelessWidget {
                               padding: const EdgeInsets.all(2),
                               child: Text(
                                 parse(comment.description).body!.text,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                           ))
                         ])),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
                           alignment: Alignment.centerRight,
                           width: double.infinity,
                           child: Row(
@@ -126,14 +128,14 @@ class CommentList extends StatelessWidget {
                                       },
                                       child: Text(
                                         translate('comment_list_screen.delete'),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     )
-                                  : SizedBox.shrink(),
-                              SizedBox(
+                                  : const SizedBox.shrink(),
+                              const SizedBox(
                                 width: 10,
                               ),
                               GestureDetector(
@@ -146,7 +148,7 @@ class CommentList extends StatelessWidget {
                                             comment.id.toString()
                                         ? translate('comment_list_screen.reply')
                                         : translate('comment_list_screen.cancel_reply'),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold),
@@ -156,12 +158,12 @@ class CommentList extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         ListView.builder(
                           itemCount: comment.replies.length,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           primary: false,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
@@ -185,7 +187,7 @@ class CommentList extends StatelessWidget {
                                           height: 30,
                                           fit: BoxFit.cover,
                                         )),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Expanded(
@@ -203,22 +205,22 @@ class CommentList extends StatelessWidget {
                                             children: [
                                               Text(
                                                 reply.name,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 15,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Text(reply.createdAt,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Colors.white54,
                                                       fontSize: 12)),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Text.rich(TextSpan(children: [
@@ -234,8 +236,8 @@ class CommentList extends StatelessWidget {
                                                       horizontal: 5,
                                                       vertical: 3),
                                                   child: Text(
-                                                    "@" + mention.name,
-                                                    style: TextStyle(
+                                                    "@${mention.name}",
+                                                    style: const TextStyle(
                                                         color: Colors.white),
                                                   ),
                                                 ),
@@ -250,14 +252,14 @@ class CommentList extends StatelessWidget {
                                                     const EdgeInsets.all(2),
                                                 child: Text(
                                                   reply.description,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Colors.white),
                                                 ),
                                               ),
                                             ))
                                           ])),
                                           Container(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 10),
                                             alignment: Alignment.centerRight,
                                             width: double.infinity,
@@ -276,7 +278,7 @@ class CommentList extends StatelessWidget {
                                                         },
                                                         child: Text(
                                                           translate('comment_list_screen.delete'),
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               color:
                                                                   Colors.white,
                                                               fontSize: 12,
@@ -285,7 +287,7 @@ class CommentList extends StatelessWidget {
                                                                       .bold),
                                                         ),
                                                       )
-                                                    : SizedBox.shrink(),
+                                                    : const SizedBox.shrink(),
                                               ],
                                             ),
                                           )

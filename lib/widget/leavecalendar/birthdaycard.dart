@@ -1,7 +1,6 @@
 import 'package:radius/widget/buttonborder.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
-import 'package:text_sizer_plus/text_sizer_plus.dart';
 
 class BirthdayCard extends StatelessWidget {
   final int id;
@@ -9,7 +8,7 @@ class BirthdayCard extends StatelessWidget {
   final String post;
   final String image;
 
-  BirthdayCard({
+  const BirthdayCard({super.key, 
     required this.id,
     required this.name,
     required this.post,
@@ -41,16 +40,16 @@ class BirthdayCard extends StatelessWidget {
                     Text(
                       softWrap: true,
                       name,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
                       overflow: TextOverflow.fade,
                       softWrap: true,
                       parse(post).body!.text,
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ],
                 ),

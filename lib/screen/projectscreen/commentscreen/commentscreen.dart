@@ -11,10 +11,12 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class CommentScreen extends StatelessWidget {
+  const CommentScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    GlobalKey<TextFieldAutoCompleteState<String>> _textFieldAutoCompleteKey =
-        new GlobalKey();
+    GlobalKey<TextFieldAutoCompleteState<String>> textFieldAutoCompleteKey =
+        GlobalKey();
     final model = Get.put(CommentScreenController());
     List<Member> value = Get.arguments['members'];
     return Container(
@@ -39,20 +41,20 @@ class CommentScreen extends StatelessWidget {
                 Positioned(
                     top: 0, left: 10, right: 10, bottom: 90, child: Column(
                       children: [
-                        Expanded(child: CommentList()),
+                        const Expanded(child: CommentList()),
                         GestureDetector(
                           onTap: () {
                             model.getComments();
                           },
                           child: Obx(() => model.commentList.isNotEmpty?Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(translate('comment_list_screen.load_more_comments'),style: TextStyle(color: Colors.white),),
-                            ):SizedBox.shrink(),
+                              child: Text(translate('comment_list_screen.load_more_comments'),style: const TextStyle(color: Colors.white),),
+                            ):const SizedBox.shrink(),
                           ),
                         )
                       ],
                     )),
-                Positioned(
+                const Positioned(
                     left: 0,
                     right: 0,
                     bottom: 90,
@@ -68,7 +70,7 @@ class CommentScreen extends StatelessWidget {
                     child: Container(
                       decoration: RadialDecoration(),
                       height: 100,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
                           Expanded(
@@ -93,17 +95,17 @@ class CommentScreen extends StatelessWidget {
                                                   children: [
                                                     Text(
                                                       member.name,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: Colors.white),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 5,
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
                                                         model.removeMember(member);
                                                       },
-                                                      child: Icon(
+                                                      child: const Icon(
                                                         Icons.close,
                                                         size: 15,
                                                         color: Colors.white,
@@ -126,8 +128,8 @@ class CommentScreen extends StatelessWidget {
                                           isScrollControlled: false,
                                           ignoreSafeArea: true);
                                     },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
                                           horizontal: 8.0),
                                       child: Icon(
                                         Icons.add,
@@ -159,7 +161,7 @@ class CommentScreen extends StatelessWidget {
                                 controller: model.commentController,
                                 maxLines: 1,
                                 keyboardType: TextInputType.multiline,
-                                style: TextStyle(color: Colors.white, fontSize: 15),
+                                style: const TextStyle(color: Colors.white, fontSize: 15),
                                 validator: (value) {
                                   return null;
                                 },
@@ -167,13 +169,13 @@ class CommentScreen extends StatelessWidget {
                                 decoration: InputDecoration(
                                     hintText: translate('comment_list_screen.write_your_comment'),
                                     hintStyle:
-                                        TextStyle(color: Colors.grey, fontSize: 15),
+                                        const TextStyle(color: Colors.grey, fontSize: 15),
                                     border: OutlineInputBorder(
                                         borderSide: BorderSide.none,
                                         borderRadius: BorderRadius.circular(10.0)),
                                     contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    labelStyle: TextStyle(color: Colors.white),
+                                        const EdgeInsets.symmetric(horizontal: 10),
+                                    labelStyle: const TextStyle(color: Colors.white),
                                     filled: true,
                                     fillColor: Colors.transparent),
                               )),
@@ -181,7 +183,7 @@ class CommentScreen extends StatelessWidget {
                                 onTap: () {
                                   model.saveComments();
                                 },
-                                child: Icon(
+                                child: const Icon(
                                   Icons.send,
                                   color: Colors.white,
                                 ),

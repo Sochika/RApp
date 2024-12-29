@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LeaveListView extends StatelessWidget {
+  const LeaveListView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final leavesList =
         Provider.of<LeaveCalendarProvider>(context).employeeLeaveByDayList;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       width: double.infinity,
       child: ListView.builder(
           primary: false,
           shrinkWrap: true,
           itemCount: leavesList.length,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {

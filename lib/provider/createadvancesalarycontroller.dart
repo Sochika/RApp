@@ -40,8 +40,4 @@ class CreateAdvanceSalaryController extends GetxController {
     return "loaded";
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 }

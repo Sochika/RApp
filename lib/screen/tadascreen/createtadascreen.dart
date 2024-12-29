@@ -5,6 +5,8 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 
 class CreateTadaScreen extends StatelessWidget {
+  const CreateTadaScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final model = Get.put(CreateTadaController());
@@ -18,10 +20,10 @@ class CreateTadaScreen extends StatelessWidget {
         ),
         bottomNavigationBar: SafeArea(
           child: Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(0),
@@ -47,7 +49,7 @@ class CreateTadaScreen extends StatelessWidget {
                   TextFormField(
                     controller: model.titleController,
                     keyboardType: TextInputType.name,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Field is required";
@@ -57,29 +59,29 @@ class CreateTadaScreen extends StatelessWidget {
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: translate('create_tada_screen.title'),
-                      hintStyle: TextStyle(color: Colors.white70),
-                      labelStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white70),
+                      labelStyle: const TextStyle(color: Colors.white),
                       fillColor: Colors.white24,
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedErrorBorder: OutlineInputBorder(
+                      focusedErrorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      errorBorder: OutlineInputBorder(
+                      errorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
@@ -87,14 +89,14 @@ class CreateTadaScreen extends StatelessWidget {
                               bottomRight: Radius.circular(10))),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: model.descriptionController,
                     maxLines: 5,
                     keyboardType: TextInputType.name,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Field is required";
@@ -104,29 +106,29 @@ class CreateTadaScreen extends StatelessWidget {
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: translate('create_tada_screen.description'),
-                      hintStyle: TextStyle(color: Colors.white70),
-                      labelStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white70),
+                      labelStyle: const TextStyle(color: Colors.white),
                       fillColor: Colors.white24,
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedErrorBorder: OutlineInputBorder(
+                      focusedErrorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      errorBorder: OutlineInputBorder(
+                      errorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
@@ -134,13 +136,13 @@ class CreateTadaScreen extends StatelessWidget {
                               bottomRight: Radius.circular(10))),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: model.expensesController,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Field is required";
@@ -150,29 +152,29 @@ class CreateTadaScreen extends StatelessWidget {
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       hintText: translate('create_tada_screen.total_expenses'),
-                      hintStyle: TextStyle(color: Colors.white70),
-                      labelStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white70),
+                      labelStyle: const TextStyle(color: Colors.white),
                       fillColor: Colors.white24,
                       filled: true,
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      focusedErrorBorder: OutlineInputBorder(
+                      focusedErrorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10))),
-                      errorBorder: OutlineInputBorder(
+                      errorBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(0),
@@ -180,28 +182,28 @@ class CreateTadaScreen extends StatelessWidget {
                               bottomRight: Radius.circular(10))),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       translate('create_tada_screen.add_attachment'),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   GestureDetector(
                     onTap: () {
                       model.onFileClicked();
                     },
-                    child: Card(
+                    child: const Card(
                         shape: CircleBorder(),
                         color: Colors.white54,
                         child: Padding(
-                          padding: const EdgeInsets.all(15),
+                          padding: EdgeInsets.all(15),
                           child: Icon(
                             Icons.add,
                             color: Colors.white,
@@ -218,13 +220,13 @@ class CreateTadaScreen extends StatelessWidget {
                         return ListTile(
                           title: Text(
                             file.name,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                           trailing: GestureDetector(
                               onTap: () {
                                 model.removeItem(index);
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.close,
                                 color: Colors.white,
                               )),

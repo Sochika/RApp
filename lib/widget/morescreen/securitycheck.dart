@@ -7,7 +7,7 @@ class SecurityCheck extends StatefulWidget {
   final IconData icon;
   final String route;
 
-  SecurityCheck(this.name, this.icon, this.route);
+  const SecurityCheck(this.name, this.icon, this.route, {super.key});
 
   @override
   State<StatefulWidget> createState() => SecurityCheckState();
@@ -23,7 +23,7 @@ class SecurityCheckState extends State<SecurityCheck> {
       builder: (BuildContext context,AsyncSnapshot<bool> snapshot) {
         if(snapshot.hasData){
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
             child: Column(
               children: [
                 ListTile(
@@ -35,7 +35,7 @@ class SecurityCheckState extends State<SecurityCheck> {
                   ),
                   title: Text(
                     widget.name,
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                   trailing: Switch(
                     value: snapshot.data!,
@@ -57,7 +57,7 @@ class SecurityCheckState extends State<SecurityCheck> {
             ),
           );
         }else{
-          return SizedBox(height: 0,);
+          return const SizedBox(height: 0,);
         }
 
       },

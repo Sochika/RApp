@@ -36,22 +36,22 @@ class TadaListController extends GetxController {
       return "Loaded";
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
   void onTadaClicked(String id) {
-    Get.to(TadaDetailScreen(),
+    Get.to(const TadaDetailScreen(),
         transition: Transition.cupertino, arguments: {"tadaId": id});
   }
 
   void onTadaEditClicked(String id) {
-    Get.to(EditTadaScreen(),
+    Get.to(const EditTadaScreen(),
         transition: Transition.cupertino, arguments: {"tadaId": id});
   }
 
   void onTadaCreateClicked() {
-    Get.to(CreateTadaScreen(), transition: Transition.cupertino);
+    Get.to(const CreateTadaScreen(), transition: Transition.cupertino);
   }
 
   @override

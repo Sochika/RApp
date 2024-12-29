@@ -10,14 +10,18 @@ import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
+  const ChangePasswordScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (_) => ChangePasswordProvider(), child: ChangePassword());
+        create: (_) => ChangePasswordProvider(), child: const ChangePassword());
   }
 }
 
 class ChangePassword extends StatefulWidget {
+  const ChangePassword({super.key});
+
   @override
   State<StatefulWidget> createState() => ChangePasswordState();
 }
@@ -120,26 +124,26 @@ class ChangePasswordState extends State<ChangePassword> {
               style: TextButton.styleFrom(
                   backgroundColor: HexColor("#036eb7"),
                   shape: ButtonBorder(),
-                  fixedSize: Size(double.maxFinite, 55)),
+                  fixedSize: const Size(double.maxFinite, 55)),
               onPressed: () {
                 changePassword();
               },
               child: Text(
                 translate('change_password_screen.change_password'),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               )),
         ),
         body: Form(
           key: _form,
           child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 TextFormField(
                   obscureText: _obscureText,
                   controller: _oldPasswordController,
                   keyboardType: TextInputType.visiblePassword,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) {
                     if (!validateField(value!)) {
                       return "Empty Field";
@@ -149,18 +153,18 @@ class ChangePasswordState extends State<ChangePassword> {
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
                     hintText: translate('change_password_screen.old_password'),
-                    hintStyle: TextStyle(color: Colors.white70),
-                    prefixIcon: Icon(Icons.lock, color: Colors.white),
-                    labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.white70),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                    labelStyle: const TextStyle(color: Colors.white),
                     fillColor: Colors.white24,
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    focusedErrorBorder: OutlineInputBorder(
+                    focusedErrorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    errorBorder: OutlineInputBorder(
+                    errorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
                     suffixIcon: InkWell(
                       onTap: _toggle,
@@ -174,14 +178,14 @@ class ChangePasswordState extends State<ChangePassword> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   obscureText: _obscureText,
                   controller: _newPasswordController,
                   keyboardType: TextInputType.visiblePassword,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) {
                     if (!validateField(value!)) {
                       return "Empty Field";
@@ -196,18 +200,18 @@ class ChangePasswordState extends State<ChangePassword> {
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
                     hintText: translate('change_password_screen.new_password'),
-                    hintStyle: TextStyle(color: Colors.white70),
-                    prefixIcon: Icon(Icons.lock, color: Colors.white),
-                    labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.white70),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                    labelStyle: const TextStyle(color: Colors.white),
                     fillColor: Colors.white24,
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    focusedErrorBorder: OutlineInputBorder(
+                    focusedErrorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    errorBorder: OutlineInputBorder(
+                    errorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
                     suffixIcon: InkWell(
                       onTap: _toggle,
@@ -221,14 +225,14 @@ class ChangePasswordState extends State<ChangePassword> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   obscureText: _obscureText,
                   controller: _confirmPasswordController,
                   keyboardType: TextInputType.visiblePassword,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   validator: (value) {
                     if (!validateField(value!)) {
                       return "Empty Field";
@@ -244,18 +248,18 @@ class ChangePasswordState extends State<ChangePassword> {
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
                     hintText: translate('change_password_screen.confirm_password'),
-                    hintStyle: TextStyle(color: Colors.white70),
-                    prefixIcon: Icon(Icons.lock, color: Colors.white),
-                    labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.white70),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
+                    labelStyle: const TextStyle(color: Colors.white),
                     fillColor: Colors.white24,
                     filled: true,
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    focusedErrorBorder: OutlineInputBorder(
+                    focusedErrorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
-                    errorBorder: OutlineInputBorder(
+                    errorBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(0),bottomLeft: Radius.circular(0),bottomRight: Radius.circular(10))),
                     suffixIcon: InkWell(
                       onTap: _toggle,
@@ -269,7 +273,7 @@ class ChangePasswordState extends State<ChangePassword> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],
