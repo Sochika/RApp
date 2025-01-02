@@ -1,4 +1,6 @@
+import 'package:intl/intl.dart';
 import 'package:radius/data/source/datastore/preferences.dart';
+import 'package:radius/data/source/network/model/dashboard/Dashboardresponse.dart';
 import 'package:radius/data/source/network/model/login/User.dart';
 import 'package:radius/provider/dashboardprovider.dart';
 import 'package:radius/provider/prefprovider.dart';
@@ -38,6 +40,10 @@ class HomeScreenState extends State<HomeScreen> {
   QuickActions quickActions = const QuickActions();
   bool isEnabled = true;
   bool isLoading = false;
+  double? userLatitude;
+  double? userLongitude;
+  String? Beat;
+  int? beatNo;
 
   PersistentTabController controller;
 
@@ -47,6 +53,7 @@ class HomeScreenState extends State<HomeScreen> {
   void initState() {
     locationStatus();
     checkNotificationState();
+    loadDashboard();
 
     quickActions.initialize((type) async {
       if (type == "actionCheckIn") {
@@ -81,6 +88,7 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   void locationStatus() async {
+
     try {
       Preferences preferences = Preferences();
       final position = await LocationStatus()
@@ -206,15 +214,40 @@ class HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Future<Dashboardresponse> fetchDashboard() async {
+    return await Provider.of<DashboardProvider>(context, listen: false).getDashboard();
+  }
+
   Future<String> loadDashboard() async {
-    var fcm = await FirebaseMessaging.instance.getToken();
-    print(fcm);
+    // var fcm = await FirebaseMessaging.instance.getToken();
+    // print(fcm);
+    // print('jeloo1');
+
     try {
-      final dashboardResponse =
-          await Provider.of<DashboardProvider>(context, listen: false)
-              .getDashboard();
+      // final dashboardResponse =fetchDashboard();
+      // await Provider.of<DashboardProvider>(context, listen: false)
+      //     .getDashboard();
+      // print('jeloo2');
+      final dashboardResponse = await fetchDashboard();
+      // print('jeloo3 $dashboardResponse');
 
       final user = dashboardResponse.data.user;
+      userLatitude = dashboardResponse.data.userAttend.beatBranch.latitude != null
+          ? double.tryParse(dashboardResponse.data.userAttend.beatBranch.latitude)
+          : null;
+
+      userLongitude = dashboardResponse.data.userAttend.beatBranch.longitude != null
+          ? double.tryParse(dashboardResponse.data.userAttend.beatBranch.longitude)
+          : null;
+
+      print("Latitude: $userLatitude, Longitude: $userLongitude");
+
+      setState(() {
+        this.userLatitude = userLatitude;
+        this.userLongitude = userLongitude;
+        this.Beat = dashboardResponse.data.userAttend.beatBranch.name;
+        this.beatNo = dashboardResponse.data.shifts.length;
+      });
 
       Provider.of<PrefProvider>(context, listen: false).saveBasicUser(User(
           id: user.userId,
@@ -226,17 +259,32 @@ class HomeScreenState extends State<HomeScreen> {
           hireDate: user.staff.hire_date,
           dob: user.staff.dob));
 
-      Provider.of<PrefProvider>(context, listen: false)
-          .saveEngDateEnabled(dashboardResponse.data.dateInAd);
+      // Provider.of<PrefProvider>(context, listen: false)
+      //     .saveEngDateEnabled(dashboardResponse.data.dateInAd);
 
-      if (!Provider.of<DashboardProvider>(context, listen: false).isBirthdayWished) {
+      if (checkIfBirthday(dashboardResponse.data.user.staff.dob)) {
         showBirthdayWish();
       }
       return 'loaded';
     } catch (e) {
       print(e);
-      return 'loaded';
+      return 'error';
     }
+  }
+
+  bool checkIfBirthday(String dob) {
+    // try {
+      // Parse the dob string into a DateTime object
+    final DateTime dobDate = DateFormat('yyyy-MM-dd').parse(dob);
+
+      // Get today's date
+      final DateTime today = DateTime.now();
+
+      // Check if the day and month match
+      final bool isBirthday = (dobDate.day == today.day && dobDate.month == today.month);
+
+      return isBirthday;
+
   }
 
   void showBirthdayWish() {
@@ -288,11 +336,11 @@ class HomeScreenState extends State<HomeScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const HeaderProfile(),
-                  CheckAttendance(),
-                  OverviewDashboard(controller),
+                  CheckAttendance(latitude: userLatitude ?? 0.00, longitude: userLongitude ?? 0.00, Beat:  Beat ?? 'the designated area'),
+                  OverviewDashboard(controller, beatNo ?? 0),
                   const UpcomingHoliday(),
                   const RecentAward(),
-                  const WeeklyReportChart(),
+                  // const WeeklyReportChart(),
                   const MyTeam()
                 ],
               ),

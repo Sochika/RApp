@@ -120,103 +120,107 @@ class DashboardProvider with ChangeNotifier {
 
     final response = await http.get(uri, headers: headers);
     log(response.body.toString());
+
     final responseData = json.decode(response.body);
 
-    print('from dashCode$response' );
+    print('from dashCode${response.statusCode}' );
     if (response.statusCode == 200) {
+      // print('yess');
       final dashboardResponse = Dashboardresponse.fromJson(responseData);
+      // print('yess2');
+      print('res ${dashboardResponse.data.userAttend.beatBranch.latitude}');
 
-      department = dashboardResponse.data.shift.beatBranch.name;
-      branch = dashboardResponse.data.shift.beatBranch.area;
+      // department = dashboardResponse.data.shift.beatBranch.name;
+      // branch = dashboardResponse.data.shift.beatBranch.area;
 
-      if (dashboardResponse.data.user.staff.hire_date != "") {
-        final dob =
-        DateFormat("yyyy-MM-dd").parse(dashboardResponse.data.user.staff.hire_date);
-        final currentDate = DateTime.now();
-        final isBirthday =
-            dob.month == currentDate.month && currentDate.day == dob.day;
+      // if (dashboardResponse.data.user.staff.hire_date != "") {
+      //   final dob =
+      //   DateFormat("yyyy-MM-dd").parse(dashboardResponse.data.user.staff.hire_date);
+      //   final currentDate = DateTime.now();
+      //   final isBirthday =
+      //       dob.month == currentDate.month && currentDate.day == dob.day;
+      //
+      //   if (isBirthday) {
+      //     if (!await preferences.getBirthdayWished()) {
+      //       isBirthdayWished = false;
+      //       preferences.saveBirthdayWished(true);
+      //     } else {
+      //       isBirthdayWished = true;
+      //     }
+      //   } else {
+      //     preferences.saveBirthdayWished(false);
+      //     isBirthdayWished = true;
+      //   }
+      // }
 
-        if (isBirthday) {
-          if (!await preferences.getBirthdayWished()) {
-            isBirthdayWished = false;
-            preferences.saveBirthdayWished(true);
-          } else {
-            isBirthdayWished = true;
-          }
-        } else {
-          preferences.saveBirthdayWished(false);
-          isBirthdayWished = true;
-        }
-      }
-
-      updateAttendanceStatus(dashboardResponse.data.employeeTodayAttendance);
-      updateOverView(dashboardResponse.data.overview);
-
-      makeWeeklyReport(dashboardResponse.data.employeeWeeklyReport);
-      controlFeatures(dashboardResponse.data.features);
+      // updateAttendanceStatus(dashboardResponse.data.employeeTodayAttendance);
+      // updateOverView(dashboardResponse.data.overview);
+      //
+      // makeWeeklyReport(dashboardResponse.data.employeeWeeklyReport);
+      // controlFeatures(dashboardResponse.data.features);
       await preferences.saveUserDashboard(dashboardResponse.data.user);
 
-      employeeList = dashboardResponse.data.employee;
-      preferences.saveShowNfc(dashboardResponse.data.addNfc);
-      preferences.saveNote(dashboardResponse.data.attendance_note);
-      isNoteEnabled = await preferences.getNote();
+      // employeeList = dashboardResponse.data.employee;
+      // preferences.saveShowNfc(dashboardResponse.data.addNfc);
+      // preferences.saveNote(dashboardResponse.data.attendanceNote);
+      // isNoteEnabled = await preferences.getNote();
+      //
+      // final holidayResponse = dashboardResponse.data.holiday;
+      // final recentAwardResponse = dashboardResponse.data.recentAward;
 
-      final holidayResponse = dashboardResponse.data.holiday;
-      final recentAwardResponse = dashboardResponse.data.recentAward;
+      // if (holidayResponse != null) {
+      //   bool isAd = await preferences.getEnglishDate();
+      //   DateTime tempDate =
+      //   DateFormat("yyyy-MM-dd").parse(holidayResponse.eventDate);
+      //
+      //   NepaliDateTime nepaliDate = tempDate.toNepaliDateTime();
+      //   holiday = Holiday(
+      //       id: holidayResponse.id,
+      //       day: isAd
+      //           ? DateFormat('dd').format(tempDate)
+      //           : NepaliDateFormat('dd').format(nepaliDate),
+      //       month: isAd
+      //           ? DateFormat('MMM').format(tempDate)
+      //           : NepaliDateFormat('MMMM').format(nepaliDate),
+      //       title: holidayResponse.event,
+      //       description: holidayResponse.description,
+      //       dateTime: tempDate,
+      //       isPublicHoliday: holidayResponse.isPublicHoliday);
+      // }
 
-      if (holidayResponse != null) {
-        bool isAd = await preferences.getEnglishDate();
-        DateTime tempDate =
-        DateFormat("yyyy-MM-dd").parse(holidayResponse.eventDate);
+      // if (recentAwardResponse != null) {
+      //   award = Award(award_description: recentAwardResponse.award_description,
+      //       award_name: recentAwardResponse.award_name,
+      //       awarded_by: recentAwardResponse.awarded_by,
+      //       awarded_date: recentAwardResponse.awarded_date,
+      //       employee_name: recentAwardResponse.employee_name,
+      //       gift_description: recentAwardResponse.gift_description,
+      //       gift_item: recentAwardResponse.gift_item,
+      //       id: recentAwardResponse.id,
+      //       image: recentAwardResponse.image,
+      //       reward_code: recentAwardResponse.reward_code);
+      // }else{
+      //   award = null;
+      // }
 
-        NepaliDateTime nepaliDate = tempDate.toNepaliDateTime();
-        holiday = Holiday(
-            id: holidayResponse.id,
-            day: isAd
-                ? DateFormat('dd').format(tempDate)
-                : NepaliDateFormat('dd').format(nepaliDate),
-            month: isAd
-                ? DateFormat('MMM').format(tempDate)
-                : NepaliDateFormat('MMMM').format(nepaliDate),
-            title: holidayResponse.event,
-            description: holidayResponse.description,
-            dateTime: tempDate,
-            isPublicHoliday: holidayResponse.isPublicHoliday);
-      }
+      // DateTime startTime = DateFormat("hh:mm a")
+      //     .parse(dashboardResponse.data.userAttend.shiftStart);
+      // DateTime endTime = DateFormat("hh:mm a")
+      //     .parse(dashboardResponse.data.userAttend.shiftEnd);
 
-      if (recentAwardResponse != null) {
-        award = Award(award_description: recentAwardResponse.award_description,
-            award_name: recentAwardResponse.award_name,
-            awarded_by: recentAwardResponse.awarded_by,
-            awarded_date: recentAwardResponse.awarded_date,
-            employee_name: recentAwardResponse.employee_name,
-            gift_description: recentAwardResponse.gift_description,
-            gift_item: recentAwardResponse.gift_item,
-            id: recentAwardResponse.id,
-            image: recentAwardResponse.image,
-            reward_code: recentAwardResponse.reward_code);
-      }else{
-        award = null;
-      }
+      // AwesomeNotifications().cancelAllSchedules();
+      // for (var shift in dashboardResponse.data.shiftDates) {
+      //   scheduleNewNotification(
+      //       shift,
+      //       "Please check in on time ⏱️⌛️",
+      //       startTime.hour,
+      //       startTime.minute,
+      //       "Almost done with your shift 😄⌛️ Remember to checkout ⏱️",
+      //       endTime.hour,
+      //       endTime.minute);
+      // }
 
-      DateTime startTime = DateFormat("hh:mm a")
-          .parse(dashboardResponse.data.shift.shiftStart);
-      DateTime endTime = DateFormat("hh:mm a")
-          .parse(dashboardResponse.data.shift.shiftEnd);
-
-      AwesomeNotifications().cancelAllSchedules();
-      for (var shift in dashboardResponse.data.shift_dates) {
-        scheduleNewNotification(
-            shift,
-            "Please check in on time ⏱️⌛️",
-            startTime.hour,
-            startTime.minute,
-            "Almost done with your shift 😄⌛️ Remember to checkout ⏱️",
-            endTime.hour,
-            endTime.minute);
-      }
-
-      checkAD();
+      // checkAD();
       notifyListeners();
       return dashboardResponse;
     } else {

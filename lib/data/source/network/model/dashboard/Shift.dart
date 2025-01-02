@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'BeatBranch.dart';
 
 class Shift {
   Shift({
@@ -32,54 +32,54 @@ class Shift {
   }
 }
 
-class BeatBranch {
-  BeatBranch({
-    required this.beat_branch_id,
-    required this.name,
-    required this.area,
-    required this.latitude,
-    required this.longitude,
-  });
-
-  factory BeatBranch.fromJson(Map<String, dynamic> json) {
-    return BeatBranch(
-      beat_branch_id: json['beat_branch_id'] ?? '',
-      name: json['name'] ?? '',
-      area: json['area'] ?? '',
-      latitude: json['latitude'] ?? '',
-      longitude: json['longitude'] ?? '',
-    );
-  }
-
-  final Int beat_branch_id;
-  final String name;
-  final String area;
-  final String latitude;
-  final String longitude;
-
-  Map<String, dynamic> toJson() {
-    return {
-      'beat_branch_id' : beat_branch_id,
-      'name': name,
-      'area': area,
-      'latitude': latitude,
-      'longitude': longitude,
-    };
-  }
-}
-
-class ShiftList {
-  ShiftList({required this.shifts});
-
-  factory ShiftList.fromJson(List<dynamic> jsonList) {
-    return ShiftList(
-      shifts: jsonList.map((json) => Shift.fromJson(json)).toList(),
-    );
-  }
-
-  final List<Shift> shifts;
-
-  List<Map<String, dynamic>> toJson() {
-    return shifts.map((shift) => shift.toJson()).toList();
-  }
-}
+// class BeatBranch {
+//   BeatBranch({
+//     required this.beatBranchId,
+//     required this.name,
+//     required this.area,
+//     required this.latitude,
+//     required this.longitude,
+//   });
+//
+//   factory BeatBranch.fromJson(Map<String, dynamic> json) {
+//     return BeatBranch(
+//       beatBranchId: json['beat_branch_id'] ?? 0, // Default to 0 if not provided
+//       name: json['name'] ?? '',
+//       area: json['area'] ?? '',
+//       latitude: json['latitude'] ?? '',
+//       longitude: json['longitude'] ?? '',
+//     );
+//   }
+//
+//   final int beatBranchId; // Changed from `Int` to `int`
+//   final String name;
+//   final String area;
+//   final String latitude;
+//   final String longitude;
+//
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'beat_branch_id': beatBranchId,
+//       'name': name,
+//       'area': area,
+//       'latitude': latitude,
+//       'longitude': longitude,
+//     };
+//   }
+// }
+//
+// class ShiftList {
+//   ShiftList({required this.shifts});
+//
+//   factory ShiftList.fromJson(List<dynamic> jsonList) {
+//     return ShiftList(
+//       shifts: jsonList.map((json) => Shift.fromJson(json)).toList(),
+//     );
+//   }
+//
+//   final List<Shift> shifts;
+//
+//   List<Map<String, dynamic>> toJson() {
+//     return shifts.map((shift) => shift.toJson()).toList();
+//   }
+// }

@@ -18,15 +18,17 @@ class CheckAttendance extends StatefulWidget {
   final String formattedDate = DateFormat('EEEE, MMMM d, yyyy').format(DateTime.now());
   final String nepaliFormattedDate =
   NepaliDateFormat('EEE, MMMM d, yyyy').format(NepaliDateTime.now());
+  final double latitude;
+  final double longitude;
+  final String Beat;
 
-  CheckAttendance({super.key});
-
+  CheckAttendance({super.key, required this.latitude, required this.longitude, required this.Beat});
   @override
   State<StatefulWidget> createState() => _CheckAttendanceState();
 }
 
 class _CheckAttendanceState extends State<CheckAttendance> {
-  late String formattedDate;
+   String formattedDate = '';
 
   @override
   void didChangeDependencies() {
@@ -79,7 +81,9 @@ class _CheckAttendanceState extends State<CheckAttendance> {
       );
 
       // Debugging: Print the current position
-      print('Current Position: ${position.latitude}, ${position.longitude}');
+      // print('Current Position: ${position.latitude}, ${position.longitude}');
+      // print('work $targetLatitude, $targetLongitude');
+      print(position);
 
       // Check if within threshold distance
       return distance <= thresholdDistance ? "on" : "off";
@@ -191,30 +195,32 @@ class _CheckAttendanceState extends State<CheckAttendance> {
     final buttonColor = HexColor(isCheckedIn ? "#e82e5f" : "#3b98cc").withOpacity(.5);
 
     return FutureBuilder<String>(
-      future: checkLocation(37.4219983, -122.084, thresholdDistance: 95),
+      future: checkLocation(widget.latitude, widget.longitude, thresholdDistance: 95),
+      // future: checkLocation(37.4219983, -122.084, thresholdDistance: 9s5),
       builder: (context, snapshot) {
         // if (snapshot.connectionState == ConnectionState.waiting) {
-        //   return const Center(child: CircularProgressIndicator()); // Loading indicator
+        //   return CircularProgressIndicator();
         // }
+
         if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}')); // Error message
+          return Text('Error: ${snapshot.error}');
         }
 
-        // Determine animation asset based on location status
         final animationAsset = snapshot.data == "on"
             ? 'assets/raw/fingerprint.json'
             : 'assets/raw/nfc.json';
 
-        print('hello ${snapshot.data}');
-        // Build the button with the determined animation
+        print('SnapShot ${snapshot.data}');
         return ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(90)),
+          borderRadius: BorderRadius.circular(90),
           child: Container(
             padding: const EdgeInsets.all(20),
             color: buttonColor,
             child: IconButton(
               iconSize: 70,
-              onPressed: () => _showAttendanceBottomSheet(context),
+              onPressed: snapshot.data == "on"
+                  ? () => _showAttendanceBottomSheet(context)
+                  : () => _showAlertDialog(context, "You are outside ${widget.Beat}."),
               icon: Lottie.asset(
                 animationAsset,
                 width: 60,
@@ -224,9 +230,11 @@ class _CheckAttendanceState extends State<CheckAttendance> {
             ),
           ),
         );
+
       },
     );
   }
+
 
 
   void _showAttendanceBottomSheet(BuildContext context) {
@@ -239,7 +247,28 @@ class _CheckAttendanceState extends State<CheckAttendance> {
   }
 
 
-  @override
+   void _showAlertDialog(BuildContext context, String message) {
+     showDialog(
+       context: context,
+       builder: (context) {
+         return AlertDialog(
+           backgroundColor: Theme.of(context).scaffoldBackgroundColor,  // Using the app's background color
+           title: const Text("Location Alert"),
+           content: Text(message),
+           actions: [
+             TextButton(
+               onPressed: () => Navigator.of(context).pop(),
+               child: const Text("OK"),
+             ),
+           ],
+         );
+       },
+     );
+   }
+
+
+
+   @override
   Widget build(BuildContext context) {
     final attendanceList = context.watch<DashboardProvider>().attendanceList;
     final attendanceType = context.watch<PrefProvider>().attendanceType;

@@ -21,17 +21,20 @@ class DashboardScreen extends StatefulWidget {
 
 class DashboardScreenState extends State<DashboardScreen> {
   List<Widget> _buildScreens(PersistentTabController controller) {
+
     return [
       HomeScreen(controller),
-      const LeaveScreen(),
+      // const LeaveScreen(),
       const AttendanceScreen(),
       const MoreScreen(),
     ];
   }
 
+
   @override
   void initState() {
     super.initState();
+
   }
 
   ItemConfig getItemConfig(Icon icon, String title) {

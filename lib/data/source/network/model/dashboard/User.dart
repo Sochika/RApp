@@ -12,7 +12,8 @@ class User {
   // Factory constructor to create a User instance from JSON
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      userId: json['user_id'] ?? 0,  // Default to 0 if user_id is not present
+        userId: int.tryParse(json['user_id']?.toString() ?? '0') ?? 0,
+      // Default to 0 if user_id is not present
       logoutStatus: json['logout_status'] ?? false,  // Default to false if logout_status is not present
       staff: Staff.fromJson(json['staff'] ?? {}),  // Create Staff instance from nested JSON
     );
@@ -70,13 +71,14 @@ class Staff {
       'staff_no': staff_no,
       'hire_date': hire_date,
       'date_of_birth': dob,
+      // 'avatar': avatar,
     };
   }
 
   // Method to return the avatar URL or default image if avatar is not set
   String getAvatarUrl() {
     if (avatar.isNotEmpty) {
-      return 'path/to/avatar/$avatar';  // Replace with actual path or URL
+      return avatar;  // Replace with actual path or URL
     }
     return 'assets/images/img.png';  // Default image if avatar is missing
   }

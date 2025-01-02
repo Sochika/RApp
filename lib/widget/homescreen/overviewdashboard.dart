@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 
 class OverviewDashboard extends StatelessWidget {
   PersistentTabController controller;
-
-  OverviewDashboard(this.controller, {super.key});
+  int beatNo;
+  OverviewDashboard(this.controller, this.beatNo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class OverviewDashboard extends StatelessWidget {
             children: [
               CardOverView(
                 type: "Beats",
-                value: overview['total_project']!,
+                value: '$beatNo',
                 icon: Icons.work_history_outlined,
                 callback: () {
                   pushScreen(context,

@@ -220,6 +220,7 @@ class MyApp extends StatelessWidget {
     var localizationDelegate = LocalizedApp.of(context).delegate;
     final storage = GetStorage();
 
+
     return OverlaySupport.global(
       child: MultiProvider(
         providers: [
