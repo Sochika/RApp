@@ -1,3 +1,5 @@
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:radius/data/source/datastore/preferences.dart';
 import 'package:radius/data/source/network/model/dashboard/Dashboardresponse.dart';
@@ -42,6 +44,10 @@ class HomeScreenState extends State<HomeScreen> {
   bool isLoading = false;
   double? userLatitude;
   double? userLongitude;
+  // double? hereLatitude = 0.0;
+  // double? hereLongitude = 0.0;
+  Position? position;
+  String? address ='No address found';
   String? Beat;
   int? beatNo;
 
@@ -54,6 +60,7 @@ class HomeScreenState extends State<HomeScreen> {
     locationStatus();
     checkNotificationState();
     loadDashboard();
+    getPositionStream();
 
     quickActions.initialize((type) async {
       if (type == "actionCheckIn") {
@@ -328,6 +335,7 @@ class HomeScreenState extends State<HomeScreen> {
             backgroundColor: Colors.blueGrey,
             edgeOffset: 50,
             onRefresh: () {
+              getPositionStream();
               return loadDashboard();
             },
             child: SafeArea(
@@ -336,7 +344,25 @@ class HomeScreenState extends State<HomeScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const HeaderProfile(),
-                  CheckAttendance(latitude: userLatitude ?? 0.00, longitude: userLongitude ?? 0.00, Beat:  Beat ?? 'the designated area'),
+                  CheckAttendance(latitude: userLatitude ?? 0.00, longitude: userLongitude ?? 0.00, Beat:  Beat ?? 'the designated area', position: position ?? Position(latitude: 0.0, longitude: 0.0, timestamp: DateTime(11,1,1), accuracy: 0.0, altitude: 0.0, altitudeAccuracy: 0.0, heading: 0.0, headingAccuracy: 0.0, speed: 0.0, speedAccuracy: 0.0),),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),  // You can adjust the padding as per your requirement
+                    child: Text(
+                      'Latitude: ${position?.latitude ?? 'Loading...'}, Longitude: ${position?.longitude ?? 'Loading...'}',
+                      style: const TextStyle(color: Colors.white),
+                      selectionColor: Colors.white,
+                    ),
+                  ),
+
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text('Location: ${address ?? 'No address found'}',
+                      style: const TextStyle(color: Colors.white),
+                      selectionColor: Colors.white,
+                    ),
+                  ),
+
                   OverviewDashboard(controller, beatNo ?? 0),
                   const UpcomingHoliday(),
                   const RecentAward(),
@@ -350,4 +376,90 @@ class HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+
+
+
+  // Future<Position?> getCurrentLocation() async {
+  //   try {
+  //     LocationPermission permission = await Geolocator.checkPermission();
+  //
+  //     if (permission == LocationPermission.denied) {
+  //       permission = await Geolocator.requestPermission();
+  //       if (permission == LocationPermission.denied) {
+  //         print("Location permission denied.");
+  //         return null;
+  //       }
+  //     }
+  //
+  //     if (permission == LocationPermission.deniedForever) {
+  //       print("Location permission is permanently denied.");
+  //       return null;
+  //     }
+  //
+  //     Position positiona = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  //
+  //     // Reverse geocode to get the address
+  //     List<Placemark> placemarks = await placemarkFromCoordinates(positiona.latitude, positiona.longitude);
+  //     if (placemarks.isNotEmpty) {
+  //       Placemark place = placemarks.first;
+  //       setState(() {
+  //         position = positiona;
+  //         address = "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+  //       });
+  //     } else {
+  //       setState(() {
+  //         address = 'No address found';
+  //       });
+  //     }
+  //
+  //     return position;
+  //   } catch (e) {
+  //     print("Error occurred while getting location: ${e.toString()}");
+  //     return null;
+  //   }
+  // }
+
+  Future<void> getPositionStream() async {
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
+
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          print("Location permission denied.");
+          return;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        print("Location permission is permanently denied.");
+        return;
+      }
+
+      // Start listening to location updates using getPositionStream
+      Geolocator.getPositionStream(
+        // desiredAccuracy: LocationAccuracy.high,
+        // distanceFilter: 10, // Minimum distance (in meters) to trigger updates
+      ).listen((Position positiona) async {
+        // Reverse geocode to get the address for the new position
+        List<Placemark> placemarks = await placemarkFromCoordinates(positiona.latitude, positiona.longitude);
+        if (placemarks.isNotEmpty) {
+          Placemark place = placemarks.first;
+          setState(() {
+            position = positiona;  // Update the position with the latest location
+            address = "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+          });
+        } else {
+          setState(() {
+            address = 'No address found';
+          });
+        }
+      });
+    } catch (e) {
+      print("Error occurred while getting location: ${e.toString()}");
+    }
+  }
+
+
 }

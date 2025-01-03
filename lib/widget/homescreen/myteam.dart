@@ -107,7 +107,7 @@ Widget teamCard(Employee teamList) {
               height: 8,
             ),
             Text(
-              teamList.name,
+              teamList.first_name,
               maxLines: 1,
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.white),

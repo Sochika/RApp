@@ -128,9 +128,9 @@ class TeamSheetState extends State<TeamSheet> {
                                   provider.selectedBranch =
                                       (value as Branch).id;
                                   provider.setDepartment((value).department);
-                                  provider.selectedDepartment =
-                                      (value).department.first.id;
-                                  provider.makeTeamList();
+                                  // provider.selectedDepartment =
+                                  //     (value).department.first.id;
+                                  // provider.makeTeamList();
                                 });
                               },
                               iconStyleData: const IconStyleData(
@@ -199,9 +199,9 @@ class TeamSheetState extends State<TeamSheet> {
                                   .first,
                               onChanged: (value) {
                                 setState(() {
-                                  provider.selectedDepartment =
-                                      (value as Department).id;
-                                  provider.makeTeamList();
+                                  // provider.selectedDepartment =
+                                  //     (value as Department).id;
+                                  // provider.makeTeamList();
                                 });
                               },
                               iconStyleData: const IconStyleData(
@@ -287,7 +287,7 @@ class TeamSheetState extends State<TeamSheet> {
                     shape: BoxShape.circle,
                     border: Border.all(
                         color:
-                            teamList.active == "1" ? Colors.green : Colors.grey,
+                            teamList.first_name != "1" ? Colors.green : Colors.grey,
                         width: 2)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
@@ -307,12 +307,12 @@ class TeamSheetState extends State<TeamSheet> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        teamList.name,
+                        '${teamList.first_name}, ${teamList.last_name}',
                         style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       const SizedBox(height: 5),
-                      Text(teamList.post,
-                          style: const TextStyle(color: Colors.white70)),
+                      // Text(teamList.post,
+                      //     style: const TextStyle(color: Colors.white70)),
                     ],
                   ),
                 ),
@@ -330,18 +330,18 @@ class TeamSheetState extends State<TeamSheet> {
                     Icons.phone,
                     color: Colors.white,
                   )),
-              IconButton(
-                  onPressed: () async {
-                    Get.to(const ChatScreen(), arguments: {
-                      "name": teamList.name,
-                      "avatar": teamList.avatar,
-                      "username": teamList.username,
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.message,
-                    color: Colors.white,
-                  )),
+              // IconButton(
+              //     onPressed: () async {
+              //       Get.to(const ChatScreen(), arguments: {
+              //         "name": teamList.name,
+              //         "avatar": teamList.avatar,
+              //         "username": teamList.username,
+              //       });
+              //     },
+              //     icon: const Icon(
+              //       Icons.message,
+              //       color: Colors.white,
+              //     )),
             ],
           ),
         ),

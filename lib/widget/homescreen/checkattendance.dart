@@ -20,9 +20,10 @@ class CheckAttendance extends StatefulWidget {
   NepaliDateFormat('EEE, MMMM d, yyyy').format(NepaliDateTime.now());
   final double latitude;
   final double longitude;
+  final Position position;
   final String Beat;
 
-  CheckAttendance({super.key, required this.latitude, required this.longitude, required this.Beat});
+  CheckAttendance({super.key, required this.position, required this.latitude, required this.longitude, required this.Beat});
   @override
   State<StatefulWidget> createState() => _CheckAttendanceState();
 }
@@ -44,53 +45,18 @@ class _CheckAttendanceState extends State<CheckAttendance> {
     setState(() {});
   }
 
-  Future<String> checkLocation(
-      double targetLatitude,
-      double targetLongitude,
-      {double thresholdDistance = 100}
-      ) async {
-    try {
-      // Check location permissions
-      LocationPermission permission = await Geolocator.checkPermission();
-      if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied) {
-          return "Location permission denied. Please grant permission.";
-        }
-      }
+   Future<String> checkDistance(Position currentPosition, double targetLatitude, double targetLongitude, {double thresholdDistance = 100}) async {
+     // Calculate distance asynchronously
+     double distance = Geolocator.distanceBetween(
+       currentPosition.latitude,
+       currentPosition.longitude,
+       targetLatitude,
+       targetLongitude,
+     );
 
-      if (permission == LocationPermission.deniedForever) {
-        return "Location permission is permanently denied. Please enable it in settings.";
-      }
-
-      // Get current or last known position
-      Position? position;
-      try {
-        position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      } catch (_) {
-        position = await Geolocator.getLastKnownPosition();
-        if (position == null) return "Unable to retrieve location.";
-      }
-
-      // Calculate the distance to the target location
-      double distance = Geolocator.distanceBetween(
-        position.latitude,
-        position.longitude,
-        targetLatitude,
-        targetLongitude,
-      );
-
-      // Debugging: Print the current position
-      // print('Current Position: ${position.latitude}, ${position.longitude}');
-      // print('work $targetLatitude, $targetLongitude');
-      print(position);
-
-      // Check if within threshold distance
-      return distance <= thresholdDistance ? "on" : "off";
-    } catch (e) {
-      return "Error occurred: ${e.toString()}";
-    }
-  }
+     // Return "on" if within threshold, otherwise "off"
+     return distance <= thresholdDistance ? "on" : "off";
+   }
 
 
   Future<void> onAttendanceVerify(String type, String identifier) async {
@@ -141,6 +107,7 @@ class _CheckAttendanceState extends State<CheckAttendance> {
               datetime: DateTime.now(),
             ),
             // Seconds and AM/PM display at the top-right corner
+
             Positioned(
               top: 10,
               right: 0,
@@ -195,7 +162,7 @@ class _CheckAttendanceState extends State<CheckAttendance> {
     final buttonColor = HexColor(isCheckedIn ? "#e82e5f" : "#3b98cc").withOpacity(.5);
 
     return FutureBuilder<String>(
-      future: checkLocation(widget.latitude, widget.longitude, thresholdDistance: 95),
+      future: checkDistance(widget.position, widget.latitude, widget.longitude, thresholdDistance: 95),
       // future: checkLocation(37.4219983, -122.084, thresholdDistance: 9s5),
       builder: (context, snapshot) {
         // if (snapshot.connectionState == ConnectionState.waiting) {

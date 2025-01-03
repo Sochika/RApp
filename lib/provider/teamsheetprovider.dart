@@ -43,14 +43,15 @@ class TeamSheetProvider with ChangeNotifier {
           .collection('users')
           .doc(employee.username.toString())
           .set({
-        'name': employee.name,
+        'first_name': employee.first_name,
+        'last_name': employee.last_name,
         'phone': employee.phone,
         'email': employee.email,
         'username': employee.username,
         'id': employee.id,
         'avatar': employee.avatar,
-        'department': employee.department,
-        'post': employee.post,
+        'role': employee.role,
+        // 'post': employee.post,
         'gender': employee.gender,
       });
     }
@@ -78,7 +79,7 @@ class TeamSheetProvider with ChangeNotifier {
               .where((element) => element.name == Get.arguments["branch"])
               .first
               .id;
-        }else{
+        } else {
           selectedDepartment = _department.first.id;
           selectedBranch = _branches.first.id;
         }
@@ -86,34 +87,34 @@ class TeamSheetProvider with ChangeNotifier {
         selectedDepartment = _department.first.id;
         selectedBranch = _branches.first.id;
       }
-      makeTeamList();
+      // makeTeamList();
       notifyListeners();
     } catch (error) {
       rethrow;
     }
   }
 
-  void makeTeamList() {
-    _teamList.clear();
-    if (selectedDepartment == 0) {
-      _teamList.addAll(mainTeamList.where((element) =>
-          element.branch.toLowerCase() ==
-          _branches
-              .where((element) => element.id == selectedBranch)
-              .first
-              .name
-              .toLowerCase()));
-    } else {
-      _teamList.addAll(mainTeamList.where((element) =>
-          element.department.toLowerCase() ==
-          _department
-              .where((element) => element.id == selectedDepartment)
-              .first
-              .name
-              .toLowerCase()));
-    }
-    notifyListeners();
-  }
+  // void makeTeamList() {
+  //   _teamList.clear();
+  //   if (selectedDepartment == 0) {
+  //     _teamList.addAll(mainTeamList.where((element) =>
+  //         element.branch.toLowerCase() ==
+  //         _branches
+  //             .where((element) => element.id == selectedBranch)
+  //             .first
+  //             .name
+  //             .toLowerCase()));
+  //   } else {
+  //     _teamList.addAll(mainTeamList.where((element) =>
+  //         element.department.toLowerCase() ==
+  //         _department
+  //             .where((element) => element.id == selectedDepartment)
+  //             .first
+  //             .name
+  //             .toLowerCase()));
+  //   }
+  //   notifyListeners();
+  // }
 
   void makeTeamSheet(List<Employee> employee) {
     mainTeamList.clear();
@@ -121,14 +122,13 @@ class TeamSheetProvider with ChangeNotifier {
       mainTeamList.add(Team(
           id: value.id,
           username: value.username,
-          name: value.name,
-          post: value.post,
+          first_name: value.first_name,
+          last_name: value.last_name,
           avatar: value.avatar,
           phone: value.phone,
           email: value.email,
-          active: value.onlineStatus,
-          department: value.department,
-          branch: value.branch));
+          // active: value.onlineStatus,
+          role: value.role));
     }
     notifyListeners();
   }
