@@ -1,11 +1,11 @@
-class Department {
-  Department({
+class StaffShifts {
+  StaffShifts({
     required this.id,
     required this.name,
   });
 
-  factory Department.fromJson(dynamic json) {
-    return Department(
+  factory StaffShifts.fromJson(dynamic json) {
+    return StaffShifts(
       id: json['id'],
       name: json['dept_name'].toString(),
     );

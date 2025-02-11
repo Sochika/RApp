@@ -56,7 +56,7 @@ class DashboardProvider with ChangeNotifier {
     'production-time': 0.0
   };
 
-  List<Employee> employeeList = [];
+  // List<Employee> employeeList = [];
 
   bool isAD = true;
   bool isNoteEnabled = false;
@@ -485,12 +485,9 @@ class DashboardProvider with ChangeNotifier {
 
     final response = await client.post(uri, headers: headers, body: {
       'attendance_type': type,
-      'latitude': type == "wifi" ? locationStatus['latitude'].toString() : "",
-      'longitude': type == "wifi" ? locationStatus['longitude'].toString() : "",
-      'router_bssid': type == "wifi" ? await WifiInfo().wifiBSSID() ?? "" : "",
-      'identifier': type != "wifi" ? identifier : "",
-      'attendance_status_type': type == "wifi" ? attendanceStatus : "",
-      'note': note,
+      'latitude': locationStatus['latitude'].toString(),
+      'longitude': locationStatus['longitude'].toString() ,
+      'note': 'From App',
     });
 
     log(response.body.toString());

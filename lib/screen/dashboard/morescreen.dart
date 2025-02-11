@@ -94,13 +94,15 @@ class MoreScreenState extends State<MoreScreen> {
                                       fontWeight: FontWeight.bold),
                                 )),
                             Services(translate('more_screen.team_sheet'),
-                                Icons.group, const TeamSheetScreen()),
+                                Icons.group,  TeamSheetScreen()),
                             features["project-management"] != "1"
                                 ? const SizedBox.shrink()
-                                : Services(
-                                    "Beats",
-                                    Icons.work,
-                                    ProjectScreen()),
+                            //     : Services(
+                            //         "Beats",
+                            //         Icons.work,
+                            //         ProjectScreen()
+                            // ),
+                            : const SizedBox(),
                             features["award"] != "1"
                                 ? const SizedBox.shrink()
                                 : Services(translate('more_screen.awards'),
@@ -117,34 +119,34 @@ class MoreScreenState extends State<MoreScreen> {
                             //     ? const SizedBox.shrink()
                             //     : Services(translate('more_screen.meeting'),
                             //         Icons.meeting_room, MeetingScreen()),
-                            Services(
-                                translate('more_screen.leave_calendar'),
-                                Icons.calendar_month_outlined,
-                                const LeaveCalendarScreen()),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20, right: 20, top: 20, bottom: 10),
-                                child: Text(
-                                  translate('more_screen.finance'),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            features["tada"] != "1"
-                                ? const SizedBox.shrink()
-                                : Services(translate('more_screen.tada'),
-                                    Icons.money, const TadaScreen()),
-                            features["payroll-management"] != "1"
-                                ? const SizedBox.shrink()
-                                : Services(translate('more_screen.payslip'),
-                                    Icons.payments_outlined, PaySlipScreen()),
-                            features["advance-salary"] != "1"
-                                ? const SizedBox.shrink()
-                                : Services(
-                                    translate('more_screen.advance_salary'),
-                                    Icons.monetization_on,
-                                    const AdvanceSalaryScreen()),
+                            // Services(
+                            //     translate('more_screen.leave_calendar'),
+                            //     Icons.calendar_month_outlined,
+                            //     const LeaveCalendarScreen()),
+                            // Padding(
+                            //     padding: const EdgeInsets.only(
+                            //         left: 20, right: 20, top: 20, bottom: 10),
+                            //     child: Text(
+                            //       translate('more_screen.finance'),
+                            //       style: const TextStyle(
+                            //           color: Colors.white,
+                            //           fontSize: 15,
+                            //           fontWeight: FontWeight.bold),
+                            //     )),
+                            // features["tada"] != "1"
+                            //     ? const SizedBox.shrink()
+                            //     : Services(translate('more_screen.tada'),
+                            //         Icons.money, const TadaScreen()),
+                            // features["payroll-management"] != "1"
+                            //     ? const SizedBox.shrink()
+                            //     : Services(translate('more_screen.payslip'),
+                            //         Icons.payments_outlined, PaySlipScreen()),
+                            // features["advance-salary"] != "1"
+                            //     ? const SizedBox.shrink()
+                            //     : Services(
+                            //         translate('more_screen.advance_salary'),
+                            //         Icons.monetization_on,
+                            //         const AdvanceSalaryScreen()),
                             /*features["loan"] != "1"
                                 ? SizedBox.shrink()
                                 : Services(translate('more_screen.loans'),
@@ -160,18 +162,18 @@ class MoreScreenState extends State<MoreScreen> {
                                       fontWeight: FontWeight.bold),
                                 )),
                             //Services('Issue Ticket', Icons.note, ProfileScreen()),
-                            features["support"] != "1"
-                                ? const SizedBox.shrink()
-                                : Services(translate('more_screen.support'),
-                                    Icons.support_agent, const SupportScreen()),
+                            // features["support"] != "1"
+                            //     ? const SizedBox.shrink()
+                            //     : Services(translate('more_screen.support'),
+                            //         Icons.support_agent, const SupportScreen()),
                             Services(translate('more_screen.company_rules'),
                                 Icons.rule_folder, const CompanyRulesScreen()),
-                            Services(translate('more_screen.about_us'),
-                                Icons.info, const AboutScreen('about-us')),
-                            Services(
-                                translate('more_screen.terms_and_conditions'),
-                                Icons.rule,
-                                const AboutScreen('terms-and-conditions')),
+                            // Services(translate('more_screen.about_us'),
+                            //     Icons.info, const AboutScreen('about-us')),
+                            // Services(
+                            //     translate('more_screen.terms_and_conditions'),
+                            //     Icons.rule,
+                            //     const AboutScreen('terms-and-conditions')),
                             // Services(translate('more_screen.privacy_policy'),
                             //     Icons.policy, ProfileScreen(),control: 1,),
                             Padding(
@@ -229,48 +231,48 @@ class MoreScreenState extends State<MoreScreen> {
                                       ],
                                     ),
                                   ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 0),
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    trailing: Switch(
-                                      activeColor: Colors.blue,
-                                      value: getAnimation(),
-                                      onChanged: (value) {
-                                        final box = GetStorage();
-                                        box.write('animation',
-                                            !(box.read("animation") ?? true));
-                                      },
-                                    ),
-                                    dense: true,
-                                    minLeadingWidth: 5,
-                                    leading: const Icon(
-                                      Icons.animation,
-                                      color: Colors.white,
-                                    ),
-                                    title: Text(
-                                      translate('more_screen.animation'),
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 15),
-                                    ),
-                                    onTap: () {
-                                      final box = GetStorage();
-                                      box.write('animation',
-                                          !(box.read("animation") ?? true));
-                                    },
-                                    selected: true,
-                                  ),
-                                  const Divider(
-                                    height: 1,
-                                    color: Colors.white24,
-                                    indent: 15,
-                                    endIndent: 15,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.symmetric(
+                            //       horizontal: 10, vertical: 0),
+                            //   child: Column(
+                            //     children: [
+                            //       ListTile(
+                            //         trailing: Switch(
+                            //           activeColor: Colors.blue,
+                            //           value: getAnimation(),
+                            //           onChanged: (value) {
+                            //             final box = GetStorage();
+                            //             box.write('animation',
+                            //                 !(box.read("animation") ?? true));
+                            //           },
+                            //         ),
+                            //         dense: true,
+                            //         minLeadingWidth: 5,
+                            //         leading: const Icon(
+                            //           Icons.animation,
+                            //           color: Colors.white,
+                            //         ),
+                            //         title: Text(
+                            //           translate('more_screen.animation'),
+                            //           style: const TextStyle(
+                            //               color: Colors.white, fontSize: 15),
+                            //         ),
+                            //         onTap: () {
+                            //           final box = GetStorage();
+                            //           box.write('animation',
+                            //               !(box.read("animation") ?? true));
+                            //         },
+                            //         selected: true,
+                            //       ),
+                            //       const Divider(
+                            //         height: 1,
+                            //         color: Colors.white24,
+                            //         indent: 15,
+                            //         endIndent: 15,
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                             // !showNfc
                             //     ? const SizedBox.shrink()
                             //     : Services(translate('more_screen.add_nfc'),

@@ -9,6 +9,7 @@ import 'package:one_clock/one_clock.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:radius/data/source/network/model/dashboard/BeatBranch.dart';
 import 'package:radius/provider/dashboardprovider.dart';
 import 'package:radius/provider/prefprovider.dart';
 import 'package:radius/widget/attendance_bottom_sheet.dart';
@@ -21,7 +22,7 @@ class CheckAttendance extends StatefulWidget {
   final double latitude;
   final double longitude;
   final Position position;
-  final String Beat;
+  final BeatBranch Beat;
 
   CheckAttendance({super.key, required this.position, required this.latitude, required this.longitude, required this.Beat});
   @override
@@ -177,7 +178,7 @@ class _CheckAttendanceState extends State<CheckAttendance> {
             ? 'assets/raw/fingerprint.json'
             : 'assets/raw/nfc.json';
 
-        print('SnapShot ${snapshot.data}');
+        // print('SnapShot ${snapshot.data}');
         return ClipRRect(
           borderRadius: BorderRadius.circular(90),
           child: Container(
@@ -187,7 +188,7 @@ class _CheckAttendanceState extends State<CheckAttendance> {
               iconSize: 70,
               onPressed: snapshot.data == "on"
                   ? () => _showAttendanceBottomSheet(context)
-                  : () => _showAlertDialog(context, "You are outside ${widget.Beat}."),
+                  : () => _showAlertDialog(context, "You are outside ${widget.Beat.name}."),
               icon: Lottie.asset(
                 animationAsset,
                 width: 60,
@@ -267,7 +268,8 @@ class _CheckAttendanceState extends State<CheckAttendance> {
               lineHeight: 30.0,
               percent: productionTime,
               center: Text(
-                attendanceList['production_hour'] ?? "00:00",
+                // attendanceList['production_hour'] ?? "00:00",
+                'Latitude: ${widget.position.latitude ?? 'Loading...'}, Longitude: ${widget.position.longitude ?? 'Loading...'}',
                 style: const TextStyle(color: Colors.white),
               ),
               barRadius: const Radius.circular(20),

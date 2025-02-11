@@ -73,12 +73,7 @@ class DashboardScreenState extends State<DashboardScreen> {
                 const Icon(Icons.home_filled),
                 translate('dashboard_screen.home'),
               )),
-          // PersistentTabConfig(
-          //     screen: const LeaveScreen(),
-          //     item: getItemConfig(
-          //       const Icon(Icons.sick),
-          //       translate('dashboard_screen.leave'),
-          //     )),
+
           PersistentTabConfig(
               screen: const AttendanceScreen(),
               item: getItemConfig(

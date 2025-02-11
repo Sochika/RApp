@@ -6,11 +6,15 @@ import 'package:radius/widget/homescreen/cardoverview.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:provider/provider.dart';
+import 'package:radius/data/source/network/model/dashboard/Dashboardresponse.dart';
 
 class OverviewDashboard extends StatelessWidget {
   PersistentTabController controller;
-  int beatNo;
-  OverviewDashboard(this.controller, this.beatNo, {super.key});
+  // int beatNo;
+  // OverviewDashboard(this.controller, this.beatNo, {super.key});
+  final Dashboardresponse? dashboardData;
+
+   OverviewDashboard(this.controller, this.dashboardData, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class OverviewDashboard extends StatelessWidget {
                 value: overview['present']!,
                 icon: "assets/icons/present_icon.png",
                 callback: () {
-                  controller.jumpToTab(2);
+                  // controller.jumpToTab(2);
                 },
               ),
               // CardOverView(
@@ -55,7 +59,7 @@ class OverviewDashboard extends StatelessWidget {
                 value: overview['leave']!,
                 icon: Icons.sick,
                 callback: () {
-                  controller.jumpToTab(1);
+                  // controller.jumpToTab(1);
                 },
               ),
             ],
@@ -65,11 +69,11 @@ class OverviewDashboard extends StatelessWidget {
             children: [
               CardOverView(
                 type: "Beats",
-                value: '$beatNo',
+                value: dashboardData?.data.shifts.length.toString() ?? '0',
                 icon: Icons.work_history_outlined,
                 callback: () {
                   pushScreen(context,
-                      screen: ProjectScreen(),
+                      screen: ProjectScreen(dashboardData),
                       withNavBar: false,
                       pageTransitionAnimation: PageTransitionAnimation.fade);
                 },
@@ -79,7 +83,7 @@ class OverviewDashboard extends StatelessWidget {
                 value: overview['request']!,
                 icon: Icons.pending,
                 callback: () {
-                  controller.jumpToTab(1);
+                  // controller.jumpToTab(1);
                 },
               )
             ],
@@ -93,10 +97,10 @@ class OverviewDashboard extends StatelessWidget {
                 value: overview['total_task']!,
                 icon: Icons.model_training_rounded,
                 callback: () {
-                  pushScreen(context,
-                      screen: ProjectScreen(),
-                      withNavBar: false,
-                      pageTransitionAnimation: PageTransitionAnimation.fade);
+                  // pushScreen(context,
+                  //     screen: ProjectScreen(),
+                  //     withNavBar: false,
+                  //     pageTransitionAnimation: PageTransitionAnimation.fade);
                 },
               ),
               CardOverView(
@@ -104,10 +108,10 @@ class OverviewDashboard extends StatelessWidget {
                 value: overview['total_awards']!,
                 icon: Icons.workspace_premium_outlined,
                 callback: () {
-                  pushScreen(context,
-                      screen: AwardsScreen(),
-                      withNavBar: false,
-                      pageTransitionAnimation: PageTransitionAnimation.fade);
+                  // pushScreen(context,
+                  //     screen: AwardsScreen(),
+                  //     withNavBar: false,
+                  //     pageTransitionAnimation: PageTransitionAnimation.fade);
                 },
               ),
             ],

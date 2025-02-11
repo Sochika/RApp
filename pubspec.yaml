@@ -107,6 +107,10 @@ dependencies:
   flutter_translate: ^4.0.3
   image: ^4.3.0
   location: ^7.0.1
+  audioplayers: ^6.1.0
+  flutter_local_notifications: ^18.0.1
+  flutter_timezone: ^3.0.1
+  timezone: ^0.10.0
 
   nepali_utils: any
 dev_dependencies:

@@ -8,7 +8,7 @@ class Constant {
   static const keonUrl = "https://radius.suchtree.com/";
   static const staging = "https://attendance.suchtree.com/";
   static const localhost = "http://192.168.0.134:8004/";
-  // static const suchphn = "http://192.168.27.2:8004/";
+  // static const suchphn = "http://192.168.27.2:8004/";192.168.54.2
 
   static const appUrl = localhost;
 
@@ -24,9 +24,9 @@ class Constant {
   static const LOGOUT_URL = "$API_URL/logout";
   static const DASHBOARD_URL = "$API_URL/dashboard";
 
-  static const CHECK_IN_URL = "$API_URL/employees/check-in";
+  static const CHECK_IN_URL = "$API_URL/staff/check-in";
   static const CHECK_OUT_URL = "$API_URL/employees/check-out";
-  static const ATTENDANCE_URL = "$API_URL/employees/attendance";
+  static const ATTENDANCE_URL = "$API_URL/staff/attendance";
 
   static const ADD_NFC_URL = "$API_URL/nfc/store";
 
@@ -43,7 +43,7 @@ class Constant {
   static const PROFILE_URL = "$API_URL/users/profile";
   static const EMPLOYEE_PROFILE_URL = "$API_URL/users/profile-detail";
   static const CONTENT_URL = "$API_URL/static-page-content";
-  static const TEAM_SHEET_URL = "$API_URL/users/company/team-sheet";
+  static const TEAM_SHEET_URL = "$API_URL/radius/team-sheet";
   static const LEAVE_CALENDAR_API =
       "$API_URL/leave-requests/employee-leave-calendar";
   static const LEAVE_CALENDAR_BY_DAY_API =

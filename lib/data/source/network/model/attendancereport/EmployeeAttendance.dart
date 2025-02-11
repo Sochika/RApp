@@ -11,11 +11,11 @@ class EmployeeAttendance {
   factory EmployeeAttendance.fromJson(dynamic json) {
     return EmployeeAttendance(
         id: json['id'],
-        attendanceDate: json['attendance_date_nepali'].toString() ?? "",
-        weekDay: json['week_day'].toString() ?? "",
+        attendanceDate: json['attendance_date_nepali'].toString(),
+        weekDay: json['week_day'].toString(),
         workedhrs: json['worked_hours'] != null ? json["worked_hours"].toString() : "-",
-        checkIn: json['check_in'].toString() ?? "-",
-        checkOut: json['check_out'].toString() ?? "-");
+        checkIn: json['check_in'].toString(),
+        checkOut: json['check_out'].toString());
   }
 
   int id;

@@ -31,7 +31,7 @@ class AttendanceBottomSheetState extends State<AttedanceBottomSheet> {
       });
       var status = await provider.getCheckInStatus();
       if (status) {
-        final response = await provider.verifyAttendanceApi("app", note,
+        final response = await provider.verifyAttendanceApi("checkOut", note,
             attendanceStatus: "checkOut");
         isEnabled = true;
         if (!mounted) {
@@ -79,7 +79,7 @@ class AttendanceBottomSheetState extends State<AttedanceBottomSheet> {
       });
       var status = await provider.getCheckInStatus();
       if (status) {
-        final response = await provider.verifyAttendanceApi("wifi", note,
+        final response = await provider.verifyAttendanceApi("checkIn", note,
             attendanceStatus: "checkIn");
         isEnabled = true;
         if (!mounted) {

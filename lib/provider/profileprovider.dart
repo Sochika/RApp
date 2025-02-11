@@ -69,6 +69,9 @@ class ProfileProvider with ChangeNotifier {
         final responseJson = Profileresponse.fromJson(responseData);
         parseUser(responseJson.data);
 
+
+        print(responseJson.data);
+
         return responseJson;
       } else {
         var errorMessage = responseData['message'];

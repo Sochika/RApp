@@ -14,10 +14,14 @@ import 'package:image_stack/image_stack.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../../data/source/network/model/dashboard/Dashboardresponse.dart';
+import '../../utils/TagWidget.dart';
+
 class ProjectScreen extends StatelessWidget {
   final model = Get.put(ProjectDashboardController());
+  final Dashboardresponse? dashboardData;
 
-   ProjectScreen({super.key});
+   ProjectScreen(this.dashboardData,{super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class ProjectScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Text(translate('project_screen.project_management')),
+          title: const Text('Beat Management'),
         ),
         body: RefreshIndicator(
           triggerMode: RefreshIndicatorTriggerMode.onEdge,
@@ -44,7 +48,10 @@ class ProjectScreen extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: Column(
-                children: [projectOverview(), recentProject(), recentTasks()],
+                children: [
+                  // projectOverview(),
+                  dashboardDataList(),
+                  recentProject(), recentTasks()],
               ),
             ),
           )),
@@ -53,78 +60,148 @@ class ProjectScreen extends StatelessWidget {
     );
   }
 
-  Widget projectOverview() {
-    return Card(
-      elevation: 0,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10), bottomRight: Radius.circular(10))),
-      color: Colors.white12,
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          children: [
-            Obx(
-              () => CircularPercentIndicator(
-                radius: 60.0,
-                animation: true,
-                animationDuration: 1200,
-                lineWidth: 15.0,
-                percent: (model.overview.value['progress']! / 100),
-                center: Obx(
-                  () => Text(
-                    "${model.overview.value['progress']}%",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
-                        color: Colors.white),
-                  ),
-                ),
-                circularStrokeCap: CircularStrokeCap.round,
-                backgroundColor: Colors.white12,
-                progressColor: (model.overview.value['progress']! / 100) <= .25
-                    ? HexColor("#C1E1C1")
-                    : (model.overview.value['progress']! / 100) <= .50
-                        ? HexColor("#C9CC3F")
-                        : (model.overview.value['progress']! / 100) <= .75
-                            ? HexColor("#93C572")
-                            : HexColor("#3cb116"),
-              ),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Expanded(
+  // Widget projectOverview() {
+  //   return Card(
+  //     elevation: 0,
+  //     shape: const RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.only(
+  //             topLeft: Radius.circular(10), bottomRight: Radius.circular(10))),
+  //     color: Colors.white12,
+  //     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+  //     child: Container(
+  //       padding: const EdgeInsets.all(20),
+  //       child: Row(
+  //         children: [
+  //           Obx(
+  //             () => CircularPercentIndicator(
+  //               radius: 60.0,
+  //               animation: true,
+  //               animationDuration: 1200,
+  //               lineWidth: 15.0,
+  //               percent: (model.overview.value['progress']! / 100),
+  //               center: Obx(
+  //                 () => Text(
+  //                   "${model.overview.value['progress']}%",
+  //                   style: const TextStyle(
+  //                       fontWeight: FontWeight.bold,
+  //                       fontSize: 20.0,
+  //                       color: Colors.white),
+  //                 ),
+  //               ),
+  //               circularStrokeCap: CircularStrokeCap.round,
+  //               backgroundColor: Colors.white12,
+  //               progressColor: (model.overview.value['progress']! / 100) <= .25
+  //                   ? HexColor("#C1E1C1")
+  //                   : (model.overview.value['progress']! / 100) <= .50
+  //                       ? HexColor("#C9CC3F")
+  //                       : (model.overview.value['progress']! / 100) <= .75
+  //                           ? HexColor("#93C572")
+  //                           : HexColor("#3cb116"),
+  //             ),
+  //           ),
+  //           const SizedBox(
+  //             width: 20,
+  //           ),
+  //           Expanded(
+  //             child: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 Text(translate('project_screen.progress_current_task'),
+  //                     style: const TextStyle(
+  //                         color: Colors.white,
+  //                         fontWeight: FontWeight.bold,
+  //                         fontSize: 20)),
+  //                 const Divider(
+  //                   color: Colors.white54,
+  //                   endIndent: 0,
+  //                   indent: 0,
+  //                 ),
+  //                 Obx(
+  //                   () => Text(
+  //                       "${model.overview.value['task_completed']} / ${model.overview.value['total_task']} ${translate('project_screen.task_completed')}",
+  //                       style: const TextStyle(
+  //                           color: Colors.white,
+  //                           fontWeight: FontWeight.normal,
+  //                           fontSize: 12)),
+  //                 ),
+  //               ],
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  Widget dashboardDataList() {
+    if (dashboardData == null) {
+      return const Center(
+        child: Text(
+          'No dashboard data available.',
+          style: TextStyle(color: Colors.white),
+        ),
+      );
+    }
+
+    // Assuming `dashboardData.data` is a list of items.
+    var dataList = dashboardData!.data.shifts;
+
+    return ListView.builder(
+      primary: false,
+      shrinkWrap: true,
+      itemCount: dataList.length,
+      itemBuilder: (context, index) {
+        var item = dataList[index]; // Assuming each item is a map or object.
+
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10), bottomRight: Radius.circular(10))),
+            color: Colors.white12,
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(translate('project_screen.progress_current_task'),
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20)),
-                  const Divider(
-                    color: Colors.white54,
-                    endIndent: 0,
-                    indent: 0,
+                  Text(
+                    item.beatBranch.name ?? 'No Title', // Change this based on your data structure
+                    style: const TextStyle(
+                        color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Obx(
-                    () => Text(
-                        "${model.overview.value['task_completed']} / ${model.overview.value['total_task']} ${translate('project_screen.task_completed')}",
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12)),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Text(
+                        item.beatBranch.area?? 'No Description', // Update as per your schema
+                        style: const TextStyle(color: Colors.white70, fontSize: 14),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${item.shiftStart} to ${item.shiftEnd} '?? 'No Description', // Update as per your schema
+                        style: const TextStyle(color: Colors.orange, fontSize: 14),
+                      ),
+                      // TagWidget(label: item.shiftType.name ?? '', backgroundColor:  Colors.blueAccent, textColor:  Colors.white)
+                    ],
                   ),
+                  Row(
+                    children: [
+                      item.mainAssign == 1 ? const TagWidget(label: 'Primary', backgroundColor:  Colors.blueAccent, textColor:  Colors.white) : const TagWidget(label: 'Secondary', backgroundColor:  Colors.blueGrey, textColor:  Colors.white) ,
+
+                    ]
+                  )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
+
 
   Widget recentProject() {
     return Obx(

@@ -40,9 +40,13 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:in_app_notification/in_app_notification.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Initialize timezone database
+  tz.initializeTimeZones();
 
   var delegate = await LocalizationDelegate.create(
       fallbackLocale: 'en_US',

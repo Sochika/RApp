@@ -5,8 +5,8 @@ class AttendanceSummary {
 
   factory AttendanceSummary.fromJson(dynamic json) {
     return AttendanceSummary(
-        totalPresent : json['totalPresent'].toString() ?? "-",
-        totalWorkedHours : json['totalWorkedHours'].toString() ?? "-"
+        totalPresent : json['totalPresent'].toString(),
+        totalWorkedHours : json['totalWorkedHours'].toString(),
     );
   }
   String totalPresent;

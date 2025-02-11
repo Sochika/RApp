@@ -1,19 +1,26 @@
 import 'package:radius/data/source/network/model/teamsheet/Branch.dart';
-import 'package:radius/data/source/network/model/teamsheet/TeamSheet.dart';
+
 
 class Data {
   Data({
-    required this.companyDetail,
-    required this.branch,
+
+    required this.shiftOperative,
   });
 
-  factory Data.fromJson(dynamic json) {
+  factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-        companyDetail: TeamSheet.fromJson(json['companyDetail']),
-        branch:
-            List<Branch>.from(json['branches'].map((x) => Branch.fromJson(x))));
+
+      shiftOperative: (json['shiftOperative'] as List)
+          .map((item) => ShiftOperative.fromJson(item))
+          .toList(),
+    );
   }
 
-  TeamSheet companyDetail;
-  List<Branch> branch;
+  final List<ShiftOperative> shiftOperative;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'shiftOperative': shiftOperative.map((item) => item.toJson()).toList(),
+    };
+  }
 }

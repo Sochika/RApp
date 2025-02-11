@@ -18,7 +18,7 @@ class HeaderState extends State<HeaderProfile> {
   Widget build(BuildContext context) {
     final provider = Provider.of<PrefProvider>(context);
     // print('Hello from profile_dash${provider.staffNo}');
-    print('mypic${provider.avatar}');
+    // print('mypic${provider.avatar}');
     return GestureDetector(
       onTap: () {
         pushScreen(context,

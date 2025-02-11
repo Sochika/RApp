@@ -19,7 +19,7 @@ class CustomAlertDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/icons/dialog_icon.png",
+            title.toString().toLowerCase().contains("null") ? "assets/icons/dialog_icon.png" : title.toString().toLowerCase().contains("successful") ? "assets/icons/present_icon.png"  :"assets/icons/dialog_icon.png" ,
             width: 80,
             height: 80,
           ),

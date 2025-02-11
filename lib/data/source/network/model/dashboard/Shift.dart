@@ -6,6 +6,7 @@ class Shift {
     required this.shiftEnd,
     required this.mainAssign,
     required this.beatBranch,
+    required this.shiftType,
   });
 
   factory Shift.fromJson(Map<String, dynamic> json) {
@@ -14,6 +15,7 @@ class Shift {
       shiftEnd: json['shift_end'] ?? '',
       mainAssign: json['main_assign'] ?? 0,
       beatBranch: BeatBranch.fromJson(json['beat_branch'] ?? {}),
+      shiftType: ShiftType.fromJson(json['shift_type'] ?? {}),
     );
   }
 
@@ -21,6 +23,7 @@ class Shift {
   final String shiftEnd;
   final int mainAssign;
   final BeatBranch beatBranch;
+  final ShiftType shiftType;
 
   Map<String, dynamic> toJson() {
     return {
@@ -28,6 +31,7 @@ class Shift {
       'shift_end': shiftEnd,
       'main_assign': mainAssign,
       'beat_branch': beatBranch.toJson(),
+      // 'shift_type': ShiftType.toJson(),
     };
   }
 }

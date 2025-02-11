@@ -1,12 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:radius/data/source/network/model/teamsheet/Branch.dart';
-import 'package:radius/data/source/network/model/teamsheet/Department.dart';
-import 'package:radius/model/team.dart';
-import 'package:radius/provider/teamsheetprovider.dart';
-import 'package:radius/screen/profile/chatscreen.dart';
-import 'package:radius/screen/profile/employeedetailscreen.dart';
-import 'package:radius/widget/buttonborder.dart';
-import 'package:radius/widget/radialDecoration.dart';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -14,25 +7,30 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+import 'package:radius/data/source/network/model/teamsheet/Branch.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../model/department.dart';
+import '../../model/team.dart';
+import '../../provider/teamsheetprovider.dart';
+import '../../widget/buttonborder.dart';
+
+import '../../widget/radialDecoration.dart';
+import 'employeedetailscreen.dart';
 
 class TeamSheetScreen extends StatelessWidget {
   static const routeName = '/teamsheet';
-
-  const TeamSheetScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => TeamSheetProvider(),
-      child: const TeamSheet(),
+      child: TeamSheet(),
     );
   }
 }
 
 class TeamSheet extends StatefulWidget {
-  const TeamSheet({super.key});
-
   @override
   State<StatefulWidget> createState() => TeamSheetState();
 }
@@ -74,8 +72,7 @@ class TeamSheetState extends State<TeamSheet> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TeamSheetProvider>(context);
-    final teamList =
-        Provider.of<TeamSheetProvider>(context, listen: true).mainTeamList;
+
     return WillPopScope(
       onWillPop: () async {
         return !isLoading;
@@ -97,166 +94,18 @@ class TeamSheetState extends State<TeamSheet> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  teamList.isEmpty
-                      ? const SizedBox.shrink()
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            DropdownButton2(
-                              underline: const SizedBox.shrink(),
-                              isExpanded: true,
-                              items: (provider.branches)
-                                  .map((item) => DropdownMenuItem<Branch>(
-                                        value: item,
-                                        child: Text(
-                                          item.name,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ))
-                                  .toList(),
-                              value: provider.branches
-                                  .where((element) =>
-                                      element.id == provider.selectedBranch)
-                                  .first,
-                              onChanged: (value) {
-                                setState(() {
-                                  provider.selectedBranch =
-                                      (value as Branch).id;
-                                  provider.setDepartment((value).department);
-                                  // provider.selectedDepartment =
-                                  //     (value).department.first.id;
-                                  // provider.makeTeamList();
-                                });
-                              },
-                              iconStyleData: const IconStyleData(
-                                icon: Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                                iconSize: 14,
-                                iconEnabledColor: Colors.black,
-                                iconDisabledColor: Colors.grey,
-                              ),
-                              buttonStyleData: ButtonStyleData(
-                                height: 50,
-                                width: 160,
-                                padding: const EdgeInsets.only(left: 14, right: 14),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(0),
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(10)),
-                                  color: HexColor("#FFFFFF"),
-                                ),
-                                elevation: 0,
-                              ),
-                              dropdownStyleData: DropdownStyleData(
-                                maxHeight: 200,
-                                padding: null,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(0),
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10)),
-                                  color: HexColor("#FFFFFF"),
-                                ),
-                                elevation: 8,
-                              ),
-                              menuItemStyleData: const MenuItemStyleData(
-                                height: 40,
-                                padding: EdgeInsets.only(left: 14, right: 14),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            DropdownButton2(
-                              underline: const SizedBox.shrink(),
-                              isExpanded: true,
-                              items: (provider.department)
-                                  .map((item) => DropdownMenuItem<Department>(
-                                        value: item,
-                                        child: Text(
-                                          item.name,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ))
-                                  .toList(),
-                              value: provider.department
-                                  .where((element) =>
-                                      element.id == provider.selectedDepartment)
-                                  .first,
-                              onChanged: (value) {
-                                setState(() {
-                                  // provider.selectedDepartment =
-                                  //     (value as Department).id;
-                                  // provider.makeTeamList();
-                                });
-                              },
-                              iconStyleData: const IconStyleData(
-                                icon: Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                ),
-                                iconSize: 14,
-                                iconEnabledColor: Colors.black,
-                                iconDisabledColor: Colors.grey,
-                              ),
-                              buttonStyleData: ButtonStyleData(
-                                height: 50,
-                                width: 160,
-                                padding: const EdgeInsets.only(left: 14, right: 14),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(0),
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(10)),
-                                  color: HexColor("#FFFFFF"),
-                                ),
-                                elevation: 0,
-                              ),
-                              dropdownStyleData: DropdownStyleData(
-                                maxHeight: 200,
-                                padding: null,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(0),
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10)),
-                                  color: HexColor("#FFFFFF"),
-                                ),
-                                elevation: 8,
-                              ),
-                              menuItemStyleData: const MenuItemStyleData(
-                                height: 40,
-                                padding: EdgeInsets.only(left: 14, right: 14),
-                              ),
-                            ),
-                          ],
-                        ),
+
                   const SizedBox(
                     height: 15,
                   ),
                   Expanded(
                     child: ListView.builder(
                         padding:
-                            const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                        itemCount: provider.teamList.length,
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                        itemCount: provider.mainTeamList.length,
                         itemBuilder: (ctx, i) => Padding(
                             padding: const EdgeInsets.all(5),
-                            child: teamCard(provider.teamList[i]))),
+                            child: teamCard(provider.mainTeamList.first))),
                   ),
                 ],
               ),
@@ -267,7 +116,7 @@ class TeamSheetState extends State<TeamSheet> {
     );
   }
 
-  Widget teamCard(Team teamList) {
+  Widget teamCard(Staff teamList) {
     return Card(
       shape: ButtonBorder(),
       elevation: 0,
@@ -287,7 +136,7 @@ class TeamSheetState extends State<TeamSheet> {
                     shape: BoxShape.circle,
                     border: Border.all(
                         color:
-                            teamList.first_name != "1" ? Colors.green : Colors.grey,
+                        teamList == "1" ? Colors.green : Colors.grey,
                         width: 2)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
@@ -307,19 +156,19 @@ class TeamSheetState extends State<TeamSheet> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        '${teamList.first_name}, ${teamList.last_name}',
+                        teamList.name,
                         style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       const SizedBox(height: 5),
-                      // Text(teamList.post,
-                      //     style: const TextStyle(color: Colors.white70)),
+                      Text(teamList.gender,
+                          style: const TextStyle(color: Colors.white70)),
                     ],
                   ),
                 ),
               ),
               IconButton(
                   onPressed: () async {
-                    final url = Uri.parse("tel:${teamList.phone}");
+                    final url = Uri.parse("tel:${teamList.phoneNumber}");
                     if (await canLaunchUrl(url)) {
                       await launchUrl(url);
                     } else {
@@ -330,18 +179,7 @@ class TeamSheetState extends State<TeamSheet> {
                     Icons.phone,
                     color: Colors.white,
                   )),
-              // IconButton(
-              //     onPressed: () async {
-              //       Get.to(const ChatScreen(), arguments: {
-              //         "name": teamList.name,
-              //         "avatar": teamList.avatar,
-              //         "username": teamList.username,
-              //       });
-              //     },
-              //     icon: const Icon(
-              //       Icons.message,
-              //       color: Colors.white,
-              //     )),
+
             ],
           ),
         ),

@@ -1,57 +1,42 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:radius/data/source/network/model/teamsheet/Branch.dart';
-import 'package:radius/data/source/network/model/teamsheet/Department.dart';
-import 'package:radius/data/source/network/model/teamsheet/Employee.dart';
-import 'package:radius/model/team.dart';
-import 'package:radius/repositories/teamsheetrepository.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:radius/data/source/network/model/teamsheet/Branch.dart';
+
+import '../model/department.dart';
+import '../model/team.dart';
+import '../repositories/teamsheetrepository.dart';
 
 class TeamSheetProvider with ChangeNotifier {
   TeamSheetRepository repository = TeamSheetRepository();
   final List<Team> _teamList = [];
 
-  final List<Team> mainTeamList = [];
+  final List<Staff> mainTeamList = [];
 
-  final List<Branch> _branches = [];
-  final List<Department> _department = [];
+  // final List<Branch> _branches = [];
+  final List<ShiftOperative> _department = [];
 
   int selectedBranch = 0;
   int selectedDepartment = 0;
 
-  List<Team> get teamList {
-    return [..._teamList];
-  }
+// Staff pro
 
-  List<Branch> get branches {
-    return [..._branches];
-  }
 
-  List<Department> get department {
-    return [..._department];
-  }
 
-  void setDepartment(List<Department> department) {
-    _department.clear();
-    _department.add(Department(id: 0, name: "All"));
-    _department.addAll(department);
-  }
-
-  void createTeam(List<Employee> employees) {
-    for (var employee in employees) {
+  void createTeam(List<Staff> staffs) {
+    for (var employee in staffs) {
       FirebaseFirestore.instance
-          .collection('users')
-          .doc(employee.username.toString())
+          .collection('staff_and_shifts')
+          .doc(employee.name.toString())
           .set({
-        'first_name': employee.first_name,
-        'last_name': employee.last_name,
-        'phone': employee.phone,
-        'email': employee.email,
-        'username': employee.username,
+        'name': employee.name,
+        'phone': employee.phoneNumber,
+        'email': employee.id,
+
         'id': employee.id,
         'avatar': employee.avatar,
-        'role': employee.role,
-        // 'post': employee.post,
+
         'gender': employee.gender,
       });
     }
@@ -60,76 +45,48 @@ class TeamSheetProvider with ChangeNotifier {
   Future<void> getTeam() async {
     try {
       final response = await repository.getTeam();
-      makeTeamSheet(response.data.companyDetail.employee);
-      createTeam(response.data.companyDetail.employee);
+      makeBeatSheet(response.data.shiftOperative);
 
-      _branches.clear();
-      _branches.addAll(response.data.branch);
 
-      setDepartment(_branches.first.department);
 
-      if (Get.arguments != null) {
-        if (Get.arguments["department"] != "" &&
-            Get.arguments["branch"] != "") {
-          selectedDepartment = _department
-              .where((element) => element.name == Get.arguments["department"])
-              .first
-              .id;
-          selectedBranch = _branches
-              .where((element) => element.name == Get.arguments["branch"])
-              .first
-              .id;
-        } else {
-          selectedDepartment = _department.first.id;
-          selectedBranch = _branches.first.id;
-        }
-      } else {
-        selectedDepartment = _department.first.id;
-        selectedBranch = _branches.first.id;
-      }
-      // makeTeamList();
+      makeTeamList();
       notifyListeners();
     } catch (error) {
       rethrow;
     }
   }
 
-  // void makeTeamList() {
-  //   _teamList.clear();
-  //   if (selectedDepartment == 0) {
-  //     _teamList.addAll(mainTeamList.where((element) =>
-  //         element.branch.toLowerCase() ==
-  //         _branches
-  //             .where((element) => element.id == selectedBranch)
-  //             .first
-  //             .name
-  //             .toLowerCase()));
-  //   } else {
-  //     _teamList.addAll(mainTeamList.where((element) =>
-  //         element.department.toLowerCase() ==
-  //         _department
-  //             .where((element) => element.id == selectedDepartment)
-  //             .first
-  //             .name
-  //             .toLowerCase()));
-  //   }
-  //   notifyListeners();
-  // }
+  void makeTeamList() {
+    _teamList.clear();
 
-  void makeTeamSheet(List<Employee> employee) {
+    notifyListeners();
+  }
+
+  void makeTeamSheet(List<Staff> shifts) {
     mainTeamList.clear();
-    for (var value in employee) {
-      mainTeamList.add(Team(
+    for (var value in shifts) {
+      mainTeamList.add(Staff(
           id: value.id,
-          username: value.username,
-          first_name: value.first_name,
-          last_name: value.last_name,
-          avatar: value.avatar,
-          phone: value.phone,
-          email: value.email,
-          // active: value.onlineStatus,
-          role: value.role));
+          name: value.name,
+          phoneNumber: value.phoneNumber, gender: value.gender, avatar: value.avatar),);
+
     }
     notifyListeners();
   }
+
+
+  void makeBeatSheet(List<ShiftOperative> shifts) {
+    mainTeamList.clear();
+    for (var value in shifts) {
+      _department.add(ShiftOperative(
+          beatBranchId: value.beatBranchId,
+          beatBranchName: value.beatBranchName,
+          area: value.area,
+          latitude: value.longitude,
+          longitude: value.longitude, staffAndShifts: value.staffAndShifts,));
+
+      makeTeamSheet(value.staffAndShifts.cast<Staff>());
+          }
+          notifyListeners();
+      }
 }
