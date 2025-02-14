@@ -6,11 +6,13 @@ class Dashboard {
   final User user;
   final List<Shift> shifts; // Corrected to handle a list of shifts
   final UserAttend userAttend;
+  final Graduated graduated;
 
   Dashboard({
     required this.user,
     required this.shifts,
     required this.userAttend,
+    required this.graduated,
   });
 
   /// Deserialization method
@@ -22,6 +24,7 @@ class Dashboard {
             .map((shiftJson) => Shift.fromJson(shiftJson))
             .toList(),
         userAttend: UserAttend.fromJson(json['userAttend'] ?? {}),
+        graduated: Graduated.fromJson(json['graduated'] ),
       );
     } catch (e) {
       throw Exception('Failed to parse Dashboard: $e');
@@ -34,6 +37,7 @@ class Dashboard {
       'user': user.toJson(),
       'shift': shifts.map((shift) => shift.toJson()).toList(),
       'userAttend': userAttend.toJson(),
+      'graduated': graduated.toJson(),
     };
   }
 }

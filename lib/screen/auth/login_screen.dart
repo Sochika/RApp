@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:gif_view/gif_view.dart';
 import 'package:radius/model/auth.dart';
 import 'package:radius/screen/dashboard/dashboard_screen.dart';
 import 'package:radius/utils/constant.dart';
@@ -83,7 +84,8 @@ class loginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = true;
       EasyLoading.show(
-          status: translate('loader.signing_in'), maskType: EasyLoadingMaskType.black);
+          status: translate('loader.signing_in'),
+          maskType: EasyLoadingMaskType.black);
     });
 
     try {
@@ -117,7 +119,6 @@ class loginScreenState extends State<LoginScreen> {
       child: Scaffold(
         extendBody: true,
         backgroundColor: Colors.transparent,
-
         body: Form(
           key: _form,
           child: SingleChildScrollView(
@@ -137,10 +138,13 @@ class loginScreenState extends State<LoginScreen> {
                               children: [
                                 Center(
                                   child: SizedBox(
-                                    width: 120,
-                                    height: 120,
-                                    child: Image.asset(
-                                        'assets/icons/logo_bnw.png'),
+                                    width: 250,
+                                    height: 250,
+                                    child: GifView.asset(
+                                      'assets/icons/3dgifmaker81257.gif',
+                                      width: 250,
+                                      height: 250,
+                                    ),
                                   ),
                                 ),
                                 gaps(50),
@@ -160,7 +164,9 @@ class loginScreenState extends State<LoginScreen> {
                                         padding: EdgeInsets.all(20.0),
                                         child: Text(
                                           "Login",
-                                          style: TextStyle(color: Colors.white, fontSize: 18),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
                                         ),
                                       )),
                                 ),
@@ -200,8 +206,8 @@ class loginScreenState extends State<LoginScreen> {
                             gaps(20),
                             Text(
                               translate("login_screen.login"),
-                              style:
-                                  const TextStyle(color: Colors.white, fontSize: 20),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 20),
                             ),
                             gaps(20),
                             textHeading("Staff Number"),
@@ -270,7 +276,8 @@ class loginScreenState extends State<LoginScreen> {
                               decoration: InputDecoration(
                                 prefixIcon:
                                     const Icon(Icons.lock, color: Colors.white),
-                                labelStyle: const TextStyle(color: Colors.white),
+                                labelStyle:
+                                    const TextStyle(color: Colors.white),
                                 fillColor: Colors.white24,
                                 filled: true,
                                 enabledBorder: const OutlineInputBorder(
@@ -333,7 +340,8 @@ class loginScreenState extends State<LoginScreen> {
                                   },
                                   child: Text(
                                       textAlign: TextAlign.left,
-                                      style: const TextStyle(color: Colors.white),
+                                      style:
+                                          const TextStyle(color: Colors.white),
                                       translate("login_screen.go_back")),
                                 ),
                               ),

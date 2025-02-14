@@ -13,6 +13,7 @@ import 'package:radius/provider/payslipdetailprovider.dart';
 import 'package:radius/provider/payslipprovider.dart';
 import 'package:radius/provider/prefprovider.dart';
 import 'package:radius/provider/profileprovider.dart';
+import 'package:radius/provider/settingsprovider.dart';
 import 'package:radius/screen/auth/login_screen.dart';
 import 'package:radius/screen/dashboard/dashboard_screen.dart';
 import 'package:radius/screen/general/generalscreen.dart';
@@ -260,6 +261,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (ctx) => PaySlipDetailProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => SettingsProvider(),
           ),
         ],
         child: Portal(

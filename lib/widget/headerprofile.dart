@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/constant.dart';
+
 class HeaderProfile extends StatefulWidget {
   const HeaderProfile({super.key});
 
@@ -35,7 +37,7 @@ class HeaderState extends State<HeaderProfile> {
             ClipRRect(
               borderRadius: BorderRadius.circular(25),
               child: CachedNetworkImage(
-                imageUrl: provider.avatar,
+                imageUrl: '${Constant.IMAGE_URL}${provider.avatar}',
                 width: 50,
                 height: 50,
                 fit: BoxFit.cover,

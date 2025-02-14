@@ -10,6 +10,8 @@ import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'emergencyscreen.dart';
+
 class DashboardScreen extends StatefulWidget {
   static const String routeName = '/dashboard';
 
@@ -75,10 +77,10 @@ class DashboardScreenState extends State<DashboardScreen> {
               )),
 
           PersistentTabConfig(
-              screen: const AttendanceScreen(),
+              screen: const Emergencyscreen(),
               item: getItemConfig(
-                const Icon(Icons.co_present_outlined),
-                translate('dashboard_screen.attendance'),
+                const Icon(Icons.contact_emergency),
+                translate('Emergency'),
               )),
           PersistentTabConfig(
               screen: const MoreScreen(),

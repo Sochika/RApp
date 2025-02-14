@@ -34,8 +34,11 @@ import 'package:provider/provider.dart';
 import 'package:radius/widget/headerprofile.dart';
 import 'package:quick_actions/quick_actions.dart';
 
+import '../../provider/morescreenprovider.dart';
 import '../../utils/AlarmScreen.dart';
 import '../../utils/LocationService.dart';
+import '../../utils/navigationservice.dart';
+import '../auth/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   PersistentTabController controller;
@@ -272,6 +275,7 @@ class HomeScreenState extends State<HomeScreen> {
         this.shiftTime = dashboardResponse.data.userAttend;
         this.Beat = dashboardResponse.data.userAttend.beatBranch;
         this.beatNo = dashboardResponse;
+        // _gradrate(dashboardResponse.data.graduated.graduated);
       });
 
       Provider.of<PrefProvider>(context, listen: false).saveBasicUser(User(
@@ -336,6 +340,7 @@ class HomeScreenState extends State<HomeScreen> {
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -459,6 +464,12 @@ class HomeScreenState extends State<HomeScreen> {
     return [];
   }
 
+
+  void _gradrate(int graduate) {
+    if(graduate == 0){
+      logout();
+    }
+  }
   void _updateAddress(Placemark place) {
     final addressParts = [
       if (place.street?.isNotEmpty ?? false) place.street,
@@ -497,6 +508,54 @@ class HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void logout() async {
+    try {
+      setState(() {
+        showLoader();
+      });
+      final response =
+      await Provider.of<MoreScreenProvider>(context, listen: false)
+          .logout();
+      print('Provider$response');
+
+      setState(() {
+        dismissLoader();
+      });
+      if (!mounted) {
+        return;
+      }
+      if (response.statusCode == 200 || response.statusCode == 401) {
+        Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return LoginScreen();
+            },
+          ),
+              (_) => false,
+        );
+      }
+    } catch (e) {
+      NavigationService().showSnackBar("Log out Alert", e.toString());
+      print(e);
+      setState(() {
+        dismissLoader();
+      });
+    }
+  }
+
+  void dismissLoader() {
+    setState(() {
+      EasyLoading.dismiss(animation: true);
+    });
+  }
+
+  void showLoader() {
+    setState(() {
+      EasyLoading.show(
+          status: "Logging Out, Please Wait..",
+          maskType: EasyLoadingMaskType.black);
+    });
+  }
   // Future<Position?> getCurrentLocation() async {
   //   try {
   //     LocationPermission permission = await Geolocator.checkPermission();

@@ -111,6 +111,7 @@ dependencies:
   flutter_local_notifications: ^18.0.1
   flutter_timezone: ^3.0.1
   timezone: ^0.10.0
+  gif_view: ^1.0.0
 
   nepali_utils: any
 dev_dependencies:

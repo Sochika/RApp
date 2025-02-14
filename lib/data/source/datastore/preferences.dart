@@ -61,7 +61,7 @@ class Preferences with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
 
     await prefs.setInt(USER_ID, user.userId);
-    await prefs.setString(USER_AVATAR, user.staff.getAvatarUrl());
+    await prefs.setString(USER_AVATAR, user.staff.avatar);
     await prefs.setString(USER_STAFFNO, user.staff.staff_no);
     await prefs.setString(GENDER, user.staff.gender);
     await prefs.setString(USER_FULLNAME, '${user.staff.firstName} ${user.staff.lastName}');

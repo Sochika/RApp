@@ -76,10 +76,10 @@ class Staff {
   }
 
   // Method to return the avatar URL or default image if avatar is not set
-  String getAvatarUrl() {
-    if (avatar.isNotEmpty) {
-      return avatar;  // Replace with actual path or URL
-    }
-    return 'assets/images/img.png';  // Default image if avatar is missing
-  }
+  // String getAvatarUrl() {
+  //   if (avatar.isNotEmpty) {
+  //     return avatar;  // Replace with actual path or URL
+  //   }
+  //   return 'assets/images/img.png';  // Default image if avatar is missing
+  // }
 }

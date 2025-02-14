@@ -16,6 +16,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../data/source/network/model/dashboard/Dashboardresponse.dart';
 import '../../utils/TagWidget.dart';
+import 'BeatDetailScreen.dart';
 
 class ProjectScreen extends StatelessWidget {
   final model = Get.put(ProjectDashboardController());
@@ -145,13 +146,14 @@ class ProjectScreen extends StatelessWidget {
 
     // Assuming `dashboardData.data` is a list of items.
     var dataList = dashboardData!.data.shifts;
+    var current = dashboardData!.data.userAttend.beatBranch.beatBranchId;
 
     return ListView.builder(
       primary: false,
       shrinkWrap: true,
       itemCount: dataList.length,
       itemBuilder: (context, index) {
-        var item = dataList[index]; // Assuming each item is a map or object.
+        var item = dataList[index];
 
         return Padding(
           padding: const EdgeInsets.all(8.0),
@@ -159,41 +161,80 @@ class ProjectScreen extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 10),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10), bottomRight: Radius.circular(10))),
+                    topLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10)
+                )
+            ),
             color: Colors.white12,
             elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.beatBranch.name ?? 'No Title', // Change this based on your data structure
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            child: InkWell(
+              onTap: () {
+                // Navigation to the new screen
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DetailScreen(item: item.beatBranch.beatBranchId, beatName: item.beatBranch.name,),
                   ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Text(
-                        item.beatBranch.area?? 'No Description', // Update as per your schema
-                        style: const TextStyle(color: Colors.white70, fontSize: 14),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.beatBranch.name ?? 'No Title',
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        '${item.shiftStart} to ${item.shiftEnd} '?? 'No Description', // Update as per your schema
-                        style: const TextStyle(color: Colors.orange, fontSize: 14),
-                      ),
-                      // TagWidget(label: item.shiftType.name ?? '', backgroundColor:  Colors.blueAccent, textColor:  Colors.white)
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      item.mainAssign == 1 ? const TagWidget(label: 'Primary', backgroundColor:  Colors.blueAccent, textColor:  Colors.white) : const TagWidget(label: 'Secondary', backgroundColor:  Colors.blueGrey, textColor:  Colors.white) ,
-
-                    ]
-                  )
-                ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text(
+                          item.beatBranch.area ?? 'No Description',
+                          style: const TextStyle(color: Colors.white70, fontSize: 14),
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          '${item.shiftStart} to ${item.shiftEnd}' ?? 'No Description',
+                          style: const TextStyle(color: Colors.orange, fontSize: 14),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        item.mainAssign == 1
+                            ? const TagWidget(
+                            label: 'Primary',
+                            backgroundColor: Colors.blueAccent,
+                            textColor: Colors.white)
+                            : const TagWidget(
+                            label: 'Extra Beat',
+                            backgroundColor: Colors.yellowAccent,
+                            textColor: Colors.white),
+                        const SizedBox(width: 8),
+                        TagWidget(
+                            label: item.shiftType.name ?? '',
+                            backgroundColor: Colors.blueGrey,
+                            textColor: Colors.white),
+                        const SizedBox(width: 8),
+                        item.beatBranch.beatBranchId == current
+                            ? const TagWidget(
+                            label: 'Active',
+                            backgroundColor: Colors.greenAccent,
+                            textColor: Colors.white)
+                            : const TagWidget(
+                            label: 'Not Active',
+                            backgroundColor: Colors.redAccent,
+                            textColor: Colors.white),
+                        // const Text('${item.beatBranch}',  style:  TextStyle(color: Colors.orange, fontSize: 14),)
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

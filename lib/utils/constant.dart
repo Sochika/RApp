@@ -18,6 +18,9 @@ class Constant {
   static const MAIN_URL = localhost;
 
   static const API_URL = "api";
+  static const IMAGE_URL = "${MAIN_URL}images/";
+  static const MALE_IMAGE_URL = "${MAIN_URL}assets/img/avatars/male.png";
+  static const FEMALE_IMAGE_URL = "${MAIN_URL}assets/img/avatars/female.png";
   static const PRIVACY_POLICY_URL = "${MAIN_URL}privacy";
 
   static const LOGIN_URL = "$API_URL/login";
@@ -29,6 +32,8 @@ class Constant {
   static const ATTENDANCE_URL = "$API_URL/staff/attendance";
 
   static const ADD_NFC_URL = "$API_URL/nfc/store";
+
+  static const SETTINGS_URL = "$API_URL/settings";
 
   static const SEND_PUSH_NOTIFICATION = "$API_URL/employee/push";
 
@@ -58,6 +63,7 @@ class Constant {
   static const NOTICE_URL = "$API_URL/notices";
   static const MEETING_URL = "$API_URL/team-meetings";
 
+  static const BEAT_DETAILS_URL = "$API_URL/beatDetail";
   static const PROJECT_DASHBOARD_URL = "$API_URL/project-management-dashboard";
   static const PROJECT_LIST_URL = "$API_URL/assigned-projects-list";
   static const PROJECT_DETAIL_URL = "$API_URL/assigned-projects-detail";
