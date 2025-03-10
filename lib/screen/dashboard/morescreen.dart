@@ -93,8 +93,8 @@ class MoreScreenState extends State<MoreScreen> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 )),
-                            Services(translate('more_screen.team_sheet'),
-                                Icons.group,  TeamSheetScreen()),
+                            // Services(translate('more_screen.team_sheet'),
+                            //     Icons.group,  TeamSheetScreen()),
                             features["project-management"] != "1"
                                 ? const SizedBox.shrink()
                             //     : Services(

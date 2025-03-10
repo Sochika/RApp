@@ -8,7 +8,7 @@ class Dashboardresponse {
     required this.data,
   });
 
-  factory Dashboardresponse.fromJson(dynamic json) {
+  factory Dashboardresponse.fromJson(Map<String, dynamic> json) {
 
     return Dashboardresponse(
         status: json['status'],

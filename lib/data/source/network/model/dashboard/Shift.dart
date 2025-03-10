@@ -11,11 +11,11 @@ class Shift {
 
   factory Shift.fromJson(Map<String, dynamic> json) {
     return Shift(
-      shiftStart: json['shift_start'] ?? '',
-      shiftEnd: json['shift_end'] ?? '',
-      mainAssign: json['main_assign'] ?? 0,
-      beatBranch: BeatBranch.fromJson(json['beat_branch'] ?? {}),
-      shiftType: ShiftType.fromJson(json['shift_type'] ?? {}),
+      shiftStart: json['shift_start'],
+      shiftEnd: json['shift_end'],
+      mainAssign: json['main_assign'],
+      beatBranch: BeatBranch.fromJson(json['beat_branch']),
+      shiftType: ShiftType.fromJson(json['shift_type']),
     );
   }
 

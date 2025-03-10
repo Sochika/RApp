@@ -47,6 +47,7 @@ class _EmergencyscreenState extends State<Emergencyscreen> {
       return ContactButtons(
         whatsappNumber: settings?.data.whatsapp?? '',
         callNumber: settings?.data.phone ?? '',
+        initialMessage: settings?.data.initialMessage ?? '',
       );
     });
   }

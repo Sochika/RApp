@@ -1,15 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class AlarmScreen extends StatefulWidget {
-  const AlarmScreen({Key? key, required this.TimeIn, required this.TimeOut})
-      : super(key: key);
-  final String TimeIn;
-  final String TimeOut;
+  final String timeIn;
+  final String timeOut;
+
+  const AlarmScreen({
+    Key? key,
+    required this.timeIn,
+    required this.timeOut,
+  }) : super(key: key);
 
   @override
   _AlarmScreenState createState() => _AlarmScreenState();
@@ -18,97 +24,179 @@ class AlarmScreen extends StatefulWidget {
 class _AlarmScreenState extends State<AlarmScreen> {
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
   FlutterLocalNotificationsPlugin();
-  late String _localTimezone;
+  late tz.Location _localTimezone;
   bool _initialized = false;
+  String _statusMessage = 'Initializing...';
+  final List<int> _scheduledNotificationIds = [];
+  bool _isScheduling = false;
 
   @override
   void initState() {
     super.initState();
-    _initializeTimeZones();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkPermission();
+      _initializeTimeZones();
+    });
   }
 
   Future<void> _initializeTimeZones() async {
     try {
-      // Initialize timezone database
-      tz.initializeTimeZones();
-
-      // Get local timezone
-      _localTimezone = await FlutterTimezone.getLocalTimezone();
-
-      // Initialize notifications after timezones are ready
-      await _initializeNotifications();
-
-      // Schedule alarms
-      _scheduleAlarms();
-
-      setState(() => _initialized = true);
+      await _executeHeavyTask(() {
+        tz.initializeTimeZones();
+        return FlutterTimezone.getLocalTimezone();
+      }).then((timezoneName) async {
+        _localTimezone = tz.getLocation(timezoneName as String);
+        await _initializeNotifications();
+        await _scheduleAlarms();
+        if (mounted) setState(() => _initialized = true);
+      });
     } catch (e) {
-      print("Timezone initialization failed: $e");
+      _updateStatus('Error: ${e.toString()}');
     }
   }
+
+  Future<T> _executeHeavyTask<T>(T Function() task) async {
+    return await compute((message) => task(), null);
+  }
+
+
 
   Future<void> _initializeNotifications() async {
-    const AndroidInitializationSettings androidSettings =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+    var status = await Permission.notification.status;
 
-    const InitializationSettings initializationSettings =
-    InitializationSettings(android: androidSettings);
+    if (status.isDenied || status.isPermanentlyDenied) {
+      status = await Permission.notification.request();
+    }
 
-    await _notificationsPlugin.initialize(
-      initializationSettings,
-      onDidReceiveNotificationResponse: (response) {
-        debugPrint("Notification clicked");
-      },
-    );
-  }
+    if (status.isGranted) {
+      const AndroidInitializationSettings androidSettings =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
 
-  void _scheduleAlarms() {
-    try {
-      final now = DateTime.now();
-      DateTime start = _parseTime(widget.TimeIn);
-      DateTime end = _parseTime(widget.TimeOut);
+      const InitializationSettings initializationSettings =
+      InitializationSettings(android: androidSettings);
 
-      if (end.isBefore(start)) end = end.add(const Duration(days: 1));
-      if (start == end) end = end.add(const Duration(days: 1));
+      await _notificationsPlugin.initialize(
+        initializationSettings,
+        onDidReceiveNotificationResponse: _onNotificationClicked,
+      );
 
-      if (now.isAfter(start) && now.isBefore(end)) {
-        DateTime nextAlarm = _calculateNextAlarm(now);
-        while (nextAlarm.isBefore(end)) {
-          _scheduleNotification(nextAlarm);
-          nextAlarm = nextAlarm.add(const Duration(hours: 2));
-        }
-      }
-    } catch (e) {
-      print("Alarm scheduling error: $e");
+      debugPrint('Notification Permission Granted');
+    } else {
+      _updateStatus("Notification permission denied. Enable it from settings.");
     }
   }
 
-  DateTime _calculateNextAlarm(DateTime current) {
-    DateTime next = DateTime(
-      current.year,
-      current.month,
-      current.day,
-      current.hour + (2 - (current.hour % 2)),
-      0,
-    );
-    return next.isAfter(current) ? next : next.add(const Duration(hours: 2));
+
+  void _onNotificationClicked(NotificationResponse response) {
+    debugPrint("Notification clicked: ${response.payload}");
   }
 
-  DateTime _parseTime(String time) {
-    final parsed = DateFormat('HH:mm').parse(time);
-    final now = DateTime.now();
-    return DateTime(now.year, now.month, now.day, parsed.hour, parsed.minute);
-  }
+  Future<void> _scheduleAlarms() async {
+    if (_isScheduling) return;
+    _isScheduling = true;
 
-  Future<void> _scheduleNotification(DateTime time) async {
     try {
-      final tzLocation = tz.getLocation(_localTimezone);
-      final tzTime = tz.TZDateTime.from(time, tzLocation);
+      await _cancelExistingNotifications();
 
+      final now = tz.TZDateTime.now(_localTimezone);
+      final start = _parseTime(widget.timeIn);
+      final end = _parseTime(widget.timeOut);
+
+      if (start.isAfter(end)) {
+        _updateStatus('End time cannot be before start time');
+        return;
+      }
+
+      final scheduledTimes = await _calculateAlarmTimes(now, start, end);
+      _updateStatus('Scheduled alarms at: ${scheduledTimes.join(', ')}');
+    } catch (e) {
+      _updateStatus('Scheduling failed: ${e.toString()}');
+    } finally {
+      _isScheduling = false;
+    }
+  }
+
+  Future<void> _checkPermission() async {
+    if (await Permission.notification.isDenied) {
+      _updateStatus("Notification permission denied. Please allow it in settings.");
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Permission Required"),
+          content: const Text(
+            "Please allow notifications in app settings to receive shift reminders.",
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                openAppSettings();
+              },
+              child: const Text("Open Settings"),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel"),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+
+  Future<List<String>> _calculateAlarmTimes(
+      tz.TZDateTime now,
+      tz.TZDateTime start,
+      tz.TZDateTime end,
+      ) async {
+    final scheduledTimes = <String>[];
+    tz.TZDateTime currentAlarm = _calculateFirstAlarm(now, start);
+
+    while (currentAlarm.isBefore(end)) {
+      await _scheduleNotification(currentAlarm);
+      scheduledTimes.add(DateFormat.jm().format(currentAlarm));
+      currentAlarm = currentAlarm.add(const Duration(hours: 2));
+
+      // Yield to event loop to prevent UI blockage
+      await Future.delayed(Duration.zero);
+    }
+
+    return scheduledTimes;
+  }
+
+  tz.TZDateTime _calculateFirstAlarm(tz.TZDateTime now, tz.TZDateTime start) {
+    if (now.isAfter(start)) {
+      final nextEvenHour = now.hour + (2 - (now.hour % 2));
+      return tz.TZDateTime(
+        _localTimezone,
+        now.year,
+        now.month,
+        now.day,
+        nextEvenHour,
+      ).add(nextEvenHour > 23 ? const Duration(days: 1) : Duration.zero);
+    }
+    return start;
+  }
+
+  tz.TZDateTime _parseTime(String time) {
+    final parsed = DateFormat('HH:mm').parse(time);
+    final now = tz.TZDateTime.now(_localTimezone);
+    return tz.TZDateTime(
+      _localTimezone,
+      now.year,
+      now.month,
+      now.day,
+      parsed.hour,
+      parsed.minute,
+    );
+  }
+
+  Future<void> _scheduleNotification(tz.TZDateTime time) async {
+    try {
       const androidDetails = AndroidNotificationDetails(
         'alarm_channel',
         'Alarm Notifications',
-        channelDescription: 'Scheduled alarm reminders',
+        channelDescription: 'Scheduled reminders for operative shifts',
         importance: Importance.max,
         priority: Priority.high,
         sound: RawResourceAndroidNotificationSound('alarm_sound'),
@@ -117,29 +205,64 @@ class _AlarmScreenState extends State<AlarmScreen> {
 
       await _notificationsPlugin.zonedSchedule(
         time.millisecondsSinceEpoch ~/ 1000,
-        'Operative Reminder',
-        'It\'s ${DateFormat.jm().format(time)} - Stay vigilant',
-        tzTime,
+        'Shift Reminder',
+        'Reminder for ${DateFormat.jm().format(time)}',
+        time,
         const NotificationDetails(android: androidDetails),
         uiLocalNotificationDateInterpretation:
         UILocalNotificationDateInterpretation.absoluteTime,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       );
+
+      _scheduledNotificationIds.add(time.millisecondsSinceEpoch ~/ 1000);
     } catch (e) {
-      print("Notification scheduling failed: $e");
+      debugPrint("Notification error: $e");
+    }
+  }
+
+  Future<void> _cancelExistingNotifications() async {
+    for (final id in _scheduledNotificationIds) {
+      await _notificationsPlugin.cancel(id);
+    }
+    _scheduledNotificationIds.clear();
+  }
+
+  void _updateStatus(String message) {
+    if (mounted) {
+      setState(() => _statusMessage = message);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: _initialized
-          ? Text(
-        'Alarms scheduled between ${widget.TimeIn} and ${widget.TimeOut}',
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 16),
-      )
-          : const CircularProgressIndicator(),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.alarm, size: 50, color: Colors.blue),
+            const SizedBox(height: 20),
+            Text(
+              'Shift Times: ${widget.timeIn} - ${widget.timeOut}',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 20),
+            _initialized
+                ? Text(
+              _statusMessage,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16),
+            )
+                : const CircularProgressIndicator(),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _initialized && !_isScheduling ? _scheduleAlarms : null,
+              child: const Text('Refresh Schedule'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

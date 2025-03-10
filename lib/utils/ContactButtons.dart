@@ -11,7 +11,7 @@ class ContactButtons extends StatelessWidget {
     super.key,
     required this.whatsappNumber,
     required this.callNumber,
-    this.initialMessage = 'Hello, I need assistance',
+     required this.initialMessage,
   });
 
   Future<void> _launchWhatsApp() async {

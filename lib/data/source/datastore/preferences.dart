@@ -160,8 +160,9 @@ class Preferences with ChangeNotifier {
   }
 
   void saveAppUrl(String value) async {
+    // String kvalue = value ?? Constant.appUrl;
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(APP_URL, value);
+    await prefs.setString(APP_URL, Constant.appUrl);
   }
 
   void saveAttendanceType(String value) async {
@@ -285,8 +286,8 @@ class Preferences with ChangeNotifier {
   }
 
   Future<String> getAppUrl() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(APP_URL) ?? Constant.appUrl;
+    // final prefs = await SharedPreferences.getInstance();
+    return Constant.appUrl;
   }
 
   Future<bool> getHardReset() async {

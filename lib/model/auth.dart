@@ -13,21 +13,21 @@ class Auth with ChangeNotifier {
   String appUrl = "";
   Preferences preferences = Preferences();
 
-  Future<void> saveAppUrl(String value) async {
-    try {
-      String decoded = utf8.decode(base64.decode(value));
-
-      if (!decoded.contains("http")) {
-        showToast("Invalid QR Code");
-        return;
-      }
-      preferences.saveAppUrl(decoded);
-      appUrl = await preferences.getAppUrl();
-      notifyListeners();
-    } catch (e) {
-      showToast("Invalid QR Code, Try again");
-    }
-  }
+  // Future<void> saveAppUrl(String value) async {
+  //   try {
+  //     String decoded = utf8.decode(base64.decode(value));
+  //
+  //     if (!decoded.contains("http")) {
+  //       showToast("Invalid QR Code");
+  //       return;
+  //     }
+  //     preferences.saveAppUrl(decoded);
+  //     appUrl = await preferences.getAppUrl();
+  //     notifyListeners();
+  //   } catch (e) {
+  //     showToast("Invalid QR Code, Try again");
+  //   }
+  // }
 
   Future<void> resetAppUrl() async {
     preferences.saveAppUrl("");
@@ -47,7 +47,7 @@ class Auth with ChangeNotifier {
   }
 
   Future<Loginresponse> login(String username, String password) async {
-    var uri = Uri.parse(await preferences.getAppUrl() + Constant.LOGIN_URL);
+    var uri = Uri.parse(Constant.MAIN_URL + Constant.LOGIN_URL);
     print(uri);
 
     Map<String, String> headers = {"Accept": "application/json; charset=UTF-8"};

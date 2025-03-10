@@ -9,13 +9,12 @@ class User {
     required this.staff,
   });
 
-  // Factory constructor to create a User instance from JSON
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        userId: int.tryParse(json['user_id']?.toString() ?? '0') ?? 0,
-      // Default to 0 if user_id is not present
-      logoutStatus: json['logout_status'] ?? false,  // Default to false if logout_status is not present
-      staff: Staff.fromJson(json['staff'] ?? {}),  // Create Staff instance from nested JSON
+      userId: json['user_id'],
+      logoutStatus: json['logout_status'],  // Default to false if logout_status is not present
+      staff: Staff.fromJson(json['staff']),  // Create Staff instance from nested JSON
     );
   }
 
@@ -51,13 +50,13 @@ class Staff {
   // Factory constructor to create a Staff instance from JSON
   factory Staff.fromJson(Map<String, dynamic> json) {
     return Staff(
-      firstName: json['first_name'] ?? '',  // Default to empty string if first_name is not present
-      lastName: json['last_name'] ?? '',  // Default to empty string if last_name is not present
-      avatar: json['avatar'] ?? '',  // Default to empty string if avatar is not present
-      gender: json['gender'] ?? '',  // Default to empty string if last_name is not present
-      staff_no: json['staff_no'] ?? '',  // Default to empty string if avatar is not present
-      hire_date: json['hire_date'] ?? '',
-      dob:json['date_of_birth'] ?? '',
+      firstName: json['first_name'],  // Default to empty string if first_name is not present
+      lastName: json['last_name'],  // Default to empty string if last_name is not present
+      avatar: json['avatar'],  // Default to empty string if avatar is not present
+      gender: json['gender'],  // Default to empty string if last_name is not present
+      staff_no: json['staff_no'],  // Default to empty string if avatar is not present
+      hire_date: json['hire_date'],
+      dob:json['date_of_birth'],
     );
   }
 
@@ -71,7 +70,7 @@ class Staff {
       'staff_no': staff_no,
       'hire_date': hire_date,
       'date_of_birth': dob,
-      // 'avatar': avatar,
+
     };
   }
 

@@ -23,7 +23,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_interceptor_plus/http_interceptor_plus.dart';
 import 'package:intl/intl.dart';
-import 'package:nepali_date_picker/nepali_date_picker.dart';
+// import 'package:nepali_date_picker/nepali_date_picker.dart';
 
 class DashboardProvider with ChangeNotifier {
   final Map<String, String> _overviewList = {
@@ -37,9 +37,10 @@ class DashboardProvider with ChangeNotifier {
     'active_training': '0',
   };
 
-  final Map<String, double> locationStatus = {
+  final Map<String, dynamic> locationStatus = {
     'latitude': 0.0,
     'longitude': 0.0,
+    'address' : '',
   };
 
   var department = "";
@@ -125,102 +126,47 @@ class DashboardProvider with ChangeNotifier {
 
     print('from dashCode${response.statusCode}' );
     if (response.statusCode == 200) {
-      // print('yess');
+
       final dashboardResponse = Dashboardresponse.fromJson(responseData);
-      // print('yess2');
-      print('res ${dashboardResponse.data.userAttend.beatBranch.latitude}');
 
-      // department = dashboardResponse.data.shift.beatBranch.name;
-      // branch = dashboardResponse.data.shift.beatBranch.area;
-
-      // if (dashboardResponse.data.user.staff.hire_date != "") {
-      //   final dob =
-      //   DateFormat("yyyy-MM-dd").parse(dashboardResponse.data.user.staff.hire_date);
-      //   final currentDate = DateTime.now();
-      //   final isBirthday =
-      //       dob.month == currentDate.month && currentDate.day == dob.day;
-      //
-      //   if (isBirthday) {
-      //     if (!await preferences.getBirthdayWished()) {
-      //       isBirthdayWished = false;
-      //       preferences.saveBirthdayWished(true);
-      //     } else {
-      //       isBirthdayWished = true;
-      //     }
-      //   } else {
-      //     preferences.saveBirthdayWished(false);
-      //     isBirthdayWished = true;
-      //   }
-      // }
-
-      // updateAttendanceStatus(dashboardResponse.data.employeeTodayAttendance);
-      // updateOverView(dashboardResponse.data.overview);
-      //
-      // makeWeeklyReport(dashboardResponse.data.employeeWeeklyReport);
-      // controlFeatures(dashboardResponse.data.features);
       await preferences.saveUserDashboard(dashboardResponse.data.user);
 
-      // employeeList = dashboardResponse.data.employee;
-      // preferences.saveShowNfc(dashboardResponse.data.addNfc);
-      // preferences.saveNote(dashboardResponse.data.attendanceNote);
-      // isNoteEnabled = await preferences.getNote();
-      //
-      // final holidayResponse = dashboardResponse.data.holiday;
-      // final recentAwardResponse = dashboardResponse.data.recentAward;
+      notifyListeners();
+      return dashboardResponse;
+    } else {
+      var errorMessage = responseData['message'];
+      print(errorMessage.toString());
+      throw errorMessage;
+    }
+  }
 
-      // if (holidayResponse != null) {
-      //   bool isAd = await preferences.getEnglishDate();
-      //   DateTime tempDate =
-      //   DateFormat("yyyy-MM-dd").parse(holidayResponse.eventDate);
-      //
-      //   NepaliDateTime nepaliDate = tempDate.toNepaliDateTime();
-      //   holiday = Holiday(
-      //       id: holidayResponse.id,
-      //       day: isAd
-      //           ? DateFormat('dd').format(tempDate)
-      //           : NepaliDateFormat('dd').format(nepaliDate),
-      //       month: isAd
-      //           ? DateFormat('MMM').format(tempDate)
-      //           : NepaliDateFormat('MMMM').format(nepaliDate),
-      //       title: holidayResponse.event,
-      //       description: holidayResponse.description,
-      //       dateTime: tempDate,
-      //       isPublicHoliday: holidayResponse.isPublicHoliday);
-      // }
+  Future<Dashboardresponse> getOverview() async {
+    Preferences preferences = Preferences();
+    animated = getAnimation();
 
-      // if (recentAwardResponse != null) {
-      //   award = Award(award_description: recentAwardResponse.award_description,
-      //       award_name: recentAwardResponse.award_name,
-      //       awarded_by: recentAwardResponse.awarded_by,
-      //       awarded_date: recentAwardResponse.awarded_date,
-      //       employee_name: recentAwardResponse.employee_name,
-      //       gift_description: recentAwardResponse.gift_description,
-      //       gift_item: recentAwardResponse.gift_item,
-      //       id: recentAwardResponse.id,
-      //       image: recentAwardResponse.image,
-      //       reward_code: recentAwardResponse.reward_code);
-      // }else{
-      //   award = null;
-      // }
+    var uri = Uri.parse(await preferences.getAppUrl() + Constant.OVERVIEW_URL);
 
-      // DateTime startTime = DateFormat("hh:mm a")
-      //     .parse(dashboardResponse.data.userAttend.shiftStart);
-      // DateTime endTime = DateFormat("hh:mm a")
-      //     .parse(dashboardResponse.data.userAttend.shiftEnd);
+    String token = await preferences.getToken();
 
-      // AwesomeNotifications().cancelAllSchedules();
-      // for (var shift in dashboardResponse.data.shiftDates) {
-      //   scheduleNewNotification(
-      //       shift,
-      //       "Please check in on time ⏱️⌛️",
-      //       startTime.hour,
-      //       startTime.minute,
-      //       "Almost done with your shift 😄⌛️ Remember to checkout ⏱️",
-      //       endTime.hour,
-      //       endTime.minute);
-      // }
+    var fcm = await FirebaseMessaging.instance.getToken();
 
-      // checkAD();
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token',
+      'fcm_token': fcm ?? ""
+    };
+
+    final response = await http.get(uri, headers: headers);
+    log(response.body.toString());
+
+    final responseData = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+
+      final dashboardResponse = Dashboardresponse.fromJson(responseData);
+      // await preferences.saveUserDashboard(dashboardResponse.data.user);
+
       notifyListeners();
       return dashboardResponse;
     } else {
@@ -351,9 +297,10 @@ class DashboardProvider with ChangeNotifier {
     };
 
     final response = await http.post(uri, headers: headers, body: {
-      'router_bssid': await WifiInfo().info.getWifiBSSID() ?? "",
+      // 'router_bssid': await WifiInfo().info.getWifiBSSID() ?? "",
       'check_in_latitude': locationStatus['latitude'].toString(),
       'check_in_longitude': locationStatus['longitude'].toString(),
+      'address': locationStatus['longitude'].toString(),
     });
 
     final responseData = json.decode(response.body);

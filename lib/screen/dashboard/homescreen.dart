@@ -10,17 +10,18 @@ import 'package:radius/data/source/network/model/dashboard/Dashboardresponse.dar
 import 'package:radius/data/source/network/model/dashboard/UserAttend.dart';
 import 'package:radius/data/source/network/model/login/User.dart';
 import 'package:radius/provider/dashboardprovider.dart';
+import 'package:radius/provider/locationoperativeprovider.dart';
 import 'package:radius/provider/prefprovider.dart';
 import 'package:radius/screen/general/generalscreen.dart';
 import 'package:radius/utils/constant.dart';
-import 'package:radius/utils/locationstatus.dart';
+
 import 'package:radius/widget/customalertdialog.dart';
 import 'package:radius/widget/homescreen/checkattendance.dart';
-import 'package:radius/widget/homescreen/myteam.dart';
+
 import 'package:radius/widget/homescreen/overviewdashboard.dart';
 import 'package:radius/widget/homescreen/recentAward.dart';
 import 'package:radius/widget/homescreen/upcomingholiday.dart';
-import 'package:radius/widget/homescreen/weeklyreportchart.dart';
+
 import 'package:radius/widget/radialDecoration.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +34,10 @@ import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:provider/provider.dart';
 import 'package:radius/widget/headerprofile.dart';
 import 'package:quick_actions/quick_actions.dart';
-
-import '../../provider/morescreenprovider.dart';
 import '../../utils/AlarmScreen.dart';
 import '../../utils/LocationService.dart';
-import '../../utils/navigationservice.dart';
-import '../auth/login_screen.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 
 class HomeScreen extends StatefulWidget {
   PersistentTabController controller;
@@ -56,13 +55,12 @@ class HomeScreenState extends State<HomeScreen> {
   bool isLoading = false;
   double? userLatitude;
   double? userLongitude;
-  // double? hereLatitude = 0.0;
-  // double? hereLongitude = 0.0;
   Position? position;
   String? address ='No address found';
-  BeatBranch? Beat;
+  BeatBranch? beat;
   UserAttend? shiftTime;
   Dashboardresponse? beatNo;
+  Timer? locationTimer;
 
   PersistentTabController controller;
 
@@ -70,11 +68,27 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    super.initState();
+
     locationStatus();
     checkNotificationState();
-    loadDashboard();
     // getPositionStream();
     _initializeLocation();
+
+    // Ensure loadDashboard is called after the first frame to avoid context-related issues
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadDashboard(context);
+    });
+
+    // void startLocationUpdates() {
+    //   locationTimer?.cancel(); // Cancel any existing timer
+    //
+    //   if (beatNo?.data.onDuties.operativeBeatMap[beatNo?.data.user.userId ?? 0] != null) {
+    //     locationTimer = Timer.periodic(const Duration(seconds: 1200), (timer) {
+    //       locationUpdate();
+    //     });
+    //   }
+    // }
 
     quickActions.initialize((type) async {
       if (type == "actionCheckIn") {
@@ -83,20 +97,18 @@ class HomeScreenState extends State<HomeScreen> {
         await onCheckOutShortCut();
       }
     });
+
     quickActions.setShortcutItems(<ShortcutItem>[
       const ShortcutItem(
           type: 'actionCheckIn', localizedTitle: 'Check In', icon: 'check_in'),
       const ShortcutItem(
-          type: 'actionCheckOut',
-          localizedTitle: 'Check Out',
-          icon: 'check_out'),
+          type: 'actionCheckOut', localizedTitle: 'Check Out', icon: 'check_out'),
     ]);
-    super.initState();
   }
 
   void checkNotificationState() {
     FirebaseMessaging.instance.getInitialMessage().then((message) {
-      print("FirebaseMessaging.getInitialMessage $message");
+      // print("FirebaseMessaging.getInitialMessage $message");
       if (message == null) {
         return;
       }
@@ -123,17 +135,35 @@ class HomeScreenState extends State<HomeScreen> {
 
       location.update('latitude', (value) => position?.latitude ?? 0.0);
       location.update('longitude', (value) => position?.longitude ?? 0.0);
-      print('long ${position?.longitude } lat ${position?.latitude}');
-      // final userShiftime =
-      //     Provider.of<DashboardProvider>(context, listen: false).beatShift;
-      // beatID.update('beatID', (value) => beatId!);
-      // userShiftime.update('shiftStart',  (value) => shiftTime?.shiftStart ?? '');
-      // userShiftime.update('shiftEnd',  (value) => shiftTime?.shiftEnd ?? '');
+
     } catch (e) {
-      print(e);
+      // print(e);
       showToast(e.toString());
     }
   }
+
+  void locationUpdate() async {
+
+    try {
+      // Preferences preferences = Preferences();
+      // final position = await LocationStatus()
+      //     .determinePosition(await preferences.getWorkSpace());
+
+      if (!mounted) {
+        return;
+      }
+      await Provider.of<LocationOperativeProvider>(context, listen: false)
+          .locationUpdate(
+          userLatitude as String,
+          userLongitude as String,
+          address!);
+    } catch (e) {
+      // print(e);
+      showToast(e.toString());
+    }
+  }
+
+
 
   Future<void> onCheckInShortCut() async {
     Preferences pref = Preferences();
@@ -142,6 +172,7 @@ class HomeScreenState extends State<HomeScreen> {
         return;
       }
       final provider = Provider.of<DashboardProvider>(context, listen: false);
+
       try {
         isLoading = true;
         setState(() {
@@ -169,7 +200,7 @@ class HomeScreenState extends State<HomeScreen> {
           });
         }
       } catch (e) {
-        print(e);
+        // print(e);
         setState(() {
           EasyLoading.dismiss(animation: true);
           isLoading = false;
@@ -241,81 +272,107 @@ class HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<Dashboardresponse> fetchDashboard() async {
-    return await Provider.of<DashboardProvider>(context, listen: false).getDashboard();
+  Future<Dashboardresponse?> fetchDashboard(BuildContext context) async {
+    try {
+      // Check internet connectivity
+      var connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult == ConnectivityResult.none) {
+        if (!context.mounted) return null; // Ensure context is still valid
+
+        // Show no internet dialog
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('No Internet Connection'),
+            content: const Text('Please check your internet connection and try again.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+
+        return null; // Stop further execution
+      }
+
+      // Fetch dashboard data
+      return await Provider.of<DashboardProvider>(context, listen: false).getDashboard();
+    } catch (e) {
+      debugPrint("Error fetching dashboard: $e");
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to Connect to Internet. Please try again.')),
+        );
+      }
+      return null;
+    }
   }
 
-  Future<String> loadDashboard() async {
-    // var fcm = await FirebaseMessaging.instance.getToken();
-    // print(fcm);
-    // print('jeloo1');
 
+  Future<String> loadDashboard(BuildContext context) async {
     try {
-      // final dashboardResponse =fetchDashboard();
-      // await Provider.of<DashboardProvider>(context, listen: false)
-      //     .getDashboard();
-      // print('jeloo2');
-      final dashboardResponse = await fetchDashboard();
-      // print('jeloo3 $dashboardResponse');
+      final dashboardResponse = await fetchDashboard(context);
+
+      // Check if the response is null (e.g., no internet)
+      if (dashboardResponse == null) {
+        return 'error'; // Handle it properly instead of crashing
+      }
 
       final user = dashboardResponse.data.user;
-      userLatitude = dashboardResponse.data.userAttend.beatBranch.latitude != null
-          ? double.tryParse(dashboardResponse.data.userAttend.beatBranch.latitude)
-          : null;
+      print('hello $user' );
 
-      userLongitude = dashboardResponse.data.userAttend.beatBranch.longitude != null
-          ? double.tryParse(dashboardResponse.data.userAttend.beatBranch.longitude)
-          : null;
+      // Safely parse latitude & longitude
+      userLatitude = double.tryParse(dashboardResponse.data.userAttend.beatBranch.latitude);
+      userLongitude = double.tryParse(dashboardResponse.data.userAttend.beatBranch.longitude);
+      // print(dashboardResponse.data.shifts.lastOrNull);
 
-      print("Latitude: $userLatitude, Longitude: $userLongitude");
+      if (mounted) {
+        setState(() {
+          shiftTime = dashboardResponse.data.userAttend;
+          beat = dashboardResponse.data.userAttend.beatBranch;
+          beatNo = dashboardResponse;
+        });
+      }
 
-      setState(() {
-        this.userLatitude = userLatitude;
-        this.userLongitude = userLongitude;
-        this.shiftTime = dashboardResponse.data.userAttend;
-        this.Beat = dashboardResponse.data.userAttend.beatBranch;
-        this.beatNo = dashboardResponse;
-        // _gradrate(dashboardResponse.data.graduated.graduated);
-      });
-
+      // Save user details using Provider
       Provider.of<PrefProvider>(context, listen: false).saveBasicUser(User(
-          id: user.userId,
-          firstName: user.staff.firstName,
-          lastName: user.staff.lastName,
-          avatar: user.staff.avatar,
-          gender: user.staff.gender,
-          staffNo: user.staff.staff_no,
-          hireDate: user.staff.hire_date,
-          dob: user.staff.dob));
+        id: user.userId,
+        firstName: user.staff.firstName,
+        lastName: user.staff.lastName,
+        avatar: user.staff.avatar,
+        gender: user.staff.gender,
+        staffNo: user.staff.staff_no,
+        hireDate: user.staff.hire_date,
+        dob: user.staff.dob,
+      ));
 
-      // Provider.of<PrefProvider>(context, listen: false)
-      //     .saveEngDateEnabled(dashboardResponse.data.dateInAd);
-
-      if (checkIfBirthday(dashboardResponse.data.user.staff.dob)) {
+      // Show birthday wish if it's the user's birthday
+      if (checkIfBirthday(user.staff.dob ?? '')) {
         showBirthdayWish();
       }
+
       return 'loaded';
     } catch (e) {
-      print(e);
+      print('Error loading dashboard: $e');
       return 'error';
     }
   }
 
+
   bool checkIfBirthday(String dob) {
-    // try {
-      // Parse the dob string into a DateTime object
-    final DateTime dobDate = DateFormat('yyyy-MM-dd').parse(dob);
-
-      // Get today's date
+    try {
+      if (dob.isEmpty) return false;
+      final DateTime dobDate = DateFormat('yyyy-MM-dd').parse(dob);
       final DateTime today = DateTime.now();
-
-      // Check if the day and month match
-      final bool isBirthday = (dobDate.day == today.day && dobDate.month == today.month);
-
-      return isBirthday;
-
+      return dobDate.day == today.day && dobDate.month == today.month;
+    } catch (e) {
+      print("Error parsing birthday: $e");
+      return false;
+    }
   }
-
   void showBirthdayWish() {
     showDialog(
       context: context,
@@ -350,7 +407,7 @@ class HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         body: FocusDetector(
           onFocusGained: () {
-            loadDashboard();
+            loadDashboard(context);
           },
           child: RefreshIndicator(
             triggerMode: RefreshIndicatorTriggerMode.onEdge,
@@ -360,44 +417,36 @@ class HomeScreenState extends State<HomeScreen> {
             onRefresh: () {
               _initializeLocation();
               // getPositionStream();
-              return loadDashboard();
+              return loadDashboard(context);
             },
             child: SafeArea(
                 child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const HeaderProfile(),
-                  CheckAttendance(latitude: userLatitude ?? 0.00, longitude: userLongitude ?? 0.00, Beat:  Beat ?? BeatBranch(beatBranchId: 0, name: 'the designated area', area: '', latitude: '', longitude: '') , position: position ?? Position(latitude: 0.0, longitude: 0.0, timestamp: DateTime(11,1,1), accuracy: 0.0, altitude: 0.0, altitudeAccuracy: 0.0, heading: 0.0, headingAccuracy: 0.0, speed: 0.0, speedAccuracy: 0.0),),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 16.0),  // You can adjust the padding as per your requirement
-                  //   child: Text(
-                  //     'Latitude: ${position?.latitude ?? 'Loading...'}, Longitude: ${position?.longitude ?? 'Loading...'}',
-                  //     style: const TextStyle(color: Colors.white),
-                  //     selectionColor: Colors.white,
-                  //   ),
-                  // ),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const HeaderProfile(),
+                    CheckAttendance(latitude: userLatitude ?? 0.00, longitude: userLongitude ?? 0.00, Beat:  beat ?? BeatBranch(beatBranchId: 0, name: 'the designated area', area: '', latitude: '', longitude: '') , position: position ?? Position(latitude: 0.0, longitude: 0.0, timestamp: DateTime(11,1,1), accuracy: 0.0, altitude: 0.0, altitudeAccuracy: 0.0, heading: 0.0, headingAccuracy: 0.0, speed: 0.0, speedAccuracy: 0.0),),
 
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text('Location: ${address ?? 'Fetching address...'}',
-                      style: const TextStyle(color: Colors.white),
-                      selectionColor: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text('Location: ${address ?? 'Fetching address...'}',
+                        style: const TextStyle(color: Colors.white),
+                        selectionColor: Colors.white,
+                      ),
                     ),
-                  ),
 
-                  OverviewDashboard(controller, this.beatNo),
-                  const UpcomingHoliday(),
-                  const RecentAward(),
-                  AlarmScreen(
-                    TimeIn: shiftTime?.shiftStart ?? '00:00', // Default fallback time
-                    TimeOut: shiftTime?.shiftEnd ?? '00:00',
-                  ),
-                  // const WeeklyReportChart(),
-                  // const WeeklyReportChart(),
-                  // const MyTeam()
-                ],
+                    OverviewDashboard(controller, beatNo),
+                    const UpcomingHoliday(),
+                    const RecentAward(),
+                    AlarmScreen(
+                      timeIn: shiftTime?.shiftStart ?? '00:00', // Default fallback time
+                      timeOut: shiftTime?.shiftEnd ?? '00:00',
+                    ),
+
+                  ],
+                ),
               ),
             )),
           ),
@@ -465,11 +514,6 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
 
-  void _gradrate(int graduate) {
-    if(graduate == 0){
-      logout();
-    }
-  }
   void _updateAddress(Placemark place) {
     final addressParts = [
       if (place.street?.isNotEmpty ?? false) place.street,
@@ -487,67 +531,16 @@ class HomeScreenState extends State<HomeScreen> {
 
   void _handleGeocodingError(PlatformException e) {
     if (!mounted) return;
-
     setState(() {
       address = switch (e.code) {
+        'PERMISSION_DENIED' => 'Location permission denied. Enable in settings.',
         'IO_ERROR' => 'Network error - check connection',
-        'API_UNAVAILABLE' => 'Mapping service unavailable',
-        'INVALID_API_KEY' => 'Configuration error',
+      // ... existing cases
         _ => 'Location service error',
       };
     });
-
-    if (e.code == 'INVALID_API_KEY') {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text("Configuration Error"),
-          content: Text("Please contact support about mapping services"),
-        ),
-      );
-    }
   }
 
-  void logout() async {
-    try {
-      setState(() {
-        showLoader();
-      });
-      final response =
-      await Provider.of<MoreScreenProvider>(context, listen: false)
-          .logout();
-      print('Provider$response');
-
-      setState(() {
-        dismissLoader();
-      });
-      if (!mounted) {
-        return;
-      }
-      if (response.statusCode == 200 || response.statusCode == 401) {
-        Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (BuildContext context) {
-              return LoginScreen();
-            },
-          ),
-              (_) => false,
-        );
-      }
-    } catch (e) {
-      NavigationService().showSnackBar("Log out Alert", e.toString());
-      print(e);
-      setState(() {
-        dismissLoader();
-      });
-    }
-  }
-
-  void dismissLoader() {
-    setState(() {
-      EasyLoading.dismiss(animation: true);
-    });
-  }
 
   void showLoader() {
     setState(() {
@@ -555,6 +548,10 @@ class HomeScreenState extends State<HomeScreen> {
           status: "Logging Out, Please Wait..",
           maskType: EasyLoadingMaskType.black);
     });
+  }
+
+  void stopLocationUpdates() {
+    locationTimer?.cancel();
   }
   // Future<Position?> getCurrentLocation() async {
   //   try {

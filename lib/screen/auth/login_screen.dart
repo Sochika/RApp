@@ -42,7 +42,7 @@ class loginScreenState extends State<LoginScreen> {
   void didChangeDependencies() {
     if (widget.initial) {
       widget.initial = false;
-      context.read<Auth>().resetAppUrl();
+      // context.read<Auth>().resetAppUrl();
       context.read<Auth>().getAppUrl();
     }
     super.didChangeDependencies();
@@ -319,24 +319,24 @@ class loginScreenState extends State<LoginScreen> {
                             gaps(30),
                             button(),
                             gaps(20),
-                            Center(
-                              child: GestureDetector(
-                                onTap: () {
-                                  // openBrowserTab();
-                                  print("Hello Forget Password");
-                                },
-                                child: Text(
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(color: Colors.white),
-                                    translate("login_screen.forget_password")),
-                              ),
-                            ),
+                            // Center(
+                            //   child: GestureDetector(
+                            //     onTap: () {
+                            //       // openBrowserTab();
+                            //       print("Hello Forget Password");
+                            //     },
+                            //     child: Text(
+                            //         textAlign: TextAlign.left,
+                            //         style: const TextStyle(color: Colors.white),
+                            //         translate("login_screen.forget_password")),
+                            //   ),
+                            // ),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Center(
                                 child: GestureDetector(
                                   onTap: () {
-                                    context.read<Auth>().resetAppUrl();
+                                    // context.read<Auth>().resetAppUrl();
                                   },
                                   child: Text(
                                       textAlign: TextAlign.left,

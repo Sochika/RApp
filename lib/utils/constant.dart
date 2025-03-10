@@ -8,14 +8,14 @@ class Constant {
   static const keonUrl = "https://radius.suchtree.com/";
   static const staging = "https://attendance.suchtree.com/";
   static const localhost = "http://192.168.0.134:8004/";
-  // static const suchphn = "http://192.168.27.2:8004/";192.168.54.2
+  static const suchphn = "http://192.168.95.2:8004/";
 
-  static const appUrl = localhost;
+  static const appUrl = suchphn;
 
   // /**
   //  * Change value based on your need.
   //  */
-  static const MAIN_URL = localhost;
+  static const MAIN_URL = appUrl;
 
   static const API_URL = "api";
   static const IMAGE_URL = "${MAIN_URL}images/";
@@ -26,6 +26,9 @@ class Constant {
   static const LOGIN_URL = "$API_URL/login";
   static const LOGOUT_URL = "$API_URL/logout";
   static const DASHBOARD_URL = "$API_URL/dashboard";
+  static const OVERVIEW_URL = "$API_URL/overview";
+
+  static const LOCATIONOPERATIVE_URL = "$API_URL/locationOperative";
 
   static const CHECK_IN_URL = "$API_URL/staff/check-in";
   static const CHECK_OUT_URL = "$API_URL/employees/check-out";

@@ -30,62 +30,65 @@ class HeaderState extends State<HeaderProfile> {
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: CachedNetworkImage(
-                imageUrl: '${Constant.IMAGE_URL}${provider.avatar}',
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-                placeholder: (context, url) {
-                  return Image.asset(
-                    'assets/images/dummy_avatar.png',
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                  );
-                },
+        child: Container(
+          width: double.infinity, // Ensure full width
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: CachedNetworkImage(
+                  imageUrl: '${Constant.IMAGE_URL}${provider.avatar}',
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) {
+                    return Image.asset(
+                      'assets/images/dummy_avatar.png',
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                   "Hello Operative",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                     "Hello Operative",
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
 
-                  Text(
-                    provider.fullname,
-                    style: const TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  Text(
-                    provider.staffNo,
-                    style: const TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                ],
+                    Text(
+                      provider.fullname,
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    Text(
+                      provider.staffNo,
+                      style: const TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const Spacer(),
-            IconButton(
-                onPressed: () {
-                  pushScreen(context,
-                      screen: const NotificationScreen(),
-                      withNavBar: false,
-                      pageTransitionAnimation: PageTransitionAnimation.fade);
-                },
-                icon: const Icon(
-                  Icons.notifications,
-                  color: Colors.white,
-                )),
-          ],
+              const Spacer(),
+              IconButton(
+                  onPressed: () {
+                    pushScreen(context,
+                        screen: const NotificationScreen(),
+                        withNavBar: false,
+                        pageTransitionAnimation: PageTransitionAnimation.fade);
+                  },
+                  icon: const Icon(
+                    Icons.notifications,
+                    color: Colors.white,
+                  )),
+            ],
+          ),
         ),
       ),
     );

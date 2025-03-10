@@ -174,9 +174,11 @@ class _CheckAttendanceState extends State<CheckAttendance> {
           return Text('Error: ${snapshot.error}');
         }
 
-        final animationAsset = snapshot.data == "on"
-            ? 'assets/raw/fingerprint.json'
-            : 'assets/raw/nfc.json';
+        var animationAsset = 'assets/raw/nfc.json';
+
+        animationAsset = snapshot.data == "off"
+            ? 'assets/raw/nfc.json'
+            : 'assets/raw/fingerprint.json';
 
         // print('SnapShot ${snapshot.data}');
         return ClipRRect(

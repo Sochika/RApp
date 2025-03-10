@@ -45,8 +45,8 @@ class ShiftType {
 
   factory ShiftType.fromJson(Map<String, dynamic> json) {
     return ShiftType(
-      name: json['name'],
-      hours: json['hours'],
+      name: json['name'] ?? '',
+      hours: json['hours'] ?? 0,
     );
   }
 

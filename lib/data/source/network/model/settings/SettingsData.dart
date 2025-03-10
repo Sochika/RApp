@@ -3,12 +3,14 @@ class SettingsData {
   final String viewOffBeats;
   final String whatsapp;
   final String phone;
+  final String initialMessage;
 
   SettingsData({
     required this.staffRadius,
     required this.viewOffBeats,
     required this.whatsapp,
     required this.phone,
+    required this.initialMessage,
   });
 
   // Constructor that creates a SettingsData from JSON
@@ -18,6 +20,7 @@ class SettingsData {
       viewOffBeats: json['view_off_beats'] as String? ?? '0',
       whatsapp: json['whatsapp'] as String? ?? '',
       phone: json['phone'] as String? ?? '',
+      initialMessage: json['message'] as String? ?? '',
     );
   }
 
@@ -27,6 +30,7 @@ class SettingsData {
     'view_off_beats': viewOffBeats,
     'whatsapp': whatsapp,
     'phone': phone,
+    'message': initialMessage,
   };
 
   // For serialization

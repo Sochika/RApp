@@ -22,7 +22,8 @@ class ProjectScreen extends StatelessWidget {
   final model = Get.put(ProjectDashboardController());
   final Dashboardresponse? dashboardData;
 
-   ProjectScreen(this.dashboardData,{super.key});
+   ProjectScreen(
+       this.dashboardData,{super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,8 @@ class ProjectScreen extends StatelessWidget {
                 children: [
                   // projectOverview(),
                   dashboardDataList(),
-                  recentProject(), recentTasks()],
+                  // recentProject(), recentTasks()
+                ],
               ),
             ),
           )),
